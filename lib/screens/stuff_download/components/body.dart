@@ -4,6 +4,7 @@ import 'package:graduation/components/top_bar.dart';
 import 'package:graduation/constants.dart';
 import 'package:graduation/models/staff_download_request_model.dart';
 import 'package:graduation/screens/home/home_screen.dart';
+import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 
 import '../../../services/api_service.dart';
 import '../../../size_config.dart';
@@ -74,7 +75,12 @@ class _BodyState extends State<Body> {
               color: Colors.grey[200],
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
+            child: Image.asset(
+              "assets/images/vid.png",
+              fit: BoxFit.cover,
+            ),
           ),
+
 
 
           SizedBox(height: SizeConfig.screenHeight*0.03,),
@@ -236,7 +242,7 @@ class _BodyState extends State<Body> {
 
 
                   ElevatedButton(
-                      onPressed: (){/*Navigator.pushNamed(context, HomeScreen.routeName);*/},
+                      onPressed: (){Navigator.pushNamed(context, StaffUploadScreen.routeName);},
                       child: Row(
                         children: [
                           Text("Next ",

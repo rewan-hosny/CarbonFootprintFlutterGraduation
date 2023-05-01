@@ -5,6 +5,7 @@ import 'package:graduation/screens/plant1_page/plant1_screen.dart';
 import 'package:graduation/screens/questions/components/question_one.dart';
 import 'package:graduation/size_config.dart';
 import '../../../components/bottom_navigation_bar.dart';
+import '../../../components/staff_bottom_navigation_bar.dart';
 import '../../../constants.dart';
 import '../../articles/article_screen.dart';
 import '../../contact_us/contact_screen.dart';
@@ -59,7 +60,7 @@ class Body extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomNavigationBar(
+      bottomNavigationBar: CustomStaffNavigationBar(
         flag1: false,
         flag2: false,
         flag3: false,
@@ -160,7 +161,7 @@ class Body extends StatelessWidget {
                         ),
 
 
-                        child: Text(""+answersData["uniCalc result"], //edittttttttttttttttt
+                        child: Text(""+answersData["uniCalc result"]+" kg", //edittttttttttttttttt
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 35,
@@ -284,7 +285,7 @@ class Body extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Water",
+                                "Gas",
                                 style: TextStyle(
                                   color: Color(0xFFEF8437),
                                   fontSize: 15,

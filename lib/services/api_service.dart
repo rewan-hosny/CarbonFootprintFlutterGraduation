@@ -4,9 +4,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:graduation/models/Staff_GetAdmin_response_model.dart';
 import 'package:graduation/models/Staff_check_admin_request_model.dart';
+import 'package:graduation/screens/home/home_screen.dart';
+import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
+import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
+import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
-
+import 'package:file_picker/file_picker.dart';
+import 'package:open_file/open_file.dart';
 
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:graduation/models/calculate_carbon_request_model.dart';
@@ -43,6 +48,7 @@ import '../models/prediction_response_model.dart';
 import '../models/scan_plant_response_model.dart';
 import 'package:flutter/material.dart';
 
+import '../models/staff_uploadTemp_response_model.dart';
 import '../models/uni_calc_request_model.dart';
 import '../models/uni_calc_response_model.dart';
 import '../models/update_profile_request.dart';
@@ -158,8 +164,10 @@ class APIService extends StatefulWidget {
   // );
 
   static Future<UniCalcResponseModel> uniCalc(UniCalcRequestModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> requestHeaders = {
       'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
     } ;
     var url = Uri.http(baseUrl,uniCalcEndPoint);
     var response = await client.post
@@ -224,6 +232,52 @@ class APIService extends StatefulWidget {
     return scanPlantResponseModel(respStr);
 
   }
+  // static Future<StaffUploadTempResponseModel> UploadExcelFile() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var url = Uri.http(baseUrl, uploadTempEndPoint);
+  //   var request = http.MultipartRequest('POST', url);
+  //   Map<String, String> requestHeaders = {
+  //     'Cookie': prefs.getString('currentSession')!
+  //   };
+  //   request.headers.addAll(requestHeaders);
+  //   var excelFile = await FilePicker.platform.pickFiles(
+  //     type: FileType.custom,
+  //     allowedExtensions: ['xlsx', 'xls', 'csv'],
+  //   );
+  //
+  //
+  //   request.files.add(await http.MultipartFile.fromPath('file', excelFile!.files.first.path!));
+  //   var response = await request.send();
+  //   final respStr = await response.stream.bytesToString();
+  //   return staffUploadTempResponseModel(respStr);
+  // }
+  static Future<StaffUploadTempResponseModel> uploadExcelFile(
+      BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.http(baseUrl, uploadTempEndPoint);
+    var request = http.MultipartRequest('POST', url);
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    };
+    request.headers.addAll(requestHeaders);
+    var excelFile = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['xlsx', 'xls', 'csv'],
+    );
+    request.files
+        .add(await http.MultipartFile.fromPath('file', excelFile!.files.first.path!));
+    var response = await request.send();
+    final respStr = await response.stream.bytesToString();
+    StaffUploadTempResponseModel staffResponse = staffUploadTempResponseModel(respStr);
+
+
+    return staffResponse;
+  }
+
+
+
+
+
 
   static Future<UploadProfileImageResponse> UploadProfileImage() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();

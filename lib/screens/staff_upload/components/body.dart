@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/components/top_bar.dart';
+import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
+import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
+import 'package:graduation/services/api_service.dart';
 import 'package:graduation/size_config.dart';
 
 import '../../../constants.dart';
@@ -46,7 +49,13 @@ class _BodyState extends State<Body> {
             height: 70,
             width: 360,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: (
+
+                  ) {
+                Navigator.pushNamed(context, StaffProcessingFileScreen.routeName);
+              }
+
+   ,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -62,6 +71,7 @@ class _BodyState extends State<Body> {
                     ),
                   ]),
               style: ElevatedButton.styleFrom(
+
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(18))),
                 padding: EdgeInsets.only(right: 40,left: 40),
@@ -82,7 +92,7 @@ class _BodyState extends State<Body> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                      onPressed: (){/*Navigator.pushNamed(context, HomeScreen.routeName);*/},
+                      onPressed: (){Navigator.pushNamed(context, StuffDownloadScreen.routeName);},
                       child: Row(
                         children: [
                           Text("◄ ",

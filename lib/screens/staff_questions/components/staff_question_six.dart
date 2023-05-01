@@ -385,7 +385,7 @@ class _StaffQuestionSixState extends State<StaffQuestionSix> {
 
 
                               print(response.carbonEmission.toString()?.substring(0,4)),
-                                  widget.answersData["uniCalc result"]=response.carbonEmission.toString()?.substring(0,1),
+                                  widget.answersData["uniCalc result"]=response.carbonEmission.toString()?.substring(0,3),
                                   //  Navigator.pushNamed(context, QuestionScreen.routeName)
 
                              //  APIService.carbonAdvice().then((response) => {

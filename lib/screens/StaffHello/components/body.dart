@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
@@ -103,7 +104,7 @@ class _BodyState extends State<Body> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          Navigator.pushNamed(context, StaffQuestionOne.routeName);
+                          Navigator.pushNamed(context, StaffBeforeQuestionsScreen.routeName);
                         },
                         child:Container(
                           height: MediaQuery.of(context).size.height * 0.1,
@@ -268,6 +269,31 @@ class _BodyState extends State<Body> {
                         ),
 
                       ),
+
+                      SizedBox(height: SizeConfig.screenHeight*0.08,),
+                      Container(
+
+                        child:GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, StuffHomePageScreen.routeName);
+                          },
+                          child: Align(
+                            child: Text(
+                              "Skip that Now and calculate it later",
+                              style: TextStyle(
+                                color: Color(0xFF1CA953),
+                                fontSize: 18,
+                                height: 22 / 15,
+                                fontFamily: "Montserrat",
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                                decorationColor: LightModeMainColor,
+                              ),
+                            ),
+                          ),
+                        )
+                        ,)
 
 
 

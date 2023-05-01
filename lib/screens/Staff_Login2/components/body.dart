@@ -4,6 +4,7 @@ import 'package:graduation/components/forget_password.dart';
 import 'package:graduation/components/top_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation/constants.dart';
+import 'package:graduation/screens/Staff_Login/Staff_login.dart';
 import 'package:graduation/screens/Staff_Login2/components/Staff_SignIn_form.dart';
 import 'package:graduation/screens/forget_password/forget_password_screen.dart';
 import 'package:graduation/screens/home/home_screen.dart';
@@ -27,7 +28,7 @@ class Body extends StatelessWidget {
                   TopBar(
                       text: "      Staff Login",
                       press: () {
-                        Navigator.pushNamed(context, HomeScreen.routeName);
+                        Navigator.pushNamed(context, StaffLogin.routeName);
                       }),
                   Align(
                     child: SvgPicture.asset(

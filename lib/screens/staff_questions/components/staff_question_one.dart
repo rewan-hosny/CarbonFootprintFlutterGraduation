@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation/components/question_page_button.dart';
 import 'package:graduation/constants.dart';
 import 'package:graduation/screens/questions/components/question_two.dart';
+import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_two.dart';
 import 'package:graduation/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -392,7 +393,7 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
                         ElevatedButton(
 
                             onPressed: (){
-                              Navigator.pushNamed(context, StaffHello.routeName);
+                              Navigator.pushNamed(context, StaffBeforeQuestionsScreen.routeName);
                             },
                             child: Text(
                               "Prev",

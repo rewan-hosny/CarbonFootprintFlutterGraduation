@@ -116,7 +116,7 @@ class _SignInFormState extends State<SignInForm> {
 
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight*0.04),
+          SizedBox(height: SizeConfig.screenHeight*0.02),
           DefaultButton(text: "Log in",press:isOk()? () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             //Navigator.pushNamed(context, ForgetPasswordScreen.routeName);
@@ -337,6 +337,8 @@ Navigator.pushNamed(context, HomePageScreen.routeName)
 
           }:null,),
           SizedBox(height: SizeConfig.screenHeight*0.02),
+
+
 
 
 

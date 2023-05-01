@@ -36,13 +36,16 @@ import 'package:graduation/screens/regression1_page/regression1_screen.dart';
 import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
+import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
+import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_five.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_four.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_six.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_three.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_two.dart';
+import 'package:graduation/screens/staff_regression_page/staff_regression_screen.dart';
 import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
 import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
@@ -53,12 +56,12 @@ import 'package:graduation/screens/web_page/web_page_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
 //XFile xFile;
 final Map  <String, WidgetBuilder> routes = {
-
-
-
+  StaffBeforeQuestionsScreen.routeName:((context) => StaffBeforeQuestionsScreen()),
   Regression1Screen.routeName:((context)=> Regression1Screen()),
   Regression2Screen.routeName:((context)=> Regression2Screen(dates: {},)),
   AboutScreen.routeName:((context)=> AboutScreen()),
+  StuffRegressionScreen.routeName: (context) => StuffRegressionScreen(dates: {}),
+  StaffProjectsScreen.routeName:((context) => StaffProjectsScreen()),
   ContactScreen.routeName:((context)=> ContactScreen()),
   StaffQuestionOne.routeName:((context) => StaffQuestionOne()),
   StaffQuestionTwo.routeName:((context) => StaffQuestionTwo({})),

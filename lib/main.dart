@@ -29,6 +29,7 @@ import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
+import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
 import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
@@ -74,7 +75,7 @@ Future<void> main() async {
   }
 
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? StaffLogin.routeName : StaffLogin.routeName,
+    initialRoute: isLogged ? SignInScreen.routeName : SignInScreen.routeName,
   );
   runApp(myApp);
 }
