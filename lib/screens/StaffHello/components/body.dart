@@ -9,6 +9,7 @@ import '../../../size_config.dart';
 import '../../home_page/home_page_screen.dart';
 
 import '../../profile/profile_screen.dart';
+import '../../staff_chooseDU_page/staff_chooseDU_page.dart';
 import '../../stuff_download/stuff_download_screen.dart';
 import '../../stuff_home_page/stuff_home_page_screen.dart';
 import '../StaffHello.dart';
@@ -194,7 +195,7 @@ class _BodyState extends State<Body> {
 
                       GestureDetector(
                         onTap: ( ){
-                          Navigator.pushNamed(context, StuffDownloadScreen.routeName);
+                          Navigator.pushNamed(context, StaffChoosePage.routeName);
                         },
                         child:Container(
                           height: MediaQuery.of(context).size.height * 0.1,

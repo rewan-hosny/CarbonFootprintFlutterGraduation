@@ -7,6 +7,7 @@ import 'package:graduation/services/api_service.dart';
 import 'package:graduation/size_config.dart';
 
 import '../../../constants.dart';
+import '../../staff_step_to_do/staff_step_to_do.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -92,7 +93,7 @@ class _BodyState extends State<Body> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                      onPressed: (){Navigator.pushNamed(context, StuffDownloadScreen.routeName);},
+                      onPressed: (){Navigator.pushNamed(context, StaffStepToDo.routeName);},
                       child: Row(
                         children: [
                           Text("◄ ",

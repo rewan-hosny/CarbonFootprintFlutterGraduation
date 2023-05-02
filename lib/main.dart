@@ -28,9 +28,13 @@ import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
+import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
+import 'package:graduation/screens/staff_stepAfterLogin/staff_stepAfterLogin.dart';
+
+import 'package:graduation/screens/staff_step_to_do/staff_step_to_do.dart';
 import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
 import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
@@ -75,7 +79,7 @@ Future<void> main() async {
   }
 
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? SignInScreen.routeName : SignInScreen.routeName,
+    initialRoute: isLogged ? StaffStepAfterLogin.routeName : StaffStepAfterLogin.routeName,
   );
   runApp(myApp);
 }

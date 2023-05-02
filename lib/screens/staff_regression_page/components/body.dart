@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation/screens/regression1_page/regression1_screen.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
+import '../../../components/staff_bottom_navigation_bar.dart';
 import '../../../constants.dart';
 import '../../../models/prediction_request_model.dart';
 import '../../../services/api_service.dart';
@@ -93,9 +94,9 @@ class _BodyState extends State<Body> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomNavigationBar(
-        flag1: true,
-        flag2: false,
+      bottomNavigationBar: CustomStaffNavigationBar(
+        flag1: false,
+        flag2: true,
         flag3: false,
         flag4: false,
       ),
