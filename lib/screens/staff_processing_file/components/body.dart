@@ -28,8 +28,8 @@ class _BodyState extends State<Body> {
   void initState() {
     super.initState();
     // TODO: implement initState
-    APIService.uploadExcelFile(context).then((response) {
-      if (response.message == "File uploaded successfully") {
+    APIService.TrainData().then((response) {
+      if (response.status =="Success") {
         Map<String, dynamic> resultData =
         json.decode(json.encode(response.result?.toJson()));
         print(resultData);

@@ -28,10 +28,13 @@ import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
+import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
+import 'package:graduation/screens/staff_electricity_project/staff_electricity_screen.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
+import 'package:graduation/screens/staff_solar_panel_result/staff_solar_panel_result_screen.dart';
 import 'package:graduation/screens/staff_stepAfterLogin/staff_stepAfterLogin.dart';
 
 import 'package:graduation/screens/staff_step_to_do/staff_step_to_do.dart';
@@ -79,7 +82,7 @@ Future<void> main() async {
   }
 
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? StaffStepAfterLogin.routeName : StaffStepAfterLogin.routeName,
+    initialRoute: isLogged ? Regression1Screen.routeName : Regression1Screen.routeName,
   );
   runApp(myApp);
 }

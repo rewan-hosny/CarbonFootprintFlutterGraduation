@@ -53,10 +53,16 @@ class _BodyState extends State<Body> {
               onPressed: (
 
                   ) {
-                Navigator.pushNamed(context, StaffProcessingFileScreen.routeName);
-              }
 
-   ,
+    APIService.uploadExcelFile(context).then((response) {
+    if (response.status == "File uploaded successfully") {
+    Navigator.pushNamed(context, StaffProcessingFileScreen.routeName);
+
+    }
+    });
+              },
+
+
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

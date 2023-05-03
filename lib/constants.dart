@@ -10,6 +10,9 @@ const String getAdminEndPoint = '/admin';
 const String urlForGoogleLogin = '10.0.2.2:5000';
 const String carbonCalcEndPoint = '/calc';
 const String uploadTempEndPoint = '/uploadTemp';
+const String TrainTempEndPoint = '/trainTemp';
+
+const String solarPanel = '/solarCalc';
 const String downloadEndPoint = '/genTemp';
 const String checkAdmin="/check_admin";
 const String registerEndpoint = '/register';

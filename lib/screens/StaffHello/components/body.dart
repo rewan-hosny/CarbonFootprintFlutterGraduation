@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
+import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
@@ -276,7 +277,7 @@ class _BodyState extends State<Body> {
 
                         child:GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, StuffHomePageScreen.routeName);
+                            Navigator.pushNamed(context, StaffCalculateSolarPanelsScreen.routeName);
                           },
                           child: Align(
                             child: Text(

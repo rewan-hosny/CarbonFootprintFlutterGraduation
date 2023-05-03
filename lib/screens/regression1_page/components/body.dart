@@ -8,6 +8,7 @@ import 'package:graduation/screens/regression1_page/regression1_screen.dart';
 import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/size_config.dart';
 
+import '../../../components/CustomDropdownButton2.dart';
 import '../../../components/bottom_navigation_bar.dart';
 
 
@@ -20,14 +21,14 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Map<String,String> dates={};
- List<String> itemsFrom =['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'];
- String? SelectedItemFrom ;
+  List<String> itemsFrom =['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'];
+  String? SelectedItemFrom ;
 
- List<String> itemsTo =['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'];
- String? SelectedItemTo ;
+  List<String> itemsTo =['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'];
+  String? SelectedItemTo ;
 
 
- @override
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
@@ -186,9 +187,9 @@ class _BodyState extends State<Body> {
       SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),
-         child:
-        Center(
-          child: Column(
+          child:
+          Center(
+            child: Column(
               children: [
                 SizedBox(height: SizeConfig.screenHeight*0.05,),
                 Align(
@@ -243,72 +244,76 @@ class _BodyState extends State<Body> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
-                      //From list
-                      Container(
-                        width: 100,
-                        height: 50,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
+                      CustomDropdownButton2(
+                        dropdownWidth: 100,
+                        buttonHeight:50 ,
+                        buttonWidth: 100,
+                        buttonDecoration:BoxDecoration(
                           border: Border.all(color: Colors.black12,width: 2),
                           borderRadius: BorderRadius.circular(12),
-                        ),
-
-                        child: DropdownButton<String>(
-                          iconSize: 27,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
-                          isExpanded: true,
-                          hint: Text("From", style: TextStyle(
-                            fontSize: 15,
-                            color: LightModeMainColor
-                          ),),
-                          value: SelectedItemFrom,
-                          onChanged: (item)=> setState(() => SelectedItemFrom = item),
-                          items: itemsFrom
-                          .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(item,style: TextStyle(
-                              fontSize: 14,
-                              color: LightModeSmallTextColor,
-                            ),),
-                          ))
-                          .toList(),
-                        ),
+                        ) ,
+                        hint: 'from',
+                        icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,size: 24,),
+                        dropdownItems: itemsFrom,
+                        value: SelectedItemFrom,
+                        onChanged: (value) {
+                          setState(() {
+                            SelectedItemFrom = value;
+                          });
+                        },
                       ),
+                      CustomDropdownButton2(
+                        dropdownWidth: 100,
+                        buttonHeight:50 ,
+                        buttonWidth: 100,
+                        buttonDecoration:BoxDecoration(
+                          border: Border.all(color: Colors.black12,width: 2),
+                          borderRadius: BorderRadius.circular(12),
+                        ) ,
+                        hint: 'To',
+                        icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,size: 24,),
+                        dropdownItems: itemsTo,
+                        value: SelectedItemTo,
+                        onChanged: (value) {
+                          setState(() {
+                            SelectedItemTo = value;
+                          });
+                        },
+                      ),
+                      //From list
+                      // Container(
+                      //   width: 100,
+                      //   height: 50,
+                      //   padding: EdgeInsets.all(10),
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.black12,width: 2),
+                      //     borderRadius: BorderRadius.circular(12),
+                      //   ),
+                      //
+                      //   child: DropdownButton<String>(
+                      //     iconSize: 27,
+                      //     borderRadius: BorderRadius.all(Radius.circular(15)),
+                      //     icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
+                      //     isExpanded: true,
+                      //     hint: Text("From", style: TextStyle(
+                      //       fontSize: 15,
+                      //       color: LightModeMainColor
+                      //     ),),
+                      //     value: SelectedItemFrom,
+                      //     onChanged: (item)=> setState(() => SelectedItemFrom = item),
+                      //     items: itemsFrom
+                      //     .map((item) => DropdownMenuItem<String>(
+                      //       value: item,
+                      //       child: Text(item,style: TextStyle(
+                      //         fontSize: 14,
+                      //         color: LightModeSmallTextColor,
+                      //       ),),
+                      //     ))
+                      //     .toList(),
+                      //   ),
+                      // ),
 
                       //TO list
-                      Container(
-                        width: 100,
-                        height: 50,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black12,width: 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-
-                        child: DropdownButton<String>(
-                          iconSize: 27,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          hint: Text("To",style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: LightModeMainColor
-                          ),),
-                          icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
-                          isExpanded: true,
-                          value: SelectedItemTo,
-                          onChanged: (item)=> setState(() => SelectedItemTo = item),
-                          items: itemsTo
-                              .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(item,style: TextStyle(
-                              fontSize: 14,
-                              color: LightModeSmallTextColor,
-                            ),),
-                          ))
-                              .toList(),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -346,13 +351,13 @@ class _BodyState extends State<Body> {
                       print(startIndex);
                       print("endIndex");
                       print(endIndex);
-                     // String start = Integer.toString(startIndex);
+                      // String start = Integer.toString(startIndex);
                       dates["startIndex"]=startIndex.toString();
                       dates["endIndex"]=endIndex.toString();
                       print("indeces in map");
                       print(dates["startIndex"]);
                       print(dates["endIndex"]);
-                   //   Navigator.pushNamed(context, Regression2Screen.routeName);
+                      //   Navigator.pushNamed(context, Regression2Screen.routeName);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -361,7 +366,7 @@ class _BodyState extends State<Body> {
 
 
 
-                      },
+                    },
 
                     child: Text(
                       "Get Result",
@@ -378,7 +383,7 @@ class _BodyState extends State<Body> {
                 )
               ],
             ),
-        ),
+          ),
 
         ),
       ),

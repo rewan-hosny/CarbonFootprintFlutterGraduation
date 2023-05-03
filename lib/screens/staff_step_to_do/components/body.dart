@@ -6,6 +6,7 @@ import 'package:graduation/models/staff_download_request_model.dart';
 import 'package:graduation/screens/home/home_screen.dart';
 import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 
+import '../../../components/CustomDropdownButton2.dart';
 import '../../../services/api_service.dart';
 import '../../../size_config.dart';
 import '../../StaffHello/StaffHello.dart';
@@ -100,68 +101,41 @@ class _BodyState extends State<Body> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           //From list
-                          Container(
-                            width: SizeConfig.screenWidth*0.35,
-                            height: SizeConfig.screenHeight*0.05,
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
+                          CustomDropdownButton2(
+                            dropdownWidth: 100,
+                            buttonHeight:50 ,
+                            buttonWidth: 100,
+                            buttonDecoration:BoxDecoration(
                               border: Border.all(color: Colors.black12,width: 2),
                               borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: DropdownButton<String>(
-                              iconSize: 27,
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
-                              isExpanded: true,
-                              hint: Text("From", style: TextStyle(
-                                  fontSize: 15,
-                                  color: LightModeMainColor
-                              ),),
-                              value: SelectedItemFrom,
-                              onChanged: (item)=> setState(() => SelectedItemFrom = item),
-                              items: itemsFrom
-                                  .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(item,style: TextStyle(
-                                  fontSize: 16,
-                                  color: LightModeSmallTextColor,
-                                ),),
-                              ))
-                                  .toList(),
-                            ),
+                            ) ,
+                            hint: 'from',
+                            icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,size: 24,),
+                            dropdownItems: itemsFrom,
+                            value: SelectedItemFrom,
+                            onChanged: (value) {
+                              setState(() {
+                                SelectedItemFrom = value;
+                              });
+                            },
                           ),
-
-                          //TO list
-                          Container(
-                            width: SizeConfig.screenWidth*0.35,
-                            height: SizeConfig.screenHeight*0.05,
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
+                          CustomDropdownButton2(
+                            dropdownWidth: 100,
+                            buttonHeight:50 ,
+                            buttonWidth: 100,
+                            buttonDecoration:BoxDecoration(
                               border: Border.all(color: Colors.black12,width: 2),
                               borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: DropdownButton<String>(
-                              iconSize: 27,
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              hint: Text("To",style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: LightModeMainColor
-                              ),),
-                              icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
-                              isExpanded: true,
-                              value: SelectedItemTo,
-                              onChanged: (item)=> setState(() => SelectedItemTo = item),
-                              items: itemsTo
-                                  .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(item,style: TextStyle(
-                                  fontSize: 14,
-                                  color: LightModeSmallTextColor,
-                                ),),
-                              ))
-                                  .toList(),
-                            ),
+                            ) ,
+                            hint: 'To',
+                            icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,size: 24,),
+                            dropdownItems: itemsTo,
+                            value: SelectedItemTo,
+                            onChanged: (value) {
+                              setState(() {
+                                SelectedItemTo = value;
+                              });
+                            },
                           ),
                         ],
                       ),

@@ -48,6 +48,9 @@ import '../models/prediction_response_model.dart';
 import '../models/scan_plant_response_model.dart';
 import 'package:flutter/material.dart';
 
+import '../models/solar_panel_request_model.dart';
+import '../models/solar_panel_response_model.dart';
+import '../models/staff_train_file_response_model.dart';
 import '../models/staff_uploadTemp_response_model.dart';
 import '../models/uni_calc_request_model.dart';
 import '../models/uni_calc_response_model.dart';
@@ -272,6 +275,51 @@ class APIService extends StatefulWidget {
 
 
     return staffResponse;
+  }
+  static Future<SolarPanelResponseModel> SolarPanel(
+      SolarPanelRequestModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.http(baseUrl,solarPanel);
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var response = await client.post
+      (     url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+
+    );
+
+    if (response.statusCode == 200) {
+      print("rewwwwaaan");
+      final jsonResponse = jsonDecode(response.body);
+      return SolarPanelResponseModel.fromJson(jsonResponse);
+    } else {
+      throw Exception('Failed to request solar panel calculation');
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+static Future<StaffTrainTempResponseModel> TrainData() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,TrainTempEndPoint);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+    return staffTrainTempResponseModel(response.body);
   }
 
 
