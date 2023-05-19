@@ -40,12 +40,12 @@ class _BodyState extends State<Body> {
           Align(
             child: Image.asset(
               "assets/images/undraw_folder_files_re_2cbm 1.png",
-              height: SizeConfig.screenHeight * 0.33,
+              height: SizeConfig.screenHeight * 0.25,
             ),
             alignment: Alignment.topCenter,
           ),
 
-          SizedBox(height: SizeConfig.screenHeight*0.14,),
+          SizedBox(height: SizeConfig.screenHeight*0.10,),
           Container(
             height: 70,
             width: 360,
@@ -89,7 +89,7 @@ class _BodyState extends State<Body> {
           ),
 
 
-          SizedBox(height: SizeConfig.screenHeight*0.172,),
+          SizedBox(height: SizeConfig.screenHeight*0.16,),
 
 
           Column(

@@ -13,6 +13,9 @@ import '../../home_page/home_page_screen.dart';
 import '../../plant1_page/plant1_screen.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../staff_target/staff_target_screen.dart';
+import '../staff_regression_screen.dart';
+
 class Body extends StatefulWidget {
   const Body({Key? key, required this.dates}) : super(key: key);
   final Map<String,dynamic> dates;
@@ -197,8 +200,16 @@ class _BodyState extends State<Body> {
 
 
               Container(
-                height: 300,
+                height: 350,
                 child: Table(
+                  border: TableBorder(
+                    horizontalInside: BorderSide(
+                      color: Colors.grey.shade200,
+                      width: 2,
+
+                      style: BorderStyle.solid,
+                    ),
+                  ),
                   children: [
                     buildRow(['Year','Emissions'],isHeader: true),
                     for (int i = 0; i < myListt.length; i++)
@@ -208,7 +219,33 @@ class _BodyState extends State<Body> {
               ),
 
 
-              SizedBox(height: SizeConfig.screenHeight*0.2,)
+
+
+              SizedBox(height: SizeConfig.screenHeight*0.18,),
+
+
+
+              Container(
+                height: 70,
+                width: 360,
+                child: ElevatedButton(
+                  onPressed: () { Navigator.pushNamed(context, StaffTargetScreen.routeName); },
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Set Your Target",
+                          style: TextStyle(fontSize: 22,fontFamily: "Poppins"),),
+                      ]),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(18))),
+                    padding: EdgeInsets.only(right: 40,left: 40),
+                    primary: Colors.white,
+                    backgroundColor: LightModeMainColor,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -235,6 +272,7 @@ class _BodyState extends State<Body> {
 
 
 }
+
 
 
 class _ChartData {

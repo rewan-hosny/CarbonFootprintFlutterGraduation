@@ -372,10 +372,17 @@ class _QuestionNineState extends State<QuestionNine> {
                                   print("Success"),
                                   print("carbon emissions : "),
                                   print(response.carbonEmission),
+                                  print("rewan"),
 
 
-                              print(response.carbonEmission.toString()?.substring(0,4)),
-                                  widget.answersData["carbon emissions"]=response.carbonEmission.toString()?.substring(0,4),
+
+                                  print(response.carbonEmission.toString()?.substring(0,4)),
+
+
+                              widget.answersData["carbon emissions"] = response.carbonEmission?.toStringAsFixed(2),
+
+
+                              // widget.answersData["carbon emissions"]=response.carbonEmission.toString(),
                                   //  Navigator.pushNamed(context, QuestionScreen.routeName)
 
                               APIService.carbonAdvice().then((response) => {

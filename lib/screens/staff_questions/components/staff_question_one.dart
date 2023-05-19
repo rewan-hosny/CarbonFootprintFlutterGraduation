@@ -12,14 +12,14 @@ import '../../StaffHello/StaffHello.dart';
 
 class StaffQuestionOne extends StatefulWidget {
   static String routeName = "/StaffQuestionOne";
-  const StaffQuestionOne({Key? key}) : super(key: key);
+  const StaffQuestionOne({Key? key, required this.answersData}) : super(key: key);
+  final Map<dynamic,dynamic> answersData ;
 
   @override
   State<StaffQuestionOne> createState() => _StaffQuestionOneState();
 }
 class _StaffQuestionOneState extends State<StaffQuestionOne> {
   //List<dynamic> selectedList = [];
-  Map<dynamic,dynamic> answersData = {};
   //من اول هنااااا
 
   String answer = "";
@@ -184,9 +184,9 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
                               padding: const EdgeInsets.all(12.0),
                               child: Text(
 
-                                  "How much electricity did the university consume for HVAC (Heating, Ventilation, and Air Conditioning)?",//hereeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                  style: questionsStyle
-                              , textAlign: TextAlign.center,
+                                "How much electricity did the university consume for HVAC (Heating, Ventilation, and Air Conditioning)?",//hereeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                style: questionsStyle
+                                , textAlign: TextAlign.center,
 
                               ),
 
@@ -218,16 +218,16 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
                                 child: RadioListTile(
                                     activeColor: Colors.white,
                                     title: Text("0-50,000 kWh",
-                                        //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                         style:  TextStyle(
+                                      //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                      style:  TextStyle(
                                         fontSize: getProportionateScreenWidth(16),
-                                  fontFamily: "Poppins",
-                                  color: isTouching1 == true
-                                      ? Colors.white
-                                      :currentColor,
+                                        fontFamily: "Poppins",
+                                        color: isTouching1 == true
+                                            ? Colors.white
+                                            :currentColor,
 
-                                ),
-                              ),
+                                      ),
+                                    ),
                                     value: "0-50,000 kWh", //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                     groupValue: answer,
                                     onChanged: (value) {
@@ -265,12 +265,12 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
                                       "50,000 -65,000 kWh",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                       style:  TextStyle(
                                         fontSize: getProportionateScreenWidth(16),
-                                  fontFamily: "Poppins",
-                                  color: isTouching2 == true
-                                      ? Colors.white
-                                      :currentColor,
+                                        fontFamily: "Poppins",
+                                        color: isTouching2 == true
+                                            ? Colors.white
+                                            :currentColor,
 
-                                ),
+                                      ),
                                     ),
                                     value: "50,000 -65,000 kWh",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                     groupValue: answer,
@@ -421,16 +421,16 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
 
 
                               if(answer == "0-50,000 kWh"){
-                                answersData["Electricity"]="a";
+                                widget.answersData["Electricity"]="a";
                               }
                               else if(answer == "50,000 -65,000 kWh"){
-                                answersData["Electricity"]="b";
+                                widget.answersData["Electricity"]="b";
                               }
                               else if(answer == "65,000 – 75,000 kWh"){
-                                answersData["Electricity"]="c";
+                                widget.answersData["Electricity"]="c";
                               }
                               else if(answer == "75,000+ kWh"){
-                                answersData["Electricity"]="d";
+                                widget.answersData["Electricity"]="d";
                               }
 
 
@@ -440,7 +440,7 @@ class _StaffQuestionOneState extends State<StaffQuestionOne> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => StaffQuestionTwo(
-                                          answersData
+                                          widget.answersData
 
                                       ))
 

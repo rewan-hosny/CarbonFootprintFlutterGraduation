@@ -4,6 +4,7 @@ import '../../../components/CustomDropdownButton2.dart';
 import '../../../components/top_bar.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../staff_questions/components/staff_question_one.dart';
 
 
 class Body extends StatefulWidget {
@@ -20,6 +21,7 @@ class _BodyState extends State<Body> {
   List<String> itemsFrom =['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'];
   String? SelectedItem ;
 
+  @override
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +72,19 @@ class _BodyState extends State<Body> {
                       onChanged: (bool? value) {
                         setState(() {
                           this.value = value!;
+                          if(value == true){
+                            dates["chosen year"]="2023";
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StaffQuestionOne(
+                                        answersData: dates
+
+                                    ))
+
+
+                            );
+                          }
                         });
                       },
                       activeColor: LightModeMainColor,
@@ -103,14 +118,7 @@ class _BodyState extends State<Body> {
 
             SizedBox(height: SizeConfig.screenHeight*0.04,),
             Container(
-              // width: 350,
-              // height: 60,
-              // padding: EdgeInsets.all(10),
-              // decoration: BoxDecoration(
-              //   color: LightGray,
-              //   // border: Border.all(color: Colors.black12,width: 2),
-              //   // borderRadius: BorderRadius.circular(12),
-              // ),
+
 
               child: CustomDropdownButton2(
 
@@ -128,32 +136,24 @@ class _BodyState extends State<Body> {
                 onChanged: (value) {
                   setState(() {
                     SelectedItem = value;
+                    print(SelectedItem);
+                    dates["chosen year"]="2023";
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StaffQuestionOne(
+                                answersData: dates
+
+                            ))
+
+
+                    );
+
                   });
                 },
               ),
 
-              // DropdownButton<String>(
-              //   items: itemsFrom
-              //       .map((item) => DropdownMenuItem<String>(
-              //     value: item,
-              //     child: Text(item,style: TextStyle(
-              //       fontSize: 14,
-              //       color: LightModeSmallTextColor,
-              //     ),),
-              //   ))
-              //       .toList(),
-              //   onChanged: (item)=> setState(() => SelectedItem = item),
-              //   iconSize: 27,
-              //   borderRadius: BorderRadius.all(Radius.circular(15)),
-              //   icon: Icon(Icons.arrow_drop_down,color: LightModeMainColor,),
-              //   hint: Text("  ......", style: TextStyle(
-              //       fontSize: 18,
-              //       color: LightModeMainColor),),
-              //   isExpanded: true,
-              //   value: SelectedItem,
-              //
-              //
-              // ),
+
 
             ),
           ],
@@ -163,72 +163,4 @@ class _BodyState extends State<Body> {
   }
 }
 
-// class Body extends StatelessWidget {
-//   const Body({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       body: Padding(
-//         padding: const EdgeInsets.all(20),
-//         child: Column(
-//           children: [
-//             SizedBox(height: SizeConfig.screenHeight*0.05,),
-//             TopBar(text: "       Questions", press: (){},),
-//
-//             SizedBox(height: SizeConfig.screenHeight*0.1,),
-//
-//             Align(
-//               child: RichText(
-//                 text: TextSpan(
-//                   // style: LightModeSmallTextStyle,
-//                   children: <TextSpan>[
-//                     TextSpan(text: 'Choose ', style: TextStyle(
-//                         fontSize: 21, color: LightModeMainColor, fontWeight: FontWeight.w600,fontFamily: "Poppins2"
-//                     )),
-//                     TextSpan(text: 'the year before answering \nthe questions:', style: TextStyle(
-//                       fontSize: 21, color: LightModeSmallTextColor, fontWeight: FontWeight.w600,fontFamily: "Poppins2"
-//                     )),
-//                   ],
-//                 ),
-//               ),
-//               alignment: Alignment.topLeft,
-//             ),
-//             SizedBox(height: SizeConfig.screenHeight*0.05,),
-//
-//
-//             Container(
-//               child: Row(
-//                 children: [
-//                   Transform.scale(
-//                     scale: 1.3,
-//                     child: Checkbox(
-//                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-//                       value: value,
-//                       onChanged: (bool? value) {
-//                         setState(() {
-//                           this.value = value!;
-//                         }
-//                         );
-//                       },
-//                       activeColor: LightModeMainColor,
-//                       checkColor: Colors.white,
-//                       autofocus: true,
-//                     ),
-//                   ),
-//
-//                   Text("Current year",style: ContinueWithTextStyle,)
-//
-//
-//
-//
-//                 ],
-//               ),,
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+

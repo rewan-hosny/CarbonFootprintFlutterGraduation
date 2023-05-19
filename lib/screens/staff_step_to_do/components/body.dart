@@ -52,11 +52,11 @@ class _BodyState extends State<Body> {
                     child: TopBar(
                         text: "  Steps To Do !",
                         press: () {
-                          Navigator.pushNamed(context, HomeScreen.routeName);
+                          Navigator.pushNamed(context, StaffChoosePage.routeName);
                         }
                     ),
                   ),
-                  SizedBox(height: SizeConfig.screenHeight*0.05,),
+                  SizedBox(height: SizeConfig.screenHeight*0.04,),
                   Container(
                     padding: EdgeInsets.all(30),
                     child: Text.rich(
@@ -95,7 +95,7 @@ class _BodyState extends State<Body> {
                         horizontal: SizeConfig.screenWidth*0.1
                     ),
                     width: double.infinity,
-                    height: SizeConfig.screenHeight*0.15,
+                    height: SizeConfig.screenHeight*0.10,
                     child: SingleChildScrollView(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,7 +144,7 @@ class _BodyState extends State<Body> {
 
 
 
-                  SizedBox(height: SizeConfig.screenHeight*0.15,),
+                  SizedBox(height: SizeConfig.screenHeight*0.10,),
 
                   Container(
                     height: 70,

@@ -8,6 +8,7 @@ import '../screens/home_page/home_page_screen.dart';
 import '../screens/plant1_page/plant1_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/regression1_page/regression1_screen.dart';
+import '../screens/target_progress/target_progress_screen.dart';
 import '../size_config.dart';
 
 class CustomStaffNavigationBar extends StatefulWidget {
@@ -153,7 +154,8 @@ class _CustomStaffNavigationBarState extends State<CustomStaffNavigationBar> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    // Navigator.pushNamed(context, ProfileScreen.routeName ).then((_) {
+                    Navigator.pushNamed(context, TargetProgressScreen.routeName );
+                        // .then((_) {
                     //   // This block runs when you have returned back to the 1st Page from 2nd.
                     //   setState(() {
                     //     // Call setState to refresh the page.
@@ -172,21 +174,21 @@ class _CustomStaffNavigationBarState extends State<CustomStaffNavigationBar> {
                     //     )
                     //
 
-
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-                        ProfileScreen(
-                          currentUserData: NavigationcurrentUserData ,
-                        )
-
-
-                    )).then((_) =>
-                        setState(() { }),
-
-
-                    );
-
-
-
+                    //
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+                    //     ProfileScreen(
+                    //       currentUserData: NavigationcurrentUserData ,
+                    //     )
+                    //
+                    //
+                    // )).then((_) =>
+                    //     setState(() { }),
+                    //
+                    //
+                    // );
+                    //
+                    //
+                    //
 
 
 

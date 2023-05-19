@@ -23,33 +23,8 @@ class AlreadyHaveAccount extends StatelessWidget {
         Text("Already have an account ? ", style: LightModeSmallTextStyle),
         GestureDetector(
             onTap: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              print("rememberToken" );
-              print(prefs.getString('rememberToken')??"null");
-              var x= prefs.getString('rememberToken')??"null";
-              print(x);
-              if(x != "null"){
-                RememberMeRequestModel model2 = RememberMeRequestModel(
-                  rememberToken: prefs?.getString('rememberToken')!,
-                );
-                APIService.rememberMe(model2).then((response) async => {
-                  if (response.status == "Valid")
-                    {
-                      print(response.status),
-                      Navigator.pushNamed(context, HomePageScreen.routeName)
-                    }
-                  else
-                    {
-                      print("remember token not valid"),
-                      Navigator.pushNamed(context, HomeScreen.routeName)
-                    }
-                });
 
-              }
-              else{
-                print("there is not a remeber me token");
                 Navigator.pushNamed(context, SignInScreen.routeName);
-              }
 
               //  Navigator.pushNamed(context, SignInScreen.routeName);
             },

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:graduation/screens/plant1_page/plant1_screen.dart';
 import 'package:graduation/screens/questions/components/question_one.dart';
+import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
 import 'package:graduation/size_config.dart';
 import '../../../components/bottom_navigation_bar.dart';
 import '../../../components/staff_bottom_navigation_bar.dart';
 import '../../../constants.dart';
+import '../../../models/uni_calc_response_model.dart';
 import '../../articles/article_screen.dart';
 import '../../contact_us/contact_screen.dart';
 import '../../home/home_screen.dart';
@@ -14,13 +16,34 @@ import '../../intro_questions/intro_questions.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
-class Body extends StatelessWidget {
-  const Body({Key? key, required this.answersData}) : super(key: key);
+
+class Body extends StatefulWidget {
+  const Body({Key? key, required this.answersData, this.largestValues}) : super(key: key);
   final Map<dynamic,dynamic> answersData ;
+  final  LargestValues? largestValues;
+
+
   final double percentage = 0.7;
   final double percentage_2=0.5;
+  final bool _isVisible = true;
+  final double _fontSize = 22.0;
+  final bool _isScaledUp = false;
+
   final Color lightModeMainColor = Colors.blue;
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("test");
+    print(widget.largestValues);
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +79,10 @@ class Body extends StatelessWidget {
               ),
             ],
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, StuffHomePageScreen.routeName);
+
+          },
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -109,7 +135,7 @@ class Body extends StatelessWidget {
                   padding: EdgeInsets.only(left: 15, top: 15),
                   margin: EdgeInsets.only(top: 100),
                   width: 370,
-                  height:MediaQuery.of(context).size.height * 0.35,
+                  height:MediaQuery.of(context).size.height * 0.40,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image:
@@ -145,33 +171,35 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: SizeConfig.screenHeight*0.02,),
-                      Container(
-                        width: 140,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                LightModeMainColor,
-                                Color(0xFFA3D0A6),
-                              ]
-                          ),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-
-
-                        child: Text(""+answersData["uniCalc result"]+" kg", //edittttttttttttttttt
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w600),),
-                        alignment: Alignment.center,
+                  Container(
+                    width: 170,
+                    height: 170,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            LightModeMainColor,
+                            Color(0xFFA3D0A6),
+                          ]
                       ),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Text(
+                      "" + widget.answersData["uniCalc result"] + " kg",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                  ),
 
 
-                      SizedBox(height: SizeConfig.screenHeight*0.01,),
+
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
 
                     ],
                   ),
@@ -189,7 +217,7 @@ class Body extends StatelessWidget {
               child: Column(
 
                 children: [
-                  SizedBox(height: SizeConfig.screenHeight*0.50,),
+                  SizedBox(height: SizeConfig.screenHeight*0.55,),
 
                   Container(
                     padding: EdgeInsets.only(left: 10),
@@ -223,12 +251,14 @@ class Body extends StatelessWidget {
                                 child: CircularPercentIndicator(
                                   radius: 60,
                                   lineWidth: 10,
-                                  percent: percentage,
+                                  percent:double.parse((widget.largestValues?.data?.values?.elementAt(0)))/100,
+                                  animation: true,
+                                  animationDuration: 3000,
                                   backgroundColor: Color(0xFFE2FBD7),
                                   circularStrokeCap: CircularStrokeCap.round,
                                   progressColor: Color(0xFF34B53A),
                                   center: Text(
-                                    "${(percentage * 100).toStringAsFixed(0)}%",
+                                    "${(widget.largestValues?.data?.values?.elementAt(0) ?? "default key")}%",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -241,7 +271,14 @@ class Body extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Electricity",
+
+                                    "${(widget.largestValues?.data?.keys?.elementAt(0) ?? "default key")}"
+
+
+                                ,
+
+
+
                                 style: TextStyle(
                                   color: Color(0xFF1CA953),
                                   fontSize: 15,
@@ -267,12 +304,14 @@ class Body extends StatelessWidget {
                                 child: CircularPercentIndicator(
                                   radius: 60,
                                   lineWidth: 10,
-                                  percent: percentage_2,
+                                  percent: double.parse((widget.largestValues?.data?.values?.elementAt(1)))/100,
+                                  animation: true,
+                                  animationDuration: 3000,
                                   backgroundColor: Color.fromRGBO(239, 132, 55, 0.2),
                                   circularStrokeCap: CircularStrokeCap.round,
                                   progressColor: Color.fromRGBO(239, 132, 55, 0.85),
                                   center: Text(
-                                    "${(percentage_2 * 100).toStringAsFixed(0)}%",
+                                    "${(widget.largestValues?.data?.values?.elementAt(1) ?? "default value")}%",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -285,7 +324,7 @@ class Body extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Gas",
+                                "${(widget.largestValues?.data?.keys?.elementAt(1) ?? "default key")}",
                                 style: TextStyle(
                                   color: Color(0xFFEF8437),
                                   fontSize: 15,
@@ -322,10 +361,10 @@ class Body extends StatelessWidget {
                           fontWeight: FontWeight.w400,),
                       ),
                     ),
-                  )
+                  ),
 
 
-
+                  SizedBox(height: SizeConfig.screenHeight * 0.036),
 
 
 
@@ -345,193 +384,7 @@ class Body extends StatelessWidget {
             ),
 
 
-            Container(
 
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Container(
-                  width: 370,
-                  height: 400,
-                  margin: EdgeInsets.only(top: 1070),
-                  color: LightModeLightGreenColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Other Links",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.bold,
-                              color: LightModeSmallTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: SizeConfig.screenHeight * 0.03,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 370,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        Color(0xFF31AC53),
-                                        Color(0xFF4EE37C),
-                                      ])),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 10),
-                                    child: Text(
-                                      "Carbonite settings  ➞",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 5),
-                                    child: Text(
-                                      "Edit your information",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: SizeConfig.screenHeight * 0.02,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, ContactScreen.routeName);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 370,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        Color(0xFF31AC53),
-                                        Color(0xFF4EE37C),
-                                      ])),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 10),
-                                    child: Text(
-                                      "Contact Us  ➞",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 5),
-                                    child: Text(
-                                      "Send Us your feedback",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: SizeConfig.screenHeight * 0.02,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, ArticlesScreen.routeName);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 370,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        Color(0xFF31AC53),
-                                        Color(0xFF4EE37C),
-                                      ])),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 10),
-                                    child: Text(
-                                      "Sources and Recognition  ➞",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 10, top: 5),
-                                    child: Text(
-                                      "Read Our Acknowledgments",
-                                      style: TextStyle(
-                                        fontFamily: "Poppins3",
-                                        fontSize: 14,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
 
 
           ]),
@@ -540,7 +393,5 @@ class Body extends StatelessWidget {
       ),
     );
   }
-  double _calculateBorderWidth(double percentage) {
-    return percentage <= 0 ? 0 : (percentage / 100) * 14;
-  }
+  
 }

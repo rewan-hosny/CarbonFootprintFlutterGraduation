@@ -11,9 +11,11 @@ import 'package:graduation/screens/contact_us/contact_screen.dart';
 import 'package:graduation/screens/create_new_password/create_new_password_screen.dart';
 import 'package:graduation/screens/edit_profile/edit_profile_screen.dart';
 import 'package:graduation/screens/forget_password/forget_password_screen.dart';
+import 'package:graduation/screens/gps/gps.dart';
 import 'package:graduation/screens/home/home_screen.dart';
 import 'package:graduation/screens/home_page/home_page_screen.dart';
 import 'package:graduation/screens/intro_questions/intro_questions.dart';
+import 'package:graduation/screens/leader_board/leader_board_screen.dart';
 import 'package:graduation/screens/otp/otp_screen.dart';
 //<<<<<<< HEAD
 import 'package:graduation/screens/profile/profile_screen.dart';
@@ -28,19 +30,23 @@ import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
+import 'package:graduation/screens/staff_calculate_smart_lighting/staff_calculate_smart_lighting.dart';
 import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
 import 'package:graduation/screens/staff_electricity_project/staff_electricity_screen.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
+import 'package:graduation/screens/staff_result_target/staff_result_target_screen.dart';
 import 'package:graduation/screens/staff_solar_panel_result/staff_solar_panel_result_screen.dart';
 import 'package:graduation/screens/staff_stepAfterLogin/staff_stepAfterLogin.dart';
 
 import 'package:graduation/screens/staff_step_to_do/staff_step_to_do.dart';
+import 'package:graduation/screens/staff_target/staff_target_screen.dart';
 import 'package:graduation/screens/staff_upload/staff_upload_screen.dart';
 import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
 import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
+import 'package:graduation/screens/target_progress/target_progress_screen.dart';
 import 'package:graduation/screens/test_open_camera/camera_screen.dart';
 import 'package:graduation/services/api_service.dart';
 import 'package:graduation/theme.dart';
@@ -82,7 +88,7 @@ Future<void> main() async {
   }
 
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? Regression1Screen.routeName : Regression1Screen.routeName,
+    initialRoute: isLogged ? HomeScreen.routeName : HomeScreen.routeName,
   );
   runApp(myApp);
 }

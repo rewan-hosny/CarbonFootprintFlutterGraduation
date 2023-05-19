@@ -191,8 +191,7 @@ class _RowOfSocalCardsState extends State<RowOfSocalCards> {
 
 
     },),
-    SocalCard(icon: "assets/icons/entypo-social_twitter-with-circle.svg",press: (){},),
-    SocalCard(icon: "assets/icons/logos_facebook.svg",press: (){},),
+
 ],
 );
   }

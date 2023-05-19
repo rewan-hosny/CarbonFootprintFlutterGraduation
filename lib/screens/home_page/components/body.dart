@@ -117,11 +117,11 @@ class Body extends StatelessWidget {
                                         image: AssetImage("assets/images/carbon_text-link-analysis.png"),),
                                     ),
                                     SizedBox(width: SizeConfig.screenWidth*0.02,),
-                                    Text("Calculate emissions profile",
+                                    Text("Your Carbon emission",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Poppins",
-                                            fontSize: 17,
+                                            fontSize: 15,
                                             color: LightModeSmallTextColor
                                         )),
                                   ],),
@@ -150,11 +150,11 @@ class Body extends StatelessWidget {
                                         image: AssetImage("assets/images/fxemoji_clap.png"),),
                                     ),
                                     SizedBox(width: SizeConfig.screenWidth*0.02,),
-                                    Text("Read actions you already do",
+                                    Text("articles about carbon emission",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Poppins",
-                                            fontSize: 17,
+                                            fontSize: 15,
                                             color: LightModeSmallTextColor
                                         )),
                                   ],),
@@ -186,11 +186,11 @@ class Body extends StatelessWidget {
                                         image: AssetImage("assets/images/material-symbols_image-search-rounded.png"),),
                                     ),
                                     SizedBox(width: SizeConfig.screenWidth*0.02,),
-                                    Text("Take a picture of some plants",
+                                    Text("Scan plants to detect damage",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Poppins",
-                                            fontSize: 17,
+                                            fontSize: 15,
                                             color: LightModeSmallTextColor
                                         )),
                                   ],),
@@ -226,8 +226,8 @@ class Body extends StatelessWidget {
 
 
                 Container(
-                  padding: EdgeInsets.only(left: 15,top: 25),
-                  margin: EdgeInsets.only(top: 480,right: 20,left: 20),
+                  padding: EdgeInsets.only(left: 10,top: 25),
+                  margin: EdgeInsets.only(top: 480,right: 15,left: 15),
                   width: 370,
                   height: 260,
                   decoration: BoxDecoration(
@@ -272,7 +272,7 @@ class Body extends StatelessWidget {
                                 color: Color(0xFF45F6D4),
                               ),
                               SizedBox(width: SizeConfig.screenWidth*0.02,),
-                              Text("Travel",
+                              Text("Waste",
                                 style: TextStyle(
                                   color: LightModeSmallTextColor,
                                   fontSize: 16,
@@ -296,10 +296,10 @@ class Body extends StatelessWidget {
                                   color: Color(0xFFFE7070),
                                 ),
                                 SizedBox(width: SizeConfig.screenWidth*0.02,),
-                                Text("Shopping",
+                                Text("Electricity",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     fontFamily: "Poppins",
                                   ),)
                               ],

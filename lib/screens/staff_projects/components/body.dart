@@ -5,10 +5,15 @@ import 'package:graduation/components/top_bar.dart';
 import 'package:graduation/constants.dart';
 import 'package:graduation/screens/intro_questions/intro_questions.dart';
 import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
+import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
 import 'package:graduation/screens/stuff_download/stuff_download_screen.dart';
 import 'package:graduation/size_config.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
+import '../../advice_plants/advice_plants_screen.dart';
+import '../../advice_waste/advice_waste_screen.dart';
+import '../../advice_water/advice_water_screen.dart';
+import '../../staff_electricity_project/staff_electricity_screen.dart';
 import '../../stuff_home_page/stuff_home_page_screen.dart';
 
 class Body extends StatelessWidget {
@@ -86,7 +91,10 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    {Navigator.pushNamed(context, StaffElectricityScreen.routeName);}
+
+                  },
                   child: Container(
                     width: 160,
                     height: 160,
@@ -139,7 +147,7 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: (){Navigator.pushNamed(context, StuffDownloadScreen.routeName);},
+                  onTap: (){Navigator.pushNamed(context, StaffChoosePage.routeName);},
                   child: Container(
                     width: 160,
                     height: 160,
@@ -163,7 +171,11 @@ class Body extends StatelessWidget {
 
 
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+
+
+                    Navigator.pushNamed(context, AdviceWaterScreen.routeName);
+                  },
                   child: Container(
                     width: 160,
                     height: 160,
@@ -192,7 +204,10 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.pushNamed(context, AdviceWasteScreen.routeName);
+
+                  },
                   child: Container(
                     width: 160,
                     height: 160,
@@ -216,7 +231,11 @@ class Body extends StatelessWidget {
 
 
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+
+
+                    Navigator.pushNamed(context, AdvicePlantsScreen.routeName);
+                  },
                   child: Container(
                     width: 160,
                     height: 160,
