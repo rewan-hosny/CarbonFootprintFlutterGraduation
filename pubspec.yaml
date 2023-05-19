@@ -30,9 +30,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  geolocator: ^7.6.2
 #  camera: ^0.10.3
 #  path_provider: ^2.0.12
 #  path:
+  syncfusion_flutter_gauges:
   open_file: ^3.3.1
   file_picker:
   photo_view: ^0.12.0
@@ -42,6 +44,7 @@ dependencies:
   #chewie: ^1.4.0
   #video_player: ^2.5.1
   smooth_page_indicator: ^1.0.0+2
+
   http: ^0.13.5
   dio: ^4.0.6
   chopper: ^6.0.0
@@ -91,6 +94,8 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/new/
+    - assets/intro.pdf
+
   #   - images/a_dot_ham.jpeg
   fonts:
     - family: Poppins

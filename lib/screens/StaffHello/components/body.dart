@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
 import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_one.dart';
+import 'package:graduation/screens/staff_stepAfterLogin/staff_stepAfterLogin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
 import '../../../constants.dart';
@@ -11,6 +13,7 @@ import '../../home_page/home_page_screen.dart';
 
 import '../../profile/profile_screen.dart';
 import '../../staff_chooseDU_page/staff_chooseDU_page.dart';
+import '../../staff_target/staff_target_screen.dart';
 import '../../stuff_download/stuff_download_screen.dart';
 import '../../stuff_home_page/stuff_home_page_screen.dart';
 import '../StaffHello.dart';
@@ -23,7 +26,35 @@ class Body extends StatefulWidget {
   State<Body> createState() => _BodyState();
 }
 
+Future<String?> getValueFromSharedPreferences() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? value = prefs.getString('currentStaffFName');
+  print('test here');
+  print(prefs.getString('currentStaffFName'));
+  return value;
+}
+
 class _BodyState extends State<Body> {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+ // String fName = fNam;
+ // @override
+  // Future<void> initState() async {
+  //   // TODO: implement initState
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   fName=prefs.getString('currentImagePath')!;
+  //
+  // }
+  String? myValue;
+  @override
+  void initState() {
+    //super.initState();
+    print('I entered init state');
+    getValueFromSharedPreferences().then((value) {
+      setState(() {
+        myValue = value;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +81,7 @@ class _BodyState extends State<Body> {
                       primary: Colors.white,
                       backgroundColor: LightModeMainColor,
                     ),
-                    onPressed: (){Navigator.pushNamed(context, StuffHomePageScreen.routeName);},
+                    onPressed: (){Navigator.pushNamed(context, StaffStepAfterLogin.routeName);},
                     child: Image.asset("assets/icons/mdi_arrow-back.png"
                         ,height: SizeConfig.screenHeight*0.06),
                   ),
@@ -60,7 +91,7 @@ class _BodyState extends State<Body> {
                 Center(
                   child: Row(
                     children: [
-                      Text("Hello,omar",
+                      Text("Hello, "+myValue!,
                         style: TextStyle(
                             fontSize: 27,
                             fontFamily: "Poppins",
@@ -85,7 +116,7 @@ class _BodyState extends State<Body> {
                 children: [
 
 
-                  SizedBox(height: SizeConfig.screenHeight*0.08,),
+                  SizedBox(height: SizeConfig.screenHeight*0.04,),
 
                   Text("Welcome to you   ,you now can make some challenges for your university based on your plans",
                     style: TextStyle(
@@ -277,7 +308,8 @@ class _BodyState extends State<Body> {
 
                         child:GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, StaffCalculateSolarPanelsScreen.routeName);
+                            // Navigator.pushNamed(context, StaffCalculateSolarPanelsScreen.routeName);
+                            Navigator.pushNamed(context, StuffHomePageScreen.routeName);
                           },
                           child: Align(
                             child: Text(

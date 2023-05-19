@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:graduation/models/Staff_GetAdmin_response_model.dart';
 import 'package:graduation/models/Staff_check_admin_request_model.dart';
 import 'package:graduation/screens/home/home_screen.dart';
@@ -41,6 +42,7 @@ import 'package:graduation/models/verify_response_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/Staff_progress_request_model.dart';
 import '../models/carbon_advices_resposnse_model.dart';
 import '../models/logout_response_model.dart';
 import '../models/prediction_request_model.dart';
@@ -50,8 +52,16 @@ import 'package:flutter/material.dart';
 
 import '../models/solar_panel_request_model.dart';
 import '../models/solar_panel_response_model.dart';
+import '../models/staff_Smart_Light_request_model.dart';
+import '../models/staff_get_target_response_model.dart';
+import '../models/staff_home_page_response_model.dart';
+import '../models/staff_progress_smartlight_request_model.dart';
+import '../models/staff_set_target_request_model.dart';
+import '../models/staff_set_target_response_model.dart';
+import '../models/staff_smart_light_response_model.dart';
 import '../models/staff_train_file_response_model.dart';
 import '../models/staff_uploadTemp_response_model.dart';
+import '../models/target_progress_response_model.dart';
 import '../models/uni_calc_request_model.dart';
 import '../models/uni_calc_response_model.dart';
 import '../models/update_profile_request.dart';
@@ -61,6 +71,25 @@ import '../models/user_profile_data_response.dart';
 
 class APIService extends StatefulWidget {
   static var client = http.Client();
+  static Future<Position> getLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+
+      if (permission == LocationPermission.denied) {
+        // Handle the case where the user denies permission
+        return Future.error('User denied location permission');
+      }
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    return position;
+  }
+
 
  static Future<LoginResponseModel> login(LoginRequestModel model) async {
     Map<String, String> requestHeaders = {
@@ -108,6 +137,8 @@ class APIService extends StatefulWidget {
 
   }
 
+
+
   static Future<CarbonAdvicesResposnseModel> carbonAdvice() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print("currentSession"+prefs.getString('currentSession')!);
@@ -121,7 +152,7 @@ class APIService extends StatefulWidget {
     } ;
 
 
-    var url = Uri.http(baseUrl,checkAdmin);
+    var url = Uri.http(baseUrl,carbonAdviceEndpoint);
     var response = await client.get
       (     url,
       headers: requestHeaders,
@@ -132,6 +163,56 @@ class APIService extends StatefulWidget {
     //  print("carbonAdvicesResposnseModel(response.body)");
 //print(carbonAdvicesResposnseModel(response.body).largestEmissionType);
     return carbonAdvicesResposnseModel(response.body);
+
+
+  }
+
+
+
+
+  static Future<StaffSmartLightResponseModel> StaffSmartLight(
+      StaffSmartLightRequestModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.http(baseUrl,staffSmartLight);
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    };
+    var response = await client.post
+      (     url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+
+    );
+
+    if (response.statusCode == 200) {
+      print("rewwwwaaan");
+      final jsonResponse = jsonDecode(response.body);
+      return StaffSmartLightResponseModel.fromJson(jsonResponse);
+    } else {
+      throw Exception('Failed to request solar panel calculation');
+    }
+  }
+
+
+
+
+
+
+
+  static Future<TargetProgressResponeModel> StaffTargetProgress() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,staffTargetProgress);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+    return targetProgressResponeModel(response.body);
 
 
   }
@@ -179,6 +260,47 @@ class APIService extends StatefulWidget {
       body: jsonEncode(model.toJson()),
     );
     return uniCalcResponseModel(response.body);
+  }
+//staff solar plan request progress
+  static Future<void> StaffProgress(StaffProgressResponseModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,addSolarProgress);
+    var response = await client.post
+      (     url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    if(response.statusCode==200){
+      print("zhgt");
+    }
+
+  }
+
+
+
+
+
+  //staff progress smart light request
+  static Future<void> StaffSmartLightProgress(StaffSmartLightProgressRequestModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,staffSmartLightTargetProgress);
+    var response = await client.post
+      (     url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    if(response.statusCode==200){
+      print("zhgt");
+    }
+
   }
 
 
@@ -276,6 +398,12 @@ class APIService extends StatefulWidget {
 
     return staffResponse;
   }
+
+
+
+
+
+
   static Future<SolarPanelResponseModel> SolarPanel(
       SolarPanelRequestModel model) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -302,6 +430,50 @@ class APIService extends StatefulWidget {
 
 
 
+  static Future<StaffSetTargetResponseModel> SetTarget(StaffSetTargetRequestModel model) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.http(baseUrl,staffSetTargt);
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var response = await client.post
+      (     url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+
+    );
+
+    if (response.statusCode == 201) {
+      print("done");
+      final jsonResponse = jsonDecode(response.body);
+      return StaffSetTargetResponseModel.fromJson(jsonResponse);
+
+    } else {
+      throw Exception('Failed to request solar panel calculation');
+    }
+  }
+
+//the end point in pact /graphTemp
+  static Future<StaffHomeResonseModel> StaffGetHomePage() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,graphTemp);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+
+    if (response.statusCode == 200) {
+
+
+      return staffHomeResonseModel(response.body);
+
+    }
+    return staffHomeResonseModel(response.body);
+  }
 
 
 
@@ -309,7 +481,32 @@ class APIService extends StatefulWidget {
 
 
 
-static Future<StaffTrainTempResponseModel> TrainData() async{
+
+
+
+  static Future<StaffGetTargetResponseModel> StaffGetTarget() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,staffGetTargt);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+    return staffGetTargetResponseModel(response.body);
+  }
+
+
+
+
+
+
+
+
+
+
+  static Future<StaffTrainTempResponseModel> TrainData() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> requestHeaders = {
       'Cookie': prefs.getString('currentSession')!

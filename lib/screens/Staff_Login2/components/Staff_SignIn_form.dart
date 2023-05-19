@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:graduation/components/already_have_account.dart';
 import 'package:graduation/components/custom_suffix_icon.dart';
 import 'package:graduation/components/default_button.dart';
@@ -22,6 +24,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../articles/article_screen.dart';
 import '../../edit_profile/edit_profile_screen.dart';
 import '../../plant1_page/plant1_screen.dart';
+import '../../staff_stepAfterLogin/staff_stepAfterLogin.dart';
 
 class StaffSignInForm extends StatefulWidget {
   const StaffSignInForm({Key? key}) : super(key: key);
@@ -120,12 +123,6 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
           SizedBox(height: SizeConfig.screenHeight*0.04),
           DefaultButton(text: "Log in",press:isOk()? () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
-            //Navigator.pushNamed(context, ForgetPasswordScreen.routeName);
-
-            // mahmoud.yasser.fci3@gmail.com
-            // 123456789
-            // print("email : "+emailController.text);
-            // print("password : "+ passwordController.text);
 
 
 
@@ -161,18 +158,18 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
                 print("imagePath in profile body"),
                 print(temp_imagePath),
 
-                prefs.setString('currentUserFName', temp_fName!),
-                prefs.setString('currentUserSName', temp_sName!),
-                prefs.setString('currentUserEmail', temp_email!),
-                prefs.setString('currentImagePath', temp_imagePath!),
+                prefs.setString('currentStaffFName', temp_fName!),
+                prefs.setString('currentStaffSName', temp_sName!),
+                prefs.setString('currentStaffEmail', temp_email!),
+                prefs.setString('currentStaffImagePath', temp_imagePath!),
                 print("currentImagePath in prefs.setString in profile body"),
                 print(prefs.getString('currentImagePath')!),
-                currentUserData["fName"]= prefs.getString('currentUserFName')!,
-                currentUserData["sName"]= prefs.getString('currentUserSName')!,
-                currentUserData["email"]= prefs.getString('currentUserEmail')!,
-                currentUserData["imagePath"]= prefs.getString('currentImagePath')!,
-                if(prefs.getString('currentUserFName')! != null){
-                  Navigator.pushNamed(context, StaffHello.routeName)
+                currentUserData["fName"]= prefs.getString('currentStaffFName')!,
+                currentUserData["sName"]= prefs.getString('currentStaffSName')!,
+                currentUserData["email"]= prefs.getString('currentStaffEmail')!,
+                currentUserData["imagePath"]= prefs.getString('currentStaffImagePath')!,
+                if(prefs.getString('currentStaffFName')! != null){
+                  Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 
 
 //            Navigator.push(
@@ -259,18 +256,18 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
              print("imagePath in profile body"),
              print(temp_imagePath),
 
-             prefs.setString('currentUserFName', temp_fName!),
-             prefs.setString('currentUserSName', temp_sName!),
-             prefs.setString('currentUserEmail', temp_email!),
-             prefs.setString('currentImagePath', temp_imagePath!),
+             prefs.setString('currentStaffFName', temp_fName!),
+             prefs.setString('currentStaffSName', temp_sName!),
+             prefs.setString('currentStaffEmail', temp_email!),
+             prefs.setString('currentStaffPath', temp_imagePath!),
              print("currentImagePath in prefs.setString in profile body"),
-             print(prefs.getString('currentImagePath')!),
-           currentUserData["fName"]= prefs.getString('currentUserFName')!,
-           currentUserData["sName"]= prefs.getString('currentUserSName')!,
-           currentUserData["email"]= prefs.getString('currentUserEmail')!,
-           currentUserData["imagePath"]= prefs.getString('currentImagePath')!,
-if(prefs.getString('currentUserFName')! != null){
-Navigator.pushNamed(context, StaffHello.routeName)
+             print(prefs.getString('currentStaffPath')!),
+           currentUserData["fName"]= prefs.getString('currentStaffFName')!,
+           currentUserData["sName"]= prefs.getString('currentStaffSName')!,
+           currentUserData["email"]= prefs.getString('currentStaffEmail')!,
+           currentUserData["imagePath"]= prefs.getString('currentStaffPath')!,
+if(prefs.getString('currentStaffFName')! != null){
+Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 
 
 //            Navigator.push(

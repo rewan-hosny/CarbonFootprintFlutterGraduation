@@ -7,12 +7,15 @@ import 'package:graduation/services/api_service.dart';
 import 'package:graduation/size_config.dart';
 
 import '../../../models/uni_calc_request_model.dart';
+import '../../../models/uni_calc_response_model.dart';
 import '../../Staff_result_question/Staff_result_question.dart';
 
 
 class StaffQuestionSix extends StatefulWidget {
   static String routeName = "/StaffQuestionSix";
   final Map<dynamic,dynamic> answersData ;
+
+
    StaffQuestionSix(this.answersData);
 
   @override
@@ -20,7 +23,12 @@ class StaffQuestionSix extends StatefulWidget {
 }
 
 class _StaffQuestionSixState extends State<StaffQuestionSix> {
+  // Map<String, dynamic> largestValues={};
   String answer = "";
+  LargestValues? largestValues;
+// ...
+
+
   Color currentColor = question_color;
   bool isTouching1 = false;
   bool isTouching2 = false;
@@ -364,7 +372,8 @@ class _StaffQuestionSixState extends State<StaffQuestionSix> {
                               }
                            //   widget.answersData["carType"]=answer;
 
-
+print("current Year");
+                              print(widget.answersData["chosen year"]);
 
                               UniCalcRequestModel model = UniCalcRequestModel(
                                 hvac:widget.answersData["Electricity"],
@@ -373,10 +382,11 @@ class _StaffQuestionSixState extends State<StaffQuestionSix> {
                                 paper:widget.answersData["Waste"],
                                 dist:widget.answersData["Car"],
                                 gas:widget.answersData["Power"],
-                                  year:'2023'
+                                  year:widget.answersData["chosen year"]
 
 
                               );
+                              print(widget.answersData["chosen year"]);
                               APIService.uniCalc(model).then((response) =>{
                                 if(response.status=="Success"){
                                   print("Success"),
@@ -384,10 +394,16 @@ class _StaffQuestionSixState extends State<StaffQuestionSix> {
                                   print(response.carbonEmission),
 
 
-                              print(response.carbonEmission.toString()?.substring(0,4)),
-                                  widget.answersData["uniCalc result"]=response.carbonEmission.toString()?.substring(0,3),
-                                  //  Navigator.pushNamed(context, QuestionScreen.routeName)
 
+                              print(response.carbonEmission.toString()?.substring(0,4)),
+                                  widget.answersData["uniCalc result"]=response.carbonEmission.toString(),
+                              largestValues = response.largestValues,
+
+                                  print(largestValues?.toJson().toString()),
+
+                                  //  Navigator.pushNamed(context, QuestionScreen.routeName)
+                              // Map<String, dynamic> resultData =
+                              // json.decode(json.encode(response.result?.toJson()));
                              //  APIService.carbonAdvice().then((response) => {
                              //  if(response != null){
                              //  print("It's not equal null"),
@@ -422,7 +438,7 @@ class _StaffQuestionSixState extends State<StaffQuestionSix> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => StaffResultScreen( answersData: widget.answersData,)
+                                          builder: (context) => StaffResultScreen( answersData: widget.answersData,largestValues:largestValues ,)
                                       ))
 
 

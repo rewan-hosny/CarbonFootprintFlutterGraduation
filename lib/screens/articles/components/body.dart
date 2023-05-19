@@ -383,6 +383,7 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: Color(0xFFF4F4F4),
 
       floatingActionButton: SizedBox(
@@ -394,18 +395,24 @@ class _BodyState extends State<Body> {
           splashColor: LightModeMainColor,
           foregroundColor: Colors.white,
           elevation: 0,
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 10,bottom: 5),
-                child: Image.asset("assets/images/Icon.png",
-                  width: 25,
-                  height: 25,),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Text("Home",
-                  style: TextStyle(fontSize: 9,),),),],),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+
+
+
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 10,bottom: 5),
+                  child: Image.asset("assets/images/Icon.png",
+                    width: 25,
+                    height: 25,),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text("Home",
+                    style: TextStyle(fontSize: 9,),),),],),
+          ),
           onPressed: () {Navigator.pushNamed(context, HomePageScreen.routeName);},
         ),
       ),
@@ -482,7 +489,7 @@ class _BodyState extends State<Body> {
                       color: LightModeSmallTextColor,
                     ),),
 
-                  SizedBox(height: SizeConfig.screenHeight*0.06,),
+                  SizedBox(height: SizeConfig.screenHeight*0.03,),
 
                   Align(
                     alignment: Alignment.topLeft,
@@ -618,8 +625,8 @@ class _BodyState extends State<Body> {
                                       ),),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 10),
-                                    child: Text("Explore the issues around climate change",
+                                    margin: EdgeInsets.only(),
+                                    child: Text("Explore the issues of climate change",
                                       style: TextStyle(
                                         fontFamily: "Poppins3",
                                         fontSize: 15,

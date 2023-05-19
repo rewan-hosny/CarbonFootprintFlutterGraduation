@@ -14,6 +14,7 @@ import 'package:graduation/size_config.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
+import '../../Staff_Login/Staff_login.dart';
 import '../../sign_up/sign_up_screen.dart';
 
 class Body extends StatelessWidget {
@@ -146,15 +147,27 @@ class Body extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight * 0.035,
               ),
-              Text(
-                "or Continue with",
-                textAlign: TextAlign.center,
-                style: ContinueWithTextStyle,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Are you a staff ? ", style: LightModeSmallTextStyle),
+                  GestureDetector(
+                      onTap: () async {
+
+                        Navigator.pushNamed(context, StaffLogin.routeName);
+
+                        //  Navigator.pushNamed(context, SignInScreen.routeName);
+                      },
+                      child: Text(
+                        "Click here ",
+                        style: LogInTextStyle,
+                      )),
+                ],
               ),
               SizedBox(
                 height: SizeConfig.screenHeight * 0.02,
               ),
-              RowOfSocalCards()
+
             ],
           ),
         ),

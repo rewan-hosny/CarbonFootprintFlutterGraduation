@@ -208,15 +208,7 @@ class _BodyState extends State<Body> {
                                 },
 
                               ),
-                              Item(headLine: "Your Progress",detail: "Manage your saved account",
-                                image: "assets/images/Profile.png",
-                                press: (){
 
-
-
-                                },
-
-                              ),
                               Item(headLine: "Help & Support ",detail: "",
                                 image: "assets/images/Profile.png",
                                 press: (){

@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/components/top_bar.dart';
+import 'package:graduation/screens/staff_electricity_project/staff_electricity_screen.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_solar_panel_result/staff_solar_panel_result_screen.dart';
 import 'package:graduation/services/api_service.dart';
@@ -38,7 +39,7 @@ class _BodyState extends State<Body> {
             children: [
               SizedBox(height: SizeConfig.screenHeight*0.04,),
               TopBar(text: "Calculate solar panels",
-                press: (){Navigator.pushNamed(context, StaffProjectsScreen.routeName);},),
+                press: (){Navigator.pushNamed(context, StaffElectricityScreen.routeName);},),
 
               SizedBox(height: SizeConfig.screenHeight*0.06,),
 
@@ -65,7 +66,10 @@ class _BodyState extends State<Body> {
                 decoration: InputDecoration(
                     hintText: "   15000" ,
                     suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
-                    hintStyle: InputTextStyle,
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade300,
+                      fontSize: 14,
+                    ),
                     labelStyle: InputTextStyle,
                     filled: true,
                     fillColor: LightModeLightGreenColor,
@@ -135,9 +139,12 @@ class _BodyState extends State<Body> {
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                        hintText: "   300 wt" ,
+                        hintText: "   30 wt" ,
                         suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg",),
-                        hintStyle: InputTextStyle,
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 14,
+                        ),
                         labelStyle: InputTextStyle,
                         filled: true,
                         fillColor: LightModeLightGreenColor,
@@ -198,7 +205,10 @@ class _BodyState extends State<Body> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: "   50 Wt" ,
-                        hintStyle: InputTextStyle,
+                      hintStyle: TextStyle(
+                        color: Colors.grey.shade300,
+                        fontSize: 14,
+                      ),
                         labelStyle: InputTextStyle,
                         filled: true,
                         fillColor: LightModeLightGreenColor,
