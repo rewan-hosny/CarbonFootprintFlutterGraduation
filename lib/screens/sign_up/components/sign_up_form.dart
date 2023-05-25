@@ -196,7 +196,7 @@ class _SignUpFormState extends State<SignUpForm> {
                  // floatingLabelBehavior: FloatingLabelBehavior.always,
                  // floatingLabelAlignment: FloatingLabelAlignment.center,
                  // floatingLabelStyle:FloatingLabelBehavior.never,
-                  hintText: 'Omar',
+                  hintText: 'Name',
                   hintStyle: InputTextStyle,
                   labelStyle: InputTextStyle,
                   suffixIcon:
@@ -241,7 +241,7 @@ class _SignUpFormState extends State<SignUpForm> {
               },
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Khalid',
+                  hintText: 'Second Name',
                   hintStyle: InputTextStyle,
                   labelStyle: InputTextStyle,
                   suffixIcon:
@@ -291,7 +291,7 @@ class _SignUpFormState extends State<SignUpForm> {
               // },
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'tohamiii@gmail.com',
+                  hintText: 'example@gmail.com',
                   hintStyle: InputTextStyle,
                   labelStyle: InputTextStyle,
                   suffixIcon:

@@ -407,7 +407,7 @@ class _BodyState extends State<Body> {
                 padding: const EdgeInsets.only(top: 40, bottom: 40),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Your Insights:",
+                  child: Text("",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontFamily: "Poppins",

@@ -55,9 +55,9 @@ class _BodyState extends State<Body> {
         height: 70,
         child: FloatingActionButton(
           backgroundColor:
-          LightModeMainColor, //edittttttttttttttttttttttttttttttttt
+          Colors.grey, //edittttttttttttttttttttttttttttttttt
           elevation: 0,
-          splashColor: LightModeMainColor,
+          // splashColor: LightModeMainColor,
           child: Column(
             children: [
               Container(

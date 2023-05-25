@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight*0.03,),
+                SizedBox(height: SizeConfig.screenHeight*0.05,),
                 Row(
                   children: [
                     SizedBox(
@@ -60,20 +60,19 @@ class _BodyState extends State<Body> {
                             ,height: SizeConfig.screenHeight*0.06),
                       ),
                     ),
-                    SizedBox(width: SizeConfig.screenWidth*0.23,),
+                    SizedBox(width: SizeConfig.screenWidth*0.1,),
 
                     Center(
                       child: Row(
                         children: [
                           Text("Questions File",
                             style: TextStyle(
-                                fontSize: 27,
+                                fontSize: getProportionateScreenWidth(25),
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.bold,
                                 color: LightModeSmallTextColor
                             ),
                           ),
-                          SizedBox(width: SizeConfig.screenWidth*0.01,),
 
                         ],
                       ),
@@ -86,14 +85,14 @@ class _BodyState extends State<Body> {
                     children: [
 
 
-                      SizedBox(height: SizeConfig.screenHeight*0.1,),
+                      SizedBox(height: SizeConfig.screenHeight*0.07,),
                       Text.rich(
                         TextSpan(
                           children: [
                             TextSpan(
                               text: 'You should answer the questions in the file and fill it well with ',
                               style: TextStyle(
-                                fontSize: 23,
+                                fontSize: getProportionateScreenWidth(19),
                                 fontFamily: "Poppins3",
                                 color: LightModeSmallTextColor,
                                 fontWeight: FontWeight.w600,
@@ -102,7 +101,7 @@ class _BodyState extends State<Body> {
                             TextSpan(
                               text: 'correct ',
                               style: TextStyle(
-                                fontSize: 23,
+                                fontSize: getProportionateScreenWidth(19),
                                 fontFamily: "Poppins3",
                                 color: Colors.green,
                                 fontWeight: FontWeight.w600,
@@ -111,7 +110,7 @@ class _BodyState extends State<Body> {
                             TextSpan(
                               text: 'data',
                               style: TextStyle(
-                                fontSize: 23,
+                                fontSize: getProportionateScreenWidth(19),
                                 fontFamily: "Poppins3",
                                 color: LightModeSmallTextColor,
                                 fontWeight: FontWeight.w600,
@@ -122,10 +121,7 @@ class _BodyState extends State<Body> {
                       ),
 
 
-
-
-
-                      SizedBox(height: SizeConfig.screenHeight*0.07,),
+                      SizedBox(height: SizeConfig.screenHeight*0.06,),
 
                       Column(
 
@@ -144,8 +140,8 @@ class _BodyState extends State<Body> {
                                       height: MediaQuery.of(context).size.height * 0.1,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(9),
-                                        border: Border.all(color: Color.fromRGBO(28,169,83,1), width: 2),
-                                        color: Color(0x00000000),
+                                        border: Border.all(color: LightModeMainColor, width: 2),
+
                                       ),
                                       child: Row(
                                         children: [
@@ -198,9 +194,9 @@ class _BodyState extends State<Body> {
                                 "OR",
                                 style: TextStyle(
                                   color: Color(0xFF1CA953),
-                                  fontSize: 26,
+                                  fontSize: getProportionateScreenWidth(26),
                                   height: 22 / 15,
-                                  fontFamily: "Montserrat",
+                                  fontFamily: "Poppins",
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.w800,
 
@@ -213,7 +209,7 @@ class _BodyState extends State<Body> {
                               Navigator.pushNamed(context, StaffUploadScreen.routeName);
                             },
                             child:Container(
-                              height: MediaQuery.of(context).size.height * 0.1,
+                              height: MediaQuery.of(context).size.height * 0.15,
                               child: Row(
                                 children: [
                                   Expanded(
@@ -221,7 +217,7 @@ class _BodyState extends State<Body> {
                                       height: MediaQuery.of(context).size.height * 0.1,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(9),
-                                        border: Border.all(color: Color.fromRGBO(28,169,83,1), width: 2),
+                                        border: Border.all(color: LightModeMainColor, width: 2),
 
                                       ),
                                       child: Row(
@@ -271,18 +267,9 @@ class _BodyState extends State<Body> {
 
                           SizedBox(height: SizeConfig.screenHeight*0.08,),
 
-
-
-
-
-
-
                         ],
                       ),
                       SizedBox(height: SizeConfig.screenHeight*0.02,),
-
-
-
 
                     ],
                   ),
@@ -292,63 +279,56 @@ class _BodyState extends State<Body> {
               ],
             ),
 
-
-
-
-
           ),
           Expanded(
             flex:1,
             child: Column(
               mainAxisAlignment:  MainAxisAlignment.end,
               children: [
-                Container(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: getProportionateScreenWidth(130),
+                      height: getProportionateScreenHeight(70),
+                      child: ElevatedButton(
+                          onPressed: (){Navigator.pushNamed(context, StaffHello.routeName);},
+                          child: Text(
+                            "Prev",
+                            style: TextStyle(fontSize: getProportionateScreenWidth(20), color: LightModeMainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20))),
+                            // padding:
+                            // EdgeInsets.symmetric(vertical: 20, horizontal: 44),
+                            primary: Colors.white,
+                            backgroundColor: prevButtonColor,
+                          )),
+                    ),
 
-                  //  color: Colors.lightBlue,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-
-                            onPressed: (){
-                              Navigator.pushNamed(context, StaffHello.routeName);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: LightModeMainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: ()
-                            {
-                              Navigator.pushNamed(context, StaffStepToDo.routeName);
-
-                              // print("after you click on button in page one and my current data is : ");
-
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: LightModeMainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
-                      ],
-                    )),
+                    Container(
+                      width: getProportionateScreenWidth(130),
+                      height: getProportionateScreenHeight(70),
+                      child: ElevatedButton(onPressed: ()
+                          {Navigator.pushNamed(context, StaffStepToDo.routeName);},
+                          child: Text(
+                            "Next",
+                            style: TextStyle(fontSize: getProportionateScreenWidth(20), color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20))),
+                            // padding:
+                            // EdgeInsets.symmetric(vertical: 20, horizontal: 44),
+                            primary: Colors.white,
+                            backgroundColor: LightModeMainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                          )),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

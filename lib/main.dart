@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation/models/scan_plant_response_model.dart';
 import 'package:graduation/routes.dart';
 import 'package:graduation/screens/StaffHello/StaffHello.dart';
 import 'package:graduation/screens/Staff_Login/Staff_login.dart';
@@ -30,6 +31,8 @@ import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
 import 'package:graduation/screens/splash/splash_screen.dart';
+import 'package:graduation/screens/staff_articles_screen/staff_articles.dart';
+
 import 'package:graduation/screens/staff_calculate_smart_lighting/staff_calculate_smart_lighting.dart';
 import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
@@ -59,17 +62,37 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var rememberToken = prefs.getString("rememberToken") ?? "null";
+ // var firstTime =  prefs.getString("currentStaffFirstTime") ?? "notSet";
+  var StaffCheck = prefs.getString("LoginInStaff") ?? "notStaff";
+
+  bool isStaff=false ;
+
+ // bool isFirstTime = true  ;
+  bool isLogged = false;
+  bool isStaffLogged = false ;
+print("StaffCheck");
+print(StaffCheck);
+  if (StaffCheck == 'yesStaff') {
+    isStaff = true;
+  } else if (StaffCheck == 'notStaff') {
+    isStaff = false;
+  }
+
+
+
   print("remember token in main");
   print(rememberToken);
-  bool isLogged ;
-  if(rememberToken != "null"){
-     isLogged = true;
+
+
+  if(rememberToken != "null" && !isStaff ){
+
      RememberMeRequestModel model2 = RememberMeRequestModel(
        rememberToken: prefs?.getString('rememberToken')!,
      );
-     APIService.rememberMe(model2).then((response) async => {
+     await APIService.rememberMe(model2).then((response) async => {
        if (response.status == "Valid")
          {
+         isLogged = true,
            print(response.status),
            prefs.setString('currentSession', response.sessionToken!),
           // Navigator.pushNamed(context, HomePageScreen.routeName)
@@ -83,12 +106,77 @@ Future<void> main() async {
      });
 
   }
-  else{
-     isLogged = false;
+  // else{
+  //    isLogged = false;
+  // }
+
+  if(rememberToken != "null" && isStaff ){
+
+    RememberMeRequestModel model2 = RememberMeRequestModel(
+      rememberToken: prefs?.getString('rememberToken')!,
+    );
+    await APIService.rememberMe(model2).then((response) async => {
+      if (response.status == "Valid")
+        {
+        isStaffLogged = true,
+          print("isStaffLoggedin remember me "),
+          print(isStaffLogged),
+          print(response.status),
+          prefs.setString('currentSession', response.sessionToken!),
+
+        }
+      else
+        {
+          print("remember token not valid"),
+          isStaffLogged = false
+        }
+    });
+
+  }
+  // else{
+  //   isStaffLogged = false;
+  // }
+
+  print ("these print after remeber me");
+print("isLogged");
+  print(isLogged);
+  print("isStaff");
+  print(isStaff);
+  print("isStaffLogged");
+  print(isStaffLogged);
+
+
+  String determineInitialRoute() {
+    print ("in chioce state");
+    print("isStaff");
+    print(isStaff);
+    print("isStaffLogged");
+    print(isStaffLogged);
+    if (isStaff && isStaffLogged ) {
+      //return StaffStepAfterLogin.routeName;
+
+      return StuffHomePageScreen.routeName;
+    }
+
+    else if (!isStaff && isLogged ) {
+      return HomePageScreen.routeName;
+    }
+    else if (!isStaff && !isLogged ) {
+      return SplashScreen.routeName;
+    }
+    else{
+      return SplashScreen.routeName;
+    }
+
   }
 
+
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? HomeScreen.routeName : HomeScreen.routeName,
+  initialRoute:SplashScreen.routeName,
+
+
+    // determineInitialRoute(),
+
   );
   runApp(myApp);
 }

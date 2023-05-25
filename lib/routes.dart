@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:graduation/screens/StaffHello/StaffHello.dart';
 import 'package:graduation/screens/Staff_Login/Staff_login.dart';
 import 'package:graduation/screens/Staff_Login2/Staff_Login2.dart';
+import 'package:graduation/screens/Staff_Report_Regression/Staff_Report_Regression_screen.dart';
 import 'package:graduation/screens/Staff_result_question/Staff_result_question.dart';
 import 'package:graduation/screens/about/about_screen.dart';
 import 'package:graduation/screens/advice_plants/advice_plants_screen.dart';
 import 'package:graduation/screens/advice_waste/advice_waste_screen.dart';
 import 'package:graduation/screens/advice_water/advice_water_screen.dart';
 import 'package:graduation/screens/articles/article_screen.dart';
+import 'package:graduation/screens/before_plants/before_plants_screen.dart';
+import 'package:graduation/screens/before_regression/before_regression_screen.dart';
 import 'package:graduation/screens/complete_profile/complete_profile_screen.dart';
 import 'package:graduation/screens/contact_us/contact_screen.dart';
 import 'package:graduation/screens/create_new_password/create_new_password_screen.dart';
@@ -41,11 +44,14 @@ import 'package:graduation/screens/regression1_page/regression1_screen.dart';
 import 'package:graduation/screens/regression2_page/regression2_screen.dart';
 import 'package:graduation/screens/sign_in/sign_in_screen.dart';
 import 'package:graduation/screens/sign_up/sign_up_screen.dart';
+import 'package:graduation/screens/staff_articles_screen/staff_articles.dart';
 import 'package:graduation/screens/staff_before_questions/staff_before_questions_screen.dart';
+import 'package:graduation/screens/staff_before_regression/staff_before_regression.dart';
 import 'package:graduation/screens/staff_calculate_smart_lighting/staff_calculate_smart_lighting.dart';
 import 'package:graduation/screens/staff_calculate_solar_panels/staff_calculate_solar_panels.dart';
 import 'package:graduation/screens/staff_chooseDU_page/staff_chooseDU_page.dart';
 import 'package:graduation/screens/staff_electricity_project/staff_electricity_screen.dart';
+import 'package:graduation/screens/staff_leader_bord/staff_leader_bord_screen.dart';
 import 'package:graduation/screens/staff_processing_file/staff_processing_file_screen.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:graduation/screens/staff_questions/components/staff_question_five.dart';
@@ -68,6 +74,7 @@ import 'package:graduation/screens/stuff_home_page/stuff_home_page_screen.dart';
 import 'package:graduation/screens/target_progress/target_progress_screen.dart';
 import 'package:graduation/screens/test_open_camera/camera_screen.dart';
 import 'package:graduation/screens/upload_photo/upload_photo_screen.dart';
+import 'package:graduation/screens/user_regression/user_regression.dart';
 import 'package:graduation/screens/web_page/web_page_screen.dart';
 
 import 'package:graduation/screens/splash/splash_screen.dart';
@@ -114,6 +121,9 @@ final Map  <String, WidgetBuilder> routes = {
  // ResultScreen.routeName:((context)=>ResultScreen()),
   WebPageScreen.routeName:((context) => WebPageScreen()),
   //QuestionScreen.routeName:((context) => QuestionScreen()),
+  BeforePlantsScreen.routeName:((context)=>BeforePlantsScreen()),
+  StaffArticleScreen.routeName:((context) => StaffArticleScreen()),
+  // UserRegression.routeName:((context) => UserRegression()),
   StaffElectricityScreen.routeName:((context)=> StaffElectricityScreen()),
   SplashScreen.routeName:((context) => SplashScreen()),
   IntroScreen.routeName:((context) => IntroScreen()),
@@ -121,10 +131,17 @@ final Map  <String, WidgetBuilder> routes = {
   StaffSolarPanelsResultScreen.routeName:((context) => StaffSolarPanelsResultScreen(data: {},)),
   StaffCalculateSmartLightingScreen.routeName:((context) => StaffCalculateSmartLightingScreen()),
   StaffSmartLightingResultScreen.routeName:((context) => StaffSmartLightingResultScreen(data:{},)),
-
+  BeforeRegressionScreen.routeName:((context)=>BeforeRegressionScreen()),
   Gps.routeName:((context) => Gps()),
+  ////
+  StaffBeforeRegression.routeName:((context)=>StaffBeforeRegression()),
+/////
+
+  StaffLeaderBoard.routeName:((context)=>StaffLeaderBoard()),
   EditProfile.routeName:((context) => EditProfile(currentUserData: {},)),
   QuestionOne.routeName:((context) => QuestionOne()),
+  UserRegressionScreen.routeName:((context) => UserRegressionScreen(dates: {})),
+  StaffReportRgressionScreen.routeName:((context) => StaffReportRgressionScreen(dates: {})),
  // QuestionTwo.routeName:((context) => QuestionTwo()),
  //  QuestionThree.routeName:((context) => QuestionThree()),
  //  QuestionFour.routeName:((context) => QuestionFour()),

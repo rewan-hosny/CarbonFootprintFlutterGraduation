@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants.dart';
 import '../screens/articles/article_screen.dart';
+import '../screens/before_plants/before_plants_screen.dart';
+import '../screens/before_regression/before_regression_screen.dart';
 import '../screens/home_page/home_page_screen.dart';
 import '../screens/plant1_page/plant1_screen.dart';
 import '../screens/profile/profile_screen.dart';
@@ -16,13 +18,8 @@ class CustomNavigationBar extends StatefulWidget {
   final bool flag4  ;
   const CustomNavigationBar({Key? key, required this.flag1, required this.flag2, required this.flag3, required this.flag4}) : super(key: key);
 
-
-
   @override
   State<CustomNavigationBar> createState() => _CustomNavigationBarState();
-
-
-
 
 
 }
@@ -83,7 +80,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, Regression1Screen.routeName);
+                    Navigator.pushNamed(context, BeforeRegressionScreen.routeName);
 
                   },
                   child: Image.asset("assets/images/icon-park-solid_analysis.png",
@@ -106,7 +103,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  onTap: (){Navigator.pushNamed(context, Plant1Screen.routeName);},
+                  onTap: (){Navigator.pushNamed(context, BeforePlantsScreen.routeName);},
                   child: Image.asset("assets/images/Vector.png",
                   // color: Color(0xFF0A7036),
                     color:widget.flag2==true? Color(0xFF0A7036): LightModeSmallTextColor,

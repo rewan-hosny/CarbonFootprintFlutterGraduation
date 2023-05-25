@@ -32,7 +32,7 @@ class _BodyState extends State<Body> {
         child: Column(
           children: [
             SizedBox(height: SizeConfig.screenHeight*0.05,),
-            TopBar(text: "       Questions", press: (){},),
+            TopBar(text: "    Questions", press: (){},),
 
             SizedBox(height: SizeConfig.screenHeight*0.1,),
 

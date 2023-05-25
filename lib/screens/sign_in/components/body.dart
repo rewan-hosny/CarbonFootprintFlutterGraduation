@@ -42,27 +42,7 @@ class Body extends StatelessWidget {
               ForgetPassword(),
               SizedBox(height: SizeConfig.screenHeight*0.01),
 
-              Container(
-                child: GestureDetector(
-                    onTap: () {
-                    Navigator.pushNamed(context, StaffLogin.routeName);},
-                  child: Align(
-                    child: Text(
-                      "Please click here for staff member access",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                        height: 22 / 15,
-                        fontFamily: "Montserrat",
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                        decorationColor: LightModeMainColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),

@@ -44,6 +44,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/Staff_progress_request_model.dart';
 import '../models/carbon_advices_resposnse_model.dart';
+import '../models/carbon_emision_inProfile_response_model.dart';
+import '../models/get_target_respoonse_model.dart';
+import '../models/location_request_model.dart';
 import '../models/logout_response_model.dart';
 import '../models/prediction_request_model.dart';
 import '../models/prediction_response_model.dart';
@@ -68,9 +71,58 @@ import '../models/update_profile_request.dart';
 import '../models/update_profile_response.dart';
 import '../models/upload_profile_image_response.dart';
 import '../models/user_profile_data_response.dart';
+import '../models/user_report_regrision_response_model.dart';
 
 class APIService extends StatefulWidget {
   static var client = http.Client();
+  static Future<void> sendLocationRequest() async {
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+
+        if (permission == LocationPermission.denied) {
+          // Handle the case where the user denies permission
+          throw Exception('User denied location permission');
+        }
+      }
+
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      LocationRequestModel location = LocationRequestModel(
+        longitude: position.longitude.toInt(),
+        latitude: position.latitude.toInt(),
+      );
+
+      final url = Uri.http(baseUrl, Location);
+
+      // Convert location object to JSON
+      final jsonData = jsonEncode(location);
+
+      // Send the POST request with the JSON data
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonData,
+      );
+
+      if (response.statusCode == 200) {
+        // Request successful
+        print('Location sent successfully');
+      } else {
+        // Request failed
+        print('Failed to send location. Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any exceptions
+      print('Failed to get location. Error: $e');
+    }
+  }
+
+
   static Future<Position> getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
 
@@ -90,8 +142,7 @@ class APIService extends StatefulWidget {
     return position;
   }
 
-
- static Future<LoginResponseModel> login(LoginRequestModel model) async {
+  static Future<LoginResponseModel> login(LoginRequestModel model) async {
     Map<String, String> requestHeaders = {
       'Content-Type' : 'application/json',
     } ;
@@ -170,6 +221,10 @@ class APIService extends StatefulWidget {
 
 
 
+
+
+
+
   static Future<StaffSmartLightResponseModel> StaffSmartLight(
       StaffSmartLightRequestModel model) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -192,6 +247,27 @@ class APIService extends StatefulWidget {
     } else {
       throw Exception('Failed to request solar panel calculation');
     }
+  }
+
+
+
+
+
+  static Future<CarbonEmissionInProfile> GetCarbonEmissionInProfile() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    Map<String, String> requestHeaders = {
+      'Content-Type' : 'application/json',
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,ProfileCarbon_user);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+    return carbonEmissionInProfile(response.body);
+
+
   }
 
 
@@ -325,26 +401,52 @@ class APIService extends StatefulWidget {
     return false;
   }
 
-  static Future<void> Download() async {
-    final Uri _url = Uri.parse("http://192.168.1.6:5000/genTemp?start=2010&end=2020");
+  // static Future<void> Download() async {
+  //
+  //
+  //   // Set cookies as a string
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //
+  //   // Set headers with the cookies
+  //   Map<String, String> headers = {
+  //     'Cookie': prefs.getString('currentSession')!
+  //   };
+  //   print(prefs.getString('currentSession'));
+  //   final Uri _url = Uri.parse("http://192.168.1.6:5000/genTemp?start=2010&end=2020&session=${prefs.getString('currentSession')}");
+  //   if (await canLaunchUrl(_url)) {
+  //     await launchUrl(_url,mode: LaunchMode.externalApplication,
+  //         webViewConfiguration: WebViewConfiguration(
+  //             headers: headers));
+  //   }
+  // }
 
+
+  static Future<void> Download(String start,String end ) async {
     // Set cookies as a string
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String cookie = prefs.getString('currentSession') ?? '';
+    print(cookie);
+    print("rewaaannnnnnnnnnnnnnnnn");
+    // Create the object and serialize it
+    final myObject = prefs.getString('currentSession');
+    final jsonData = jsonEncode(myObject);
 
-    // Set headers with the cookies
-    Map<String, String> headers = {
-      'Cookie': prefs.getString('currentSession')!
-    };
+    // Append the serialized object as query parameters
+    final encodedData = Uri.encodeQueryComponent(jsonData);
 
-    if (await canLaunchUrl(_url)) {
-      await launchUrl(_url,mode: LaunchMode.externalApplication,
-      webViewConfiguration: WebViewConfiguration(
-      headers: headers));
+    final Uri _url = Uri.parse("http://192.168.1.6:5000/genTemp?start=${start}&end=${end}&${prefs.getString('currentSession')}");
+    if (await canLaunch(_url.toString())) {
+      // Set headers with the cookies
+      Map<String, String> headers = {
+        'Cookie': cookie,
+      };
+
+      // Launch the URL in a web view
+      await launch(_url.toString(), headers: headers);
+    } else {
+      throw 'Failed to launch URL';
     }
   }
-
-
-
 
 
   static Future<ScanPlantResponseModel> scanPlant() async{
@@ -483,6 +585,30 @@ class APIService extends StatefulWidget {
 
 
 
+  static Future<GetTargetResponseModel> GetTargetYear() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,staffGetTarget);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+
+
+
+
+      return getTargetResponseModel(response.body);
+
+
+  
+  }
+
+
+
+
+
 
   static Future<StaffGetTargetResponseModel> StaffGetTarget() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -521,7 +647,18 @@ class APIService extends StatefulWidget {
 
 
 
-
+  static Future<UserRegressionResponseReport> UserRegressionReport() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, String> requestHeaders = {
+      'Cookie': prefs.getString('currentSession')!
+    } ;
+    var url = Uri.http(baseUrl,GetUniPrediction);
+    var response = await client.get
+      (     url,
+      headers: requestHeaders,
+    );
+    return userRegressionResponseReport(response.body);
+  }
 
 
   static Future<UploadProfileImageResponse> UploadProfileImage() async{

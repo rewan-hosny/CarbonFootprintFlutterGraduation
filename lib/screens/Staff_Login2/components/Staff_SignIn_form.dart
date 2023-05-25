@@ -25,6 +25,8 @@ import '../../articles/article_screen.dart';
 import '../../edit_profile/edit_profile_screen.dart';
 import '../../plant1_page/plant1_screen.dart';
 import '../../staff_stepAfterLogin/staff_stepAfterLogin.dart';
+import '../../staff_step_to_do/staff_step_to_do.dart';
+import '../../stuff_home_page/stuff_home_page_screen.dart';
 
 class StaffSignInForm extends StatefulWidget {
   const StaffSignInForm({Key? key}) : super(key: key);
@@ -44,6 +46,7 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
   bool _flag2 = false;
   var _isObscured;
   String? temp_fName;
+  String? first_time;
   String? temp_sName;
   String? temp_email;
   String? temp_password;
@@ -127,110 +130,104 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
 
 
         if(value == true ){
-          LoginWithRememberMeRequestModel model = LoginWithRememberMeRequestModel(
+
+
+          LoginRequestModel model = LoginRequestModel(
               email:emailController.text,
               password:passwordController.text,
               rememberMe:"True"
           );
-          APIService.loginWithRememberMe(model).then((response)  =>{
-            if(response.rememberToken!=null){
+          APIService.login(model).then((response) async =>{
+            if(response.rememberToken != null){
+              first_time = response.firstTime,
+              //   if(response.rememberToken!=null){
+                prefs?.setString('rememberToken', response.rememberToken!),
+                  prefs?.setString('LoginInStaff', "yesStaff"),
+                  print("rememberToken "+   prefs!.getString('rememberToken')!),
+
+              //SharedPreferences prefs = await SharedPreferences.getInstance();
 
 
-            prefs?.setString('rememberToken', response.rememberToken!),
-              print("rememberToken "+   prefs!.getString('rememberToken')!),
-            //  Navigator.pushNamed(context, HomePageScreen.routeName),
+
+
+
               APIService.getCurrentAdminData().then((response) =>
               {
                 temp_fName = response.firstName,
                 temp_sName = response.lastName,
                 temp_email = response.email,
-                temp_imagePathTemp = response.image,
 
-                print("imagePathTemp in profile body"),
-                print(temp_imagePathTemp),
-                if(temp_imagePathTemp == null){
-                  temp_imagePath = ""
-                }
-                else
-                  {
-                    temp_imagePath = temp_imagePathTemp
-                  },
-                print("imagePath in profile body"),
-                print(temp_imagePath),
 
                 prefs.setString('currentStaffFName', temp_fName!),
                 prefs.setString('currentStaffSName', temp_sName!),
                 prefs.setString('currentStaffEmail', temp_email!),
-                prefs.setString('currentStaffImagePath', temp_imagePath!),
-                print("currentImagePath in prefs.setString in profile body"),
-                print(prefs.getString('currentImagePath')!),
+
+
                 currentUserData["fName"]= prefs.getString('currentStaffFName')!,
                 currentUserData["sName"]= prefs.getString('currentStaffSName')!,
                 currentUserData["email"]= prefs.getString('currentStaffEmail')!,
-                currentUserData["imagePath"]= prefs.getString('currentStaffImagePath')!,
-                if(prefs.getString('currentStaffFName')! != null){
-                  Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 
-
-//            Navigator.push(
-//            context,
-//            MaterialPageRoute(
-//            builder: (context) => ProfileScreen(
-//            currentUserData: currentUserData,
-//
-//            ))
+// if(prefs.getString('currentStaffFName')! != null){
+// Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 //
 //
-//            )
+//
+//
+// }
 
 
-
-
-                }
 
               }),
 
+              if (response.firstTime=="yes"){
+                Navigator.pushNamed(context,  StaffStepAfterLogin.routeName)
+              }
+              else if (response.firstTime=="no"){
+                //Navigator.pushNamed(context, StaffStepToDo.routeName)
+                Navigator.pushNamed(context, StuffHomePageScreen.routeName)
+              }
 
-
-
-
-
-
-              //  Navigator.pushNamed(context, SignUpScreen.routeName)
-
+              // Navigator.pushNamed(context, ProfileScreen.routeName)
             }
             else{
-              print("login with remember me failed")
+              print("login failed"),
+              Fluttertoast.showToast(msg: "Invalid Credentials",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 4,
+                  backgroundColor: Colors.grey,
+                  textColor: Colors.black,
+                  fontSize: 15
+
+              )
             }
           });
 
-
-          //
-          // RememberMeRequestModel model2 = RememberMeRequestModel(
-          //
-          // rememberToken: prefs?.getString('rememberToken')!,
-          //
-          //
-          // );
-          // APIService.rememberMe(model2).then((response)  =>
-          //       {
-          //         if(response.status == "Valid"){
-          //           print(response.status)
-          //         }
-          //         else
-          //           {
-          //             print("remember token not valid")
-          //           }
-          //       });
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
         else{
+
           LoginRequestModel model = LoginRequestModel(
                email:emailController.text,
                password:passwordController.text
            );
            APIService.login(model).then((response) async =>{
              if(response.token != null){
+               first_time = response.firstTime,
+              // prefs.setString('currentStaffFirstTime', first_time!),
+               prefs?.setString('LoginInStaff', "yesStaff"),
+               print("current Staff FirstTime : "+first_time!),
                print("login succeed "),
                print("login token         "+response.token!),
 
@@ -241,71 +238,36 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
              temp_fName = response.firstName,
              temp_sName = response.lastName,
              temp_email = response.email,
-             temp_imagePathTemp = response.image,
 
-
-             print("imagePathTemp in profile body"),
-             print(temp_imagePathTemp),
-             if(temp_imagePathTemp == null){
-               temp_imagePath = ""
-             }
-             else
-               {
-                 temp_imagePath = temp_imagePathTemp
-               },
-             print("imagePath in profile body"),
-             print(temp_imagePath),
 
              prefs.setString('currentStaffFName', temp_fName!),
              prefs.setString('currentStaffSName', temp_sName!),
              prefs.setString('currentStaffEmail', temp_email!),
-             prefs.setString('currentStaffPath', temp_imagePath!),
-             print("currentImagePath in prefs.setString in profile body"),
-             print(prefs.getString('currentStaffPath')!),
+
+
            currentUserData["fName"]= prefs.getString('currentStaffFName')!,
            currentUserData["sName"]= prefs.getString('currentStaffSName')!,
            currentUserData["email"]= prefs.getString('currentStaffEmail')!,
-           currentUserData["imagePath"]= prefs.getString('currentStaffPath')!,
-if(prefs.getString('currentStaffFName')! != null){
-Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 
-
-//            Navigator.push(
-//            context,
-//            MaterialPageRoute(
-//            builder: (context) => ProfileScreen(
-//            currentUserData: currentUserData,
-//
-//            ))
+// if(prefs.getString('currentStaffFName')! != null){
+// Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
 //
 //
-//            )
+//
+//
+// }
 
 
-
-
-}
 
            }),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if (response.firstTime=="yes"){
+  Navigator.pushNamed(context,  StaffStepAfterLogin.routeName)
+}
+else if (response.firstTime=="no"){
+  //Navigator.pushNamed(context, StaffStepToDo.routeName)
+  Navigator.pushNamed(context, StuffHomePageScreen.routeName)
+}
 
            // Navigator.pushNamed(context, ProfileScreen.routeName)
              }
@@ -427,7 +389,7 @@ Navigator.pushNamed(context, StaffStepAfterLogin.routeName)
               },
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'tohamiii@gmail.com',
+                  hintText: 'example@gmail.com',
                   hintStyle: InputTextStyle,
                   labelStyle: InputTextStyle,
                   suffixIcon:

@@ -486,19 +486,16 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
 
                     APIService.scanPlant().then((response) => {
                       print("flower type : "),
-                      print(response.flowerType),
+                      print(response.damaged),
                       print("status"),
                       print(response.status),
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Plant3Screen(flowerType: response.flowerType??"",flowerStatus: response.status??"",
+                              builder: (context) => Plant3Screen(flowerType: response.status??"",flowerStatus: response.damaged??"",
                               ImagePath: widget.imagePath,
                               )
                           ))
-
-
-
                     });
 
 

@@ -4,6 +4,8 @@ import 'package:graduation/constants.dart';
 import 'package:graduation/services/api_service.dart';
 import 'package:graduation/size_config.dart';
 
+import '../../../components/bottom_navigation_bar.dart';
+import '../../home_page/home_page_screen.dart';
 import '../../regression1_page/regression1_screen.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 class ResultScreen extends StatefulWidget {
@@ -51,348 +53,325 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-
-            children: [
-
-              Flexible(
-                flex: 1,
-                child: Container(
-                  child: Text("Your Result"
-                    ,style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  padding: EdgeInsets.only(top:50,bottom:10 ),
-                  height: 300,
-                  color: Color(0xFF1CA953),
-                ),),
-              Flexible(
-                  flex: 2,
-                  child: Container(
-                    color: LightModeLightGreenColor,
-                  )),
-            ],
-          ),
+      floatingActionButton: SizedBox(
+        width: 70,
+        height: 70,
+        child: FloatingActionButton(
+          backgroundColor: Colors.grey,
+          // backgroundColor: Color(0xFFB4B4B4),//edittttttttttttttttttttttttttttttttt
+          splashColor:  Colors.grey,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
 
 
-          Container(
-            width: 370,
-            height: 355,
-            margin: EdgeInsets.fromLTRB(20, 100,20, 30),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image:
-                AssetImage("assets/images/group_14.jpeg"),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              color: Colors.white,),
 
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight*0.018,),
-                Text("Thanks!",
-                  style: TextStyle(
-                      color: Color(0xFF1CA953),
-                      fontSize: 22,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600),),
-                SizedBox(height: SizeConfig.screenHeight*0.01,),
-                Text("Your Carbon Footprint is",
-                  style: TextStyle(
-                      color: Color(0xFF474747),
-                      fontSize: 19,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600),),
-                SizedBox(height: SizeConfig.screenHeight*0.02,),
                 Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          LightModeMainColor,
-                          Color(0xFFA3D0A6),
-                        ]
+                  margin: EdgeInsets.only(top: 10,bottom: 5),
+                  child: Image.asset("assets/images/Icon.png",
+                    width: 25,
+                    height: 25,),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text("Home",
+                    style: TextStyle(fontSize: 9,),),),],),
+          ),
+          onPressed: () {Navigator.pushNamed(context, HomePageScreen.routeName);},
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomNavigationBar(
+        flag1: false,
+        flag2: false,
+        flag3: false,
+        flag4: false,
+
+      ),
+      body: Container(
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+
+              children: [
+
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    child: Text("Your Result"
+                      ,style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
                     ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
+                    padding: EdgeInsets.only(top:50,bottom:10 ),
+                    height: 300,
+                    color: Color(0xFF1CA953),
+                  ),),
+                Flexible(
+                    flex: 2,
+                    child: Container(
+                      color: LightModeLightGreenColor,
+                    )),
+              ],
+            ),
 
 
-                  child: Text(""+widget.answersData["carbon emissions"]+"%", //edittttttttttttttttt
+            Container(
+              width: 370,
+              height: 375,
+              margin: EdgeInsets.fromLTRB(20, 100,20, 30),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image:
+                  AssetImage("assets/images/group_14.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                color: Colors.white,),
+
+              child: Column(
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight*0.018,),
+                  Text("Thanks!",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 35,
+                        color: Color(0xFF1CA953),
+                        fontSize: 22,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600),),
-                  alignment: Alignment.center,
-                ),
-                SizedBox(height: SizeConfig.screenHeight*0.02,),
-                Text("The Highest Score",
-                  style: TextStyle(
-                      color: Color(0xFF474747),
-                      fontSize: 19,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(height: SizeConfig.screenHeight*0.01,),
-                Text(""+largestValue, //edittttttttttttttt
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    color: Color(0xFF4ECB71),
-                    fontSize: 23,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,),),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(22),
-            child: Column(
-
-              children: [
-                SizedBox(height: SizeConfig.screenHeight*0.54,),
-
-                Container(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text("See our advices for you :",
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+                  Text("Your Carbon Footprint is",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 19,
+                        color: Color(0xFF474747),
+                        fontSize: 19,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600),),
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+                  Container(
+                    width: 180,
+                    height: 180,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            LightModeMainColor,
+                            Color(0xFFA3D0A6),
+                          ]
+                      ),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+
+
+                    child: Text(""+widget.answersData["carbon emissions"]+" Kg", //edittttttttttttttttt
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600),),
+                    alignment: Alignment.center,
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+                  Text("The Highest Score",
+                    style: TextStyle(
+                        color: Color(0xFF474747),
+                        fontSize: 19,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+                  Text(""+largestValue, //edittttttttttttttt
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: Color(0xFF4ECB71),
+                      fontSize: 23,
                       fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600,),),
-                  alignment: Alignment.bottomLeft,
-                ),
-                SizedBox(height: SizeConfig.screenHeight*0.03,),
-
-                Container(
-                  width: SizeConfig.screenWidth,
-                  height: 65,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                          children: [
-                            Container(
-                              width: 6,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF01A458),
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                              ),
-                            ),
-                            SizedBox(width: SizeConfig.screenWidth*0.03,),
-                            SizedBox(
-                              width: 300,
-                              child: Text(""+advice1,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: Color(0xFF474747),
-                                    fontSize: 16,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w500,)),
-                            ),
-                          ]
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 8),
-                        width: 18,
-                        height: 18,
-                        child: Image(
-                          image: AssetImage("assets/images/logos_todomvc.png"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-
-                SizedBox(height: SizeConfig.screenHeight*0.01,),
-
-
-
-                Container(
-                  width: SizeConfig.screenWidth,
-                  height: 65,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                          children: [
-                            Container(
-                              width: 6,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                              ),
-                            ),
-                            SizedBox(width: SizeConfig.screenWidth*0.03,),
-                            SizedBox(
-                              width: 300,
-                              child: Text(""+advice2,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: Color(0xFF474747),
-                                    fontSize: 16,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w500,)),
-                            ),
-                          ]
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 8),
-                        width: 18,
-                        height: 18,
-                        child: Image(
-                          image: AssetImage("assets/images/logos_todomvc.png"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: SizeConfig.screenHeight*0.01,),
-
-
-
-
-                Container(
-                  width: SizeConfig.screenWidth,
-                  height: 65,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                          children:[ Container(
-                            width: 6,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.pink,
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                            ),
-                          ),
-                            SizedBox(width: SizeConfig.screenWidth*0.03,),
-                            SizedBox(
-                              width: 300,
-                              child: Text(""+advice3,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: Color(0xFF474747),
-                                    fontSize: 16,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w500,)),
-                            ),
-                          ]
-                      ),
-                      //SizedBox(width: SizeConfig.screenWidth*0.32,), //editttttttt
-                      Container(
-                        margin: EdgeInsets.only(right: 8),
-                        width: 18,
-                        height: 18,
-                        child: Image(
-                          image: AssetImage("assets/images/logos_todomvc.png"),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-
-                          },
-                          child: Text(
-                            "Prev",
-                            style: TextStyle(fontSize: 23, color: LightModeMainColor,fontWeight: FontWeight.bold),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20))),
-                            padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 37),
-                            primary: Colors.white,
-                            backgroundColor: prevButtonColor,
-                          )),
-                      ElevatedButton(
-                          onPressed: () {
-                            // print("initiated ");
-                            // APIService.carbonAdvice().then((response) => {
-                            //   if(response != null){
-                            //     print("It's not equal null"),
-                            //     print(response.largestEmissionType),
-                            //   //  print(response.advices![0])
-                            //   }
-                            //   else{
-                            //     print("It returned null")
-                            //   }
-                            //
-                            //
-                            // }
-                            // );
-
-                            Navigator.pushNamed(context, Regression1Screen.routeName);
-                          },
-                          child: Text(
-                            "Next",
-                            style: TextStyle(fontSize: 23, color: Colors.white,),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20))),
-                            padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 37),
-                            primary: Colors.white,
-                            backgroundColor: LightModeMainColor,
-                          )),
-                    ],
-                  ),
-                ),
+                      fontWeight: FontWeight.bold,),),
+                ],
               ),
-            ],
-          )
-        ],
+            ),
+            Container(
+              margin: EdgeInsets.all(22),
+              child: Column(
 
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight*0.55,),
+
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text("See our advices for you :",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 19,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,),),
+                    alignment: Alignment.bottomLeft,
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: 65,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                            children: [
+                              Container(
+                                width: 6,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF01A458),
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              SizedBox(width: SizeConfig.screenWidth*0.03,),
+                              SizedBox(
+                                width: 300,
+                                child: Text(""+advice1,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: Color(0xFF474747),
+                                      fontSize: 16,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w500,)),
+                              ),
+                            ]
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 8),
+                          width: 18,
+                          height: 18,
+                          child: Image(
+                            image: AssetImage("assets/images/logos_todomvc.png"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+
+
+
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: 65,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                            children: [
+                              Container(
+                                width: 6,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              SizedBox(width: SizeConfig.screenWidth*0.03,),
+                              SizedBox(
+                                width: 300,
+                                child: Text(""+advice2,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: Color(0xFF474747),
+                                      fontSize: 16,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w500,)),
+                              ),
+                            ]
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 8),
+                          width: 18,
+                          height: 18,
+                          child: Image(
+                            image: AssetImage("assets/images/logos_todomvc.png"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: SizeConfig.screenHeight*0.01,),
+
+
+
+
+                  Container(
+                    width: SizeConfig.screenWidth,
+                    height: 65,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                            children:[ Container(
+                              width: 6,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.pink,
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                              ),
+                            ),
+                              SizedBox(width: SizeConfig.screenWidth*0.03,),
+                              SizedBox(
+                                width: 300,
+                                child: Text(""+advice3,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: Color(0xFF474747),
+                                      fontSize: 16,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w500,)),
+                              ),
+                            ]
+                        ),
+                        //SizedBox(width: SizeConfig.screenWidth*0.32,), //editttttttt
+                        Container(
+                          margin: EdgeInsets.only(right: 8),
+                          width: 18,
+                          height: 18,
+                          child: Image(
+                            image: AssetImage("assets/images/logos_todomvc.png"),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
+
+        ),
       ),
     );
   }

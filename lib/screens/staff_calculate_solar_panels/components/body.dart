@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/components/top_bar.dart';
@@ -14,133 +12,89 @@ import '../../../constants.dart';
 import '../../../models/solar_panel_request_model.dart';
 
 class Body extends StatefulWidget {
-
   const Body({Key? key}) : super(key: key);
-
 
   @override
   State<Body> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  Map<String, dynamic> data= {};
+  Map<String, dynamic> data = {};
   TextEditingController wattsInSinglePanel = TextEditingController();
   TextEditingController totalEnergyConsumption = TextEditingController();
   TextEditingController panelEfficiency = TextEditingController();
+
+  void submitForm() {
+    final int watts = int.tryParse(wattsInSinglePanel.text) ?? 0;
+    final int consumption = int.tryParse(totalEnergyConsumption.text) ?? 0;
+    final double efficiency = double.tryParse(panelEfficiency.text) ?? 0.0;
+
+    if (watts > 0 && consumption > 0 && efficiency > 0.0) {
+      SolarPanelRequestModel model = SolarPanelRequestModel(
+        wattsInSinglePanel: watts,
+        totalEnergyConsumption: consumption,
+        panelEfficiency: efficiency,
+      );
+
+      APIService.SolarPanel(model).then((response) {
+        if (response != null) {
+          setState(() {
+            data = {
+              'numSolarPanels': response.numSolarPanels,
+              'installationCost': response.installationCost,
+              'totalCost': response.totalCost,
+            };
+          });
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => StaffSolarPanelsResultScreen(data: data),
+            ),
+          );
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              SizedBox(height: SizeConfig.screenHeight*0.04,),
-              TopBar(text: "Calculate solar panels",
-                press: (){Navigator.pushNamed(context, StaffElectricityScreen.routeName);},),
-
-              SizedBox(height: SizeConfig.screenHeight*0.06,),
-
-              Text("Total Energy Consumption",style: TextStyle(
-                fontSize: 18, fontFamily: "Poppins", color: LightModeSmallTextColor
-              ),),
-
-              SizedBox(height: SizeConfig.screenHeight*0.03,),
-
-              Container(
-            decoration:BoxDecoration(
-              color: LightModeLightGreenColor,
-              borderRadius: BorderRadius.circular(12),),
-            child:
-
-
-            Container(
-              height: 60,
-              width: 360,
-              child: TextFormField(
-                controller: totalEnergyConsumption,
-                keyboardType: TextInputType.number,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                    hintText: "   15000" ,
-                    suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
-                    hintStyle: TextStyle(
-                      color: Colors.grey.shade300,
-                      fontSize: 14,
-                    ),
-                    labelStyle: InputTextStyle,
-                    filled: true,
-                    fillColor: LightModeLightGreenColor,
-                    enabledBorder: OutlineInputBorder(borderSide:
-                    BorderSide(color: LightModeLightGreenColor),
-                        borderRadius: BorderRadius.circular(12))
-
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                TopBar(
+                  text: "Calculate solar panels",
+                  press: () {
+                    Navigator.pushNamed(context, StaffElectricityScreen.routeName);
+                  },
                 ),
-              ),
-            ),
-          ),
-
-              SizedBox(height: SizeConfig.screenHeight*0.07,),
-
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text("Panel Information :",style: TextStyle(
-                  fontSize: 20, color: LightModeMainColor
-                ),),
-              ),
-
-              SizedBox(height: SizeConfig.screenHeight*0.05,),
-
-              Text("Panel Efficiency",style: TextStyle(
-                fontSize: 18, color: LightModeSmallTextColor
-              ),),
-
-              SizedBox(height: SizeConfig.screenHeight*0.02,),
-
-              Container(
-                decoration:BoxDecoration(
-                  color: LightModeLightGreenColor,
-                  borderRadius: BorderRadius.circular(12),),
-                child:
-                // Container(
-                //   width: 360,
-                //   height: 65,
-                //   color: LightModeLightGreenColor,
-                //   child: Container(
-                //     width: 300,
-                //     height: 65,
-                //     child: TextField(
-                //       style: TextStyle(
-                //         fontSize: 20 ,color: LightModeSmallTextColor
-                //       ),
-                //       textAlign: TextAlign.center,
-                //       decoration: InputDecoration(
-                //         hintText: '15000',
-                //         // suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
-                //         enabledBorder: OutlineInputBorder(
-                //           borderSide: BorderSide(color: LightModeLightGreenColor),
-                //               borderRadius: BorderRadius.circular(12),),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Container(
-                //     width: 30,
-                //     height: 30,
-                //     child: Image(image: AssetImage("assets/images/Vector.png"))),
+                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                Text(
+                  "Total Energy Consumption",
+                  style: TextStyle(fontSize: 18, fontFamily: "Poppins", color: LightModeSmallTextColor),
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.03),
                 Container(
-                  height: 60,
-                  width: 360,
-                  child: TextFormField(
-
-                    controller:panelEfficiency ,
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintText: "   30 wt" ,
-                        suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg",),
+                  decoration: BoxDecoration(
+                    color: LightModeLightGreenColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    height: 60,
+                    width: 360,
+                    child: TextFormField(
+                      controller: totalEnergyConsumption,
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: "   15000",
+                        suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg"),
                         hintStyle: TextStyle(
                           color: Colors.grey.shade300,
                           fontSize: 14,
@@ -148,134 +102,118 @@ class _BodyState extends State<Body> {
                         labelStyle: InputTextStyle,
                         filled: true,
                         fillColor: LightModeLightGreenColor,
-                        enabledBorder: OutlineInputBorder(borderSide:
-                        BorderSide(color: LightModeLightGreenColor),
-                            borderRadius: BorderRadius.circular(12))
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: LightModeLightGreenColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-
-
-              SizedBox(height: SizeConfig.screenHeight*0.04,),
-
-              Text("Watts/ Singlr panel",style: TextStyle(
-                  fontSize: 18, color: LightModeSmallTextColor
-              ),),
-
-              SizedBox(height: SizeConfig.screenHeight*0.02,),
-
-              Container(
-                decoration:BoxDecoration(
-                  color: LightModeLightGreenColor,
-                  borderRadius: BorderRadius.circular(12),),
-                child:
-                // Container(
-                //   width: 360,
-                //   height: 65,
-                //   color: LightModeLightGreenColor,
-                //   child: Container(
-                //     width: 300,
-                //     height: 65,
-                //     child: TextField(
-                //       style: TextStyle(
-                //         fontSize: 20 ,color: LightModeSmallTextColor
-                //       ),
-                //       textAlign: TextAlign.center,
-                //       decoration: InputDecoration(
-                //         hintText: '15000',
-                //         // suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
-                //         enabledBorder: OutlineInputBorder(
-                //           borderSide: BorderSide(color: LightModeLightGreenColor),
-                //               borderRadius: BorderRadius.circular(12),),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Container(
-                //     width: 30,
-                //     height: 30,
-                //     child: Image(image: AssetImage("assets/images/Vector.png"))),
+                SizedBox(height: SizeConfig.screenHeight * 0.07),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Panel Information :",
+                    style: TextStyle(fontSize: 20, color: LightModeMainColor),
+                  ),
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.05),
+                Text(
+                  "Panel Efficiency",
+                  style: TextStyle(fontSize: 18, color: LightModeSmallTextColor),
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.02),
                 Container(
-                  height: 60,
-                  width: 360,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: wattsInSinglePanel,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintText: "   50 Wt" ,
-                      hintStyle: TextStyle(
-                        color: Colors.grey.shade300,
-                        fontSize: 14,
-                      ),
+                  decoration: BoxDecoration(
+                    color: LightModeLightGreenColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    height: 60,
+                    width: 360,
+                    child: TextFormField(
+                      controller: panelEfficiency,
+                      keyboardType: TextInputType.numberWithOptions(decimal: true),
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: "   0.2 wt",
+                        suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg"),
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 14,
+                        ),
                         labelStyle: InputTextStyle,
                         filled: true,
                         fillColor: LightModeLightGreenColor,
-                        enabledBorder: OutlineInputBorder(borderSide:
-                        BorderSide(color: LightModeLightGreenColor),
-                            borderRadius: BorderRadius.circular(12)),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: LightModeLightGreenColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-
-
-              SizedBox(height: SizeConfig.screenHeight*0.08,),
-
-              Container(
-                height: 70,
-                width: 360,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print(int.parse(wattsInSinglePanel.text));
-                    print(int.parse(totalEnergyConsumption.text));
-
-
-                    SolarPanelRequestModel model = SolarPanelRequestModel(
-                      wattsInSinglePanel:int.parse(wattsInSinglePanel.text),
-
-                      totalEnergyConsumption:int.parse(totalEnergyConsumption.text),
-                      panelEfficiency:double.parse(panelEfficiency.text)
-                        );
-    APIService.SolarPanel(model).then((response) => {
-    if (response != null)
-    {print(response.numSolarPanels),
-      print(response.installationCost),
-      data = {
-          'numSolarPanels': response.numSolarPanels,
-          'installationCost': response.installationCost,
-          'totalCost': response.totalCost,
-        }},
-
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StaffSolarPanelsResultScreen(data: data),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                Text(
+                  "Watts/ Single panel",
+                  style: TextStyle(fontSize: 18, color: LightModeSmallTextColor),
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.02),
+                Container(
+                  decoration: BoxDecoration(
+                    color: LightModeLightGreenColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    height: 60,
+                    width: 360,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: wattsInSinglePanel,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: "   50 Wt",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade300,
+                          fontSize: 14,
+                        ),
+                        labelStyle: InputTextStyle,
+                        filled: true,
+                        fillColor: LightModeLightGreenColor,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: LightModeLightGreenColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                    )
-
-
-                    });},
-                  child: Row(
+                    ),
+                  ),
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                Container(
+                  height: 70,
+                  width: 360,
+                  child: ElevatedButton(
+                    onPressed: submitForm,
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           "Submit",
-                          style: TextStyle(fontSize: 22,fontFamily: "Poppins"),
+                          style: TextStyle(fontSize: 22, fontFamily: "Poppins"),
                         ),
-                      ]),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(18))),
-                    padding: EdgeInsets.only(right: 40,left: 40),
-                    primary: Colors.white,
-                    backgroundColor: LightModeMainColor,
+                      ],
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(18))),
+                      padding: EdgeInsets.only(right: 40, left: 40),
+                      primary: Colors.white,
+                      backgroundColor: LightModeMainColor,
+                    ),
                   ),
                 ),
-              ),
-          ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:geolocator/geolocator.dart';
 import '../../../services/api_service.dart';
-
-
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -19,7 +17,8 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    APIService.getLocation().then((position) {
+    APIService.sendLocationRequest().then((_) async {
+      Position position = await APIService.getLocation();
       setState(() {
         _latitude = position.latitude.toString();
         _longitude = position.longitude.toString();
@@ -31,6 +30,7 @@ class _BodyState extends State<Body> {
       print(error.toString());
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,3 @@ class _BodyState extends State<Body> {
     );
   }
 }
-
-
-

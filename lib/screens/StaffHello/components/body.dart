@@ -86,27 +86,25 @@ class _BodyState extends State<Body> {
                         ,height: SizeConfig.screenHeight*0.06),
                   ),
                 ),
-                SizedBox(width: SizeConfig.screenWidth*0.23,),
+                SizedBox(width: SizeConfig.screenWidth*0.24,),
 
-                Center(
-                  child: Row(
-                    children: [
-                      Text("Hello, "+myValue!,
-                        style: TextStyle(
-                            fontSize: 27,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.bold,
-                            color: LightModeSmallTextColor
-                        ),
+                Row(
+                  children: [
+                    Text("Hello, "+myValue!,
+                      style: TextStyle(
+                          fontSize: 27,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
+                          color: LightModeSmallTextColor
                       ),
-                      SizedBox(width: SizeConfig.screenWidth*0.01,),
-                      Container(
-                        child: Image.asset("assets/icons/Waving_Emoji_Hand_Hello.png"),
-                        width: 28,
-                        height: 28,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: SizeConfig.screenWidth*0.01,),
+                    Container(
+                      child: Image.asset("assets/icons/Waving_Emoji_Hand_Hello.png"),
+                      width: 28,
+                      height: 28,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -120,16 +118,19 @@ class _BodyState extends State<Body> {
 
                   Text("Welcome to you   ,you now can make some challenges for your university based on your plans",
                     style: TextStyle(
+
                       fontSize: 23,
                       fontFamily: "Poppins3",
                       color: LightModeSmallTextColor,
                       fontWeight:FontWeight.w600,
-                    ),),
+                    ),
+                  textAlign: TextAlign.center,
+                  ),
 
-                  SizedBox(height: SizeConfig.screenHeight*0.06,),
+                  SizedBox(height: SizeConfig.screenHeight*0.09,),
 
 
-                  SizedBox(height: SizeConfig.screenHeight*0.03,),
+
 
                   Column(
 
@@ -166,23 +167,73 @@ class _BodyState extends State<Body> {
                                         flex: 3,
                                         child: Padding(
                                           padding: EdgeInsets.all(5),
-                                          child: Wrap(
-                                            children: [
-                                              Text("calculate carbon footprint for ",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            color: LightModeSmallTextColor,
-                                          ) ),
-                                              Text("one ", style: TextStyle(
-                                                fontWeight: FontWeight.w900,
-                                                color: LightModeMainColor,
-                                              )),
-                                              Text("year", style: TextStyle(
+                                          child:
+                                          // Wrap(
+                                          //   children: [
+                                          //     Text("calculate carbon footprint for ",
+                                          // style: TextStyle(
+                                          //   fontWeight: FontWeight.normal,
+                                          //   color: LightModeSmallTextColor,
+                                          // ) ),
+                                          //     Text("one ", style: TextStyle(
+                                          //       fontWeight: FontWeight.w900,
+                                          //       color: LightModeMainColor,
+                                          //     )),
+                                          //     Text("year", style: TextStyle(
+                                          //       fontWeight: FontWeight.normal,
+                                          //       color: LightModeSmallTextColor,
+                                          //     )),
+                                          //   ],
+                                          // ),
+
+
+
+
+                                          RichText(
+                                          textAlign: TextAlign.start,
+                                          text: TextSpan(
+                                            text: 'calculate carbon footprint for  ',
+
+                                            style: TextStyle(
+                                              fontFamily: "Poppins",
+                                              fontSize: getProportionateScreenWidth(14),
                                                 fontWeight: FontWeight.normal,
                                                 color: LightModeSmallTextColor,
-                                              )),
+                                              )
+
+
+                                            ,
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: 'one  ',
+                                                style: TextStyle(
+                                                  fontFamily: "Poppins",
+                                                  fontSize: getProportionateScreenWidth(14),
+                                                        fontWeight: FontWeight.w900,
+                                                        color: LightModeMainColor,
+                                                      ),
+                                              ),
+                                              TextSpan(
+
+                                                text: 'year',
+                                                style:  TextStyle(
+                                                  fontFamily: "Poppins",
+                                                  fontSize: getProportionateScreenWidth(14),
+                                                        fontWeight: FontWeight.normal,
+                                                        color: LightModeSmallTextColor,
+                                                      ),
+                                              ),
+
                                             ],
                                           ),
+                                        )
+
+
+
+
+
+
+                                          ,
 
                                         ),
                                       ),
@@ -259,27 +310,66 @@ class _BodyState extends State<Body> {
                                         flex: 3,
                                         child: Padding(
                                           padding: EdgeInsets.all(5),
-                                          child: Wrap(
-                                            children: [
-                                              Text("calculate carbon footprint for ",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.normal,
+                                          child:
+                                          // Wrap(
+                                          //   children: [
+                                          //     Text("calculate carbon footprint for ",
+                                          //         style: TextStyle(
+                                          //           fontWeight: FontWeight.normal,
+                                          //
+                                          //           color: Colors.white,
+                                          //         )
+                                          //
+                                          //     ),
+                                          //     Text("many ", style: TextStyle(
+                                          //       fontWeight: FontWeight.w900,
+                                          //       color: Colors.white,
+                                          //     )),
+                                          //     Text("year", style: TextStyle(
+                                          //       fontWeight: FontWeight.normal,
+                                          //
+                                          //       color: Colors.white,
+                                          //     )),
+                                          //   ],
+                                          // ),
+                                          RichText(
+                                            textAlign: TextAlign.start,
+                                            text: TextSpan(
+                                              text: 'Prediction for ',
 
-                                                    color: Colors.white,
-                                                  )
-
-                                              ),
-                                              Text("many ", style: TextStyle(
-                                                fontWeight: FontWeight.w900,
-                                                color: Colors.white,
-                                              )),
-                                              Text("year", style: TextStyle(
+                                              style: TextStyle(
+                                                fontFamily: "Poppins",
+                                                fontSize: getProportionateScreenWidth(14),
                                                 fontWeight: FontWeight.normal,
-
                                                 color: Colors.white,
-                                              )),
-                                            ],
-                                          ),
+                                              )
+
+
+                                              ,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text: 'many  ',
+                                                  style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: getProportionateScreenWidth(14),
+                                                    fontWeight: FontWeight.w900,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                TextSpan(
+
+                                                  text: 'years',
+                                                  style:  TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontSize: getProportionateScreenWidth(14),
+                                                    fontWeight: FontWeight.normal,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+
+                                              ],
+                                            ),
+                                          )
 
                                         ),
                                       ),
@@ -311,18 +401,24 @@ class _BodyState extends State<Body> {
                             // Navigator.pushNamed(context, StaffCalculateSolarPanelsScreen.routeName);
                             Navigator.pushNamed(context, StuffHomePageScreen.routeName);
                           },
-                          child: Align(
-                            child: Text(
-                              "Skip that Now and calculate it later",
-                              style: TextStyle(
-                                color: Color(0xFF1CA953),
-                                fontSize: 18,
-                                height: 22 / 15,
-                                fontFamily: "Montserrat",
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                                decorationColor: LightModeMainColor,
+                          child: Container(
+                            width: 140,
+                            height: 40,
+                            color: LightGray,
+
+                            child: Align(
+                              child: Text(
+                                "Skip that Now",
+                                style: TextStyle(
+                                  color: Color(0xFF1CA953),
+                                  fontSize: 18,
+                                  height: 22 / 15,
+                                  fontFamily: "Montserrat",
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                               //  decoration: TextDecoration.underline,
+                                  decorationColor: LightModeMainColor,
+                                ),
                               ),
                             ),
                           ),

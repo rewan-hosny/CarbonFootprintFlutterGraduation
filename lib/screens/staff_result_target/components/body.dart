@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation/screens/staff_target/staff_target_screen.dart';
+import 'package:graduation/screens/target_progress/target_progress_screen.dart';
 
 import '../../../components/bottom_navigation_bar.dart';
 import '../../../components/default_button.dart';
@@ -183,7 +185,9 @@ class _BodyState extends State<Body> {
                       primary: Colors.white,
                       backgroundColor: LightModeMainColor,
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushNamed(context, TargetProgressScreen.routeName);
+                    },
                     child: Text(
                       "Take Action !",
                       style: ButtonFontStyle,

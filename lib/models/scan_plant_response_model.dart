@@ -2,24 +2,21 @@
 import 'dart:convert';
 ScanPlantResponseModel scanPlantResponseModel (String str) => ScanPlantResponseModel.fromJson(json.decode(str));
 
-
-
-
 class ScanPlantResponseModel {
-  String? flowerType;
   String? status;
+  String? damaged;
 
-  ScanPlantResponseModel({this.flowerType, this.status});
+  ScanPlantResponseModel({this.status, this.damaged});
 
   ScanPlantResponseModel.fromJson(Map<String, dynamic> json) {
-    flowerType = json['Flower Type'];
     status = json['Status'];
+    damaged = json['Damaged'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Flower Type'] = this.flowerType;
     data['Status'] = this.status;
+    data['Damaged'] = this.damaged;
     return data;
   }
 }

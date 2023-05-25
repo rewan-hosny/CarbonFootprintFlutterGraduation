@@ -17,11 +17,11 @@ class Body extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight*0.02,),
+                SizedBox(height: SizeConfig.screenHeight*0.03,),
                 TopBar(text:"            Waste",press: (){},),
                 Container(
-                  width: 280,
-                  height: 280,
+                  width: 220,
+                  height: 220,
                   child: Image.asset("assets/images/wastee.png"),
                 ),
 
@@ -38,26 +38,24 @@ class Body extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
-                  width: 380,
-                  height: 60,
+                  width:getProportionateScreenHeight(420),
+                  height: 40,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40,right: 40),
-                        child: Text(" Some advices about waste",style: TextStyle(
-                          fontSize: 20,color: Colors.white,),),
-                      ),
+                      Text(" Some advices about waste",style: TextStyle(
+                        fontSize: 18,color: Colors.white,),),
                     ],
                   ),
                 ),
 
-                SizedBox(height: SizeConfig.screenHeight*0.04,),
+                SizedBox(height: SizeConfig.screenHeight*0.03,),
 
 
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
+                      padding: const EdgeInsets.only(bottom: 35),
                       child: Container(
                         child: Center(child: Text("1",style: TextStyle(color: Colors.white),)),
                         width: 20,
@@ -73,9 +71,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Reduce paper usage by going digital and\n using electronic documents wherever\n possible.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Reduce paper usage by going digital and using electronic documents wherever possible.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -108,9 +109,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Implement a recycling program for\n paper, plastic, glass, and metal.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Implement a recycling program for paper, plastic, glass, and metal.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -143,9 +147,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Use composting to dispose of organic\n waste such as food scraps and yard\n waste.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Use composting to dispose of organic waste such as food scraps and yard waste.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -177,9 +184,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Encourage the use of reusable containers\n, bottles, and bags to reduce the amount \nof single-use plastics.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Encourage the use of reusable containers, bottles, and bags to reduce the amount of single-use plastics.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -196,7 +206,7 @@ class Body extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 45),
+                      padding: const EdgeInsets.only(bottom: 40),
                       child: Container(
                         child: Center(child: Text("5",style: TextStyle(color: Colors.white),)),
                         width: 20,
@@ -212,9 +222,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Donate unwanted items such as clothing,\n furniture, and electronics instead of \nthrowing them away.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Donate unwanted items such as clothing, furniture, and electronics instead of throwing them away.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -247,9 +260,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text(" Use energy-efficient appliances and \nlight bulbs to reduce energy consumption\n and waste.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Use energy-efficient appliances and light bulbs to reduce energy consumption and waste.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -265,7 +281,7 @@ class Body extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 45),
+                      padding: const EdgeInsets.only(bottom: 40),
                       child: Container(
                         child: Center(child: Text("7",style: TextStyle(color: Colors.white),)),
                         width: 20,
@@ -281,9 +297,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Properly dispose of hazardous materials\nsuch as batteries and electronics to \nprevent environmental pollution.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Properly dispose of hazardous materials such as batteries and electronics to prevent environmental pollution.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 
@@ -299,7 +318,7 @@ class Body extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 45),
+                      padding: const EdgeInsets.only(bottom: 40),
                       child: Container(
                         child: Center(child: Text("8",style: TextStyle(color: Colors.white),)),
                         width: 20,
@@ -315,9 +334,12 @@ class Body extends StatelessWidget {
                               ]),),),
                     ),
                     SizedBox(width: SizeConfig.screenWidth*0.025,),
-                    Text("Implement a waste audit to identify areas\nwhere waste can be reduced and to \ntrack progress over time.",style: TextStyle(
-                        fontSize: 16
-                    ),),
+                    Container(
+                      width: 290,
+                      child: Text("Implement a waste audit to identify areas where waste can be reduced and to track progress over time.",style: TextStyle(
+                          fontSize: 14
+                      ),),
+                    ),
                   ],
                 ),
 

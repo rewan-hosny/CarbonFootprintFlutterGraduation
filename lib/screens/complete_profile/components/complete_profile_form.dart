@@ -118,7 +118,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         children: [
           Container(
             width: 140,
-            height: 160,
+            height: 170,
             decoration: BoxDecoration(
                 color: LightGray, borderRadius: new BorderRadius.circular(14)),
             child: Column(
@@ -170,7 +170,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           ),
           Container(
             width: 140,
-            height: 160,
+            height: 170,
             decoration: BoxDecoration(
                 color: LightGray, borderRadius: new BorderRadius.circular(14)),
             child: Column(

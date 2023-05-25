@@ -41,7 +41,6 @@ class _BodyState extends State<Body> {
 
                 ))
 
-
         );
       } else {
         Navigator.pushNamed(context, StaffUploadScreen.routeName);
@@ -58,7 +57,7 @@ class _BodyState extends State<Body> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(height: SizeConfig.screenHeight*0.03,),
+
           Padding(
             padding: EdgeInsets.only(top: 20,right: 20,left: 20),
             child: TopBar(
@@ -70,22 +69,7 @@ class _BodyState extends State<Body> {
           ),
 
 
-          Align(
-            child: Image.asset(
-              "assets/images/s7.png",
-              height: SizeConfig.screenHeight * 0.3,
-            ),
-            alignment: Alignment.topCenter,
-          ),
 
-          // SizedBox(height: SizeConfig.screenHeight*0.1,),
-          Center(
-            child: Text("File Uploaded Successfully !",style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              color: LightModeSmallTextColor,
-            ),),
-          ),
 
           SizedBox(height: SizeConfig.screenHeight*0.07,),
 
@@ -170,7 +154,7 @@ class _BodyState extends State<Body> {
                 ),
 
                 SizedBox(height: SizeConfig.screenHeight*0.01,),
-                Text("uploading...",style: TextStyle(
+                Text("Processing...",style: TextStyle(
                   fontSize: 25,
                   color: LightModeLightGreenColor,
                 ),),

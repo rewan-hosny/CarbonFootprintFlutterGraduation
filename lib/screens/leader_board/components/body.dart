@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:graduation/components/bottom_navigation_bar.dart';
+import 'package:graduation/screens/before_regression/before_regression_screen.dart';
 
 import '../../../components/staff_bottom_navigation_bar.dart';
 import '../../../components/top_bar.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import '../../home/home_screen.dart';
+import '../../home_page/home_page_screen.dart';
 import '../../stuff_home_page/stuff_home_page_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui' as ui;
@@ -53,9 +56,9 @@ class _BodyState extends State<Body> {
         width: 70,
         height: 70,
         child: FloatingActionButton(
-          backgroundColor: LightModeMainColor,
+          backgroundColor: Colors.grey,
           elevation: 0,
-          splashColor: LightModeMainColor,
+          // splashColor: LightModeMainColor,
           child: Column(
             children: [
               Container(
@@ -78,13 +81,13 @@ class _BodyState extends State<Body> {
             ],
           ),
           onPressed: () {
-            Navigator.pushNamed(context, StuffHomePageScreen.routeName);
+            Navigator.pushNamed(context, HomePageScreen.routeName);
           },
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomStaffNavigationBar(
-        flag1: false,
+      bottomNavigationBar: CustomNavigationBar(
+        flag1: true,
         flag2: false,
         flag3: false,
         flag4: false,
@@ -98,7 +101,7 @@ class _BodyState extends State<Body> {
               TopBar(
                   text: "        Leaderboard",
                   press: () {
-                    Navigator.pushNamed(context, HomeScreen.routeName);
+                    Navigator.pushNamed(context, BeforeRegressionScreen.routeName);
                   }),
               SizedBox(height: SizeConfig.screenHeight * 0.02),
 
@@ -188,7 +191,7 @@ class _BodyState extends State<Body> {
 
                           Container(
                             //  color: Colors.lightBlue,
-                            height: 210,
+                            height: getProportionateScreenHeight(210),
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/new/vectorOfNumber2.svg"),
@@ -221,7 +224,7 @@ class _BodyState extends State<Body> {
 
                           Container(
                             //  color: Colors.red,
-                            height: 280,
+                            height: getProportionateScreenHeight(280),
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/new/crown.svg",width: 34,height: 27,),
@@ -256,7 +259,7 @@ class _BodyState extends State<Body> {
 
                           Container(
                             //  color: Colors.black,
-                            height: 210,
+                            height: getProportionateScreenHeight(210),
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/new/vectorOfNumber3.svg"),

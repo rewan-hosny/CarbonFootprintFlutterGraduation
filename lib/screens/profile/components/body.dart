@@ -199,7 +199,7 @@ class _BodyState extends State<Body> {
                           ),
                           child: Column(
                             children: [
-                              Item(headLine: "My Account",detail: "Make changes to your account",
+                              Item(headLine: "My Account",detail: "",
                                 image: "assets/images/Profile.png",
                                 press: (){
 
@@ -226,7 +226,7 @@ class _BodyState extends State<Body> {
                                 },
 
                               ),
-                              Item(headLine: "Log out",detail: "secure your account for safety",
+                              Item(headLine: "Log out",detail: "secure your account",
                                 image: "assets/images/Logout.png",
                                 press: (){
                                 APIService.Logout().then((response) => {

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation/screens/staff_articles_screen/staff_articles.dart';
 import 'package:graduation/screens/staff_projects/staff_projects_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants.dart';
 import '../screens/articles/article_screen.dart';
+import '../screens/before_regression/before_regression_screen.dart';
 import '../screens/home_page/home_page_screen.dart';
 import '../screens/plant1_page/plant1_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/regression1_page/regression1_screen.dart';
+import '../screens/staff_before_regression/staff_before_regression.dart';
 import '../screens/target_progress/target_progress_screen.dart';
+import '../services/api_service.dart';
 import '../size_config.dart';
 
 class CustomStaffNavigationBar extends StatefulWidget {
@@ -85,8 +90,7 @@ class _CustomStaffNavigationBarState extends State<CustomStaffNavigationBar> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, Regression1Screen.routeName);
-
+                    Navigator.pushNamed(context, StaffBeforeRegression.routeName);
                   },
                   child: Image.asset("assets/images/icon-park-solid_analysis.png",
                     color:widget.flag1==true? Color(0xFF0A7036): LightModeSmallTextColor,
@@ -131,7 +135,7 @@ class _CustomStaffNavigationBarState extends State<CustomStaffNavigationBar> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, ArticlesScreen.routeName);
+                    Navigator.pushNamed(context, StaffArticleScreen.routeName);
                   },
                   child: Image.asset("assets/images/ooui_articles-ltr.png",
                     color:widget.flag3==true? Color(0xFF0A7036): LightModeSmallTextColor,
@@ -154,42 +158,25 @@ class _CustomStaffNavigationBarState extends State<CustomStaffNavigationBar> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, TargetProgressScreen.routeName );
-                        // .then((_) {
-                    //   // This block runs when you have returned back to the 1st Page from 2nd.
-                    //   setState(() {
-                    //     // Call setState to refresh the page.
-                    //   });
-                    // });
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ProfileScreen(
-                    //           currentUserData: NavigationcurrentUserData ,
-                    //         )
-                    //
-                    //
-                    //
-                    //
-                    //     )
-                    //
+                    APIService.GetTargetYear().then((response) {
+                      if (response.status =="Success") {
+                        Navigator.pushNamed(context, TargetProgressScreen.routeName );
 
-                    //
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-                    //     ProfileScreen(
-                    //       currentUserData: NavigationcurrentUserData ,
-                    //     )
-                    //
-                    //
-                    // )).then((_) =>
-                    //     setState(() { }),
-                    //
-                    //
-                    // );
-                    //
-                    //
-                    //
 
+                      }
+                    else{
+                      print("rewan");
+                        Fluttertoast.showToast(msg: "please set target at first",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 4,
+                            backgroundColor: Colors.grey,
+                            textColor: Colors.black,
+                            fontSize: 15
+
+                        );
+                    }
+                    });
 
 
 

@@ -50,7 +50,7 @@ class _BodyState extends State<Body> {
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: TopBar(
-                        text: "  Steps To Do !",
+                        text: "    Download File",
                         press: () {
                           Navigator.pushNamed(context, StaffChoosePage.routeName);
                         }
@@ -157,7 +157,9 @@ class _BodyState extends State<Body> {
 
 
                         );
-                        APIService.Download();
+                        print(SelectedItemFrom);
+                        print(SelectedItemTo);
+                        APIService.Download(SelectedItemFrom??"2010",SelectedItemTo??"2020");
 
 
                       },

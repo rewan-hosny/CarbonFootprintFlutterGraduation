@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../../../components/staff_bottom_navigation_bar.dart';
 import '../../../components/top_bar.dart';
 import '../../../constants.dart';
+import '../../../models/Staff_progress_request_model.dart';
+import '../../../models/staff_progress_smartlight_request_model.dart';
 import '../../../models/target_progress_response_model.dart';
 import '../../../models/target_progress_response_model.dart';
 import '../../../models/target_progress_response_model.dart';
@@ -18,19 +20,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+
   @override
+
   State<Body> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   Map<String, dynamic> SolarPanel= {};
   Map<String, dynamic> SmartLight= {};
-  bool value = true;
+  bool value1 = false;
   bool flag1 = false;
   bool flag2 = false;
+  bool value2=false;
   final double progressValue = 0.4;
   final List<Color> color = <Color>[];
   late LinearGradient gradientColors;
+  String currentIcon1="assets/new/up_arrow.svg";
+  String currentIcon2="assets/new/up_arrow.svg";
+  double targetPercent=0.0;
+
 
   @override
   void initState() {
@@ -46,6 +55,13 @@ class _BodyState extends State<Body> {
       // TODO: implement initState
       APIService.StaffTargetProgress().then((response) {
         if (response !=null) {
+          targetPercent =response.targetPercent!;
+          if(response.smartLighting?.status=="Completed"){
+            value2=true;
+          }
+          if(response.solarPanel?.status=="Completed"){
+            value2=true;
+          }
           SolarPanel ={
             "num_panel":response.solarPanel?.solarPanelsNum?.toString(),
             "cost":response.solarPanel?.solarPanelsCost?.toString(),
@@ -61,6 +77,7 @@ class _BodyState extends State<Body> {
 
           print(SolarPanel);
           print(SmartLight);
+          print(targetPercent);
 
         }
       });
@@ -88,9 +105,9 @@ class _BodyState extends State<Body> {
           width: 70,
           height: 70,
           child: FloatingActionButton(
-            backgroundColor: LightModeMainColor,
+            backgroundColor: Colors.grey,
             elevation: 0,
-            splashColor: LightModeMainColor,
+
             child: Column(
               children: [
                 Container(
@@ -122,7 +139,7 @@ class _BodyState extends State<Body> {
           flag1: false,
           flag2: false,
           flag3: false,
-          flag4: false,
+          flag4: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -135,135 +152,6 @@ class _BodyState extends State<Body> {
                     Navigator.pushNamed(context, HomeScreen.routeName);
                   }),
               SizedBox(height: SizeConfig.screenHeight * 0.04),
-              // SfRadialGauge(
-              //     axes: <RadialAxis>[
-              //       RadialAxis(
-              //           showLabels: false,
-              //           showTicks: false,
-              //           startAngle: 180,
-              //           endAngle: 0,
-              //           radiusFactor: 0.7,
-              //           canScaleToFit: true,
-              //           axisLineStyle: AxisLineStyle(
-              //             thickness: 0.1,
-              //             color: const Color.fromARGB(30, 0, 169, 181),
-              //             thicknessUnit: GaugeSizeUnit.factor,
-              //             cornerStyle: CornerStyle.startCurve,
-              //           ),
-              //           pointers: <GaugePointer>[
-              //             RangePointer(
-              //                 value: 70,
-              //                 width: 0.1,
-              //                 sizeUnit: GaugeSizeUnit.factor,
-              //                 cornerStyle: CornerStyle.bothCurve)
-              //           ],)
-              //
-              // ]
-              //
-              // ),
-              // CircularGradientProgressBar(
-              //   progress: 0.75,
-              //   strokeWidth: 10.0,
-              //   markerSize: 20.0,
-              //   gradientColors: [Colors.blue, Colors.green],
-              //   markerColor: Colors.white,
-              // ),
-
-              // SfRadialGauge(
-              //   axes: <RadialAxis>[
-              //     RadialAxis(
-              //       minimum: 0,
-              //       maximum: 100,
-              //       showLabels: false,
-              //       showTicks: false,
-              //       startAngle: 270,
-              //       endAngle: 270,
-              //       radiusFactor: 0.8,
-              //       axisLineStyle: AxisLineStyle(
-              //         thickness: 0.1,
-              //         cornerStyle: CornerStyle.startCurve,
-              //         gradient: const SweepGradient(colors: <Color>[
-              //           Color(0xFF00a9b5),
-              //           Color(0xFFa4edeb),
-              //         ], stops: <double>[
-              //           0.25,
-              //           0.75,
-              //         ]),
-              //       ),
-              //       pointers: <GaugePointer>[
-              //         MarkerPointer(
-              //           value: 700,
-              //           markerType: MarkerType.circle,
-              //           color: const Color(0xFF87e8e8),
-              //         ),
-              //       ],
-              //       annotations: <GaugeAnnotation>[
-              //         GaugeAnnotation(
-              //           widget: Text(
-              //             "70 %",
-              //             style: TextStyle(fontSize: 20),
-              //           ),
-              //           angle: 90,
-              //           positionFactor: 0.5,
-              //         ),
-              //       ],
-              //     )
-              //     ])
-
-              // Container(
-              //   color: Colors.black,
-              //   child: Center(
-              //     child: SfRadialGauge(
-              //       axes: <RadialAxis>[
-              //         RadialAxis(
-              //           minimum: 0,
-              //           maximum: 1,
-              //           showLabels: false,
-              //           showTicks: false,
-              //           axisLineStyle: AxisLineStyle(
-              //             thickness: 0.1,
-              //             cornerStyle: CornerStyle.startCurve,
-              //             color: Colors.grey[200],
-              //             thicknessUnit: GaugeSizeUnit.factor,
-              //           ),
-              //           pointers: <GaugePointer>[
-              //             RangePointer(
-              //                 value: progressValue,
-              //                 width: 0.1,
-              //                 sizeUnit: GaugeSizeUnit.factor,
-              //                 cornerStyle: CornerStyle.startCurve,
-              //                 gradient: const SweepGradient(colors: <Color>[
-              //                   Color(0xFF00a9b5),
-              //                   Color(0xFFa4edeb)
-              //                 ], stops: <double>[
-              //                   0.25,
-              //                   0.75
-              //                 ])),
-              //             MarkerPointer(
-              //               value: progressValue,
-              //               markerType: MarkerType.circle,
-              //               color: const Color(0xFF87e8e8),
-              //             )
-              //           ],
-              //           annotations: <GaugeAnnotation>[
-              //             GaugeAnnotation(
-              //                 positionFactor: 0.5,
-              //                 angle: 90,
-              //                 widget: Text(
-              //                   '70%',
-              //                   style: TextStyle(
-              //                       fontSize: 20,
-              //                       fontWeight: FontWeight.bold,
-              //                       color: Colors.black),
-              //                 ))
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //
-              //
-              //   ),
-              // ),
 
               Container(
                 width: 260,
@@ -335,7 +223,7 @@ class _BodyState extends State<Body> {
                             color: Color(0xFF474747)),
                         children: <TextSpan>[
                           TextSpan(
-                            text: '${(progressValue * 100).toInt()}%',
+                            text: '${( targetPercent* 100).toInt()}%',
                             style: TextStyle(
                                 fontSize: 26,
                                 fontFamily: "Poppins2",
@@ -364,45 +252,50 @@ class _BodyState extends State<Body> {
                 ),
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.08),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF07401D),
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                // color: Color(0xFF07401D),
-                width: getProportionateScreenWidth(335),
-                height: getProportionateScreenHeight(69),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (flag1 == false) {
+                      flag1 = true;
+                      currentIcon1="assets/new/bottomArrow.svg";
+                    } else if (flag1 == true) {
+                      flag1 = false;
+                      currentIcon1= "assets/new/up_arrow.svg";
+                    }
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFF07401D),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  // color: Color(0xFF07401D),
+                  width: getProportionateScreenWidth(335),
+                  height: getProportionateScreenHeight(69),
 
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Electricity Projects",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Poppins2",
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (flag1 == false) {
-                              flag1 = true;
-                            } else if (flag1 == true) {
-                              flag1 = false;
-                            }
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          "assets/new/up_arrow.svg",
-                          height: getProportionateScreenHeight(10),
-                          width: getProportionateScreenWidth(18),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Electricity Projects",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Poppins2",
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
                         ),
-                      )
-                    ],
+                        GestureDetector(
+
+                          child: SvgPicture.asset(
+                            currentIcon1,
+                            height: getProportionateScreenHeight(10),
+                            width: getProportionateScreenWidth(18),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -433,7 +326,7 @@ class _BodyState extends State<Body> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
                                   "Solar Panels",
@@ -443,14 +336,14 @@ class _BodyState extends State<Body> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white),
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: SvgPicture.asset(
-                                    "assets/new/up_arrow.svg",
-                                    height: getProportionateScreenHeight(10),
-                                    width: getProportionateScreenWidth(18),
-                                  ),
-                                )
+                                // GestureDetector(
+                                //   onTap: () {},
+                                //   child: SvgPicture.asset(
+                                //     "assets/new/up_arrow.svg",
+                                //     height: getProportionateScreenHeight(10),
+                                //     width: getProportionateScreenWidth(18),
+                                //   ),
+                                // )
                               ],
                             ),
                           ),
@@ -610,26 +503,71 @@ class _BodyState extends State<Body> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Is Completeed                     ',
+                                      'Is Completeed             ',
                                       style: TextStyle(
                                           fontSize: 17,
                                           fontFamily: "Poppins2",
                                           fontWeight: FontWeight.w500,
                                           color: Color(0xFF474747)),
                                     ),
-                                    Checkbox(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0))),
-                                      value: value,
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          this.value = value!;
-                                        });
-                                      },
-                                      activeColor: LightModeMainColor,
-                                      checkColor: Colors.white,
-                                      autofocus: true,
+                                    Transform.scale(
+                                      scale: 1,
+                                      child: Checkbox(
+                                        value: value2,
+                                        onChanged: (bool? value2) {
+                                          setState(() {
+                                            this.value2 = value2!;
+                                            if(value2 == true){
+                                              StaffProgressResponseModel model = StaffProgressResponseModel(
+                                                progress: false,
+                                                add:true ,
+
+
+                                              );
+
+                                              APIService.StaffProgress(model);
+
+                                              // dates["chosen year"]="2023";
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) => StaffQuestionOne(
+                                              //             answersData: dates
+                                              //
+                                              //         ))
+                                              //
+                                              //
+                                              // );
+                                            }
+                                            if(value2 == false){
+                                              StaffProgressResponseModel model = StaffProgressResponseModel(
+                                                progress: false,
+                                                add:false ,
+
+
+                                              );
+
+                                              APIService.StaffProgress(model);
+
+                                              // dates["chosen year"]="2023";
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) => StaffQuestionOne(
+                                              //             answersData: dates
+                                              //
+                                              //         ))
+                                              //
+                                              //
+                                              // );
+                                            }
+
+                                          });
+                                        },
+                                        activeColor: LightModeMainColor,
+                                        checkColor: Colors.white,
+                                        autofocus: true,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -672,14 +610,7 @@ class _BodyState extends State<Body> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white),
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: SvgPicture.asset(
-                                    "assets/new/up_arrow.svg",
-                                    height: getProportionateScreenHeight(10),
-                                    width: getProportionateScreenWidth(18),
-                                  ),
-                                )
+
                               ],
                             ),
                           ),
@@ -804,7 +735,7 @@ class _BodyState extends State<Body> {
                                   ],
                                 ),
                                 SizedBox(
-                                    height: SizeConfig.screenHeight * 0.015),
+                                    height: SizeConfig.screenHeight * 0.010),
                                 Container(
                                   width: 340,
                                   height: 2,
@@ -816,8 +747,8 @@ class _BodyState extends State<Body> {
                                     // endIndent: 16,
                                   ),
                                 ),
-                                SizedBox(
-                                    height: SizeConfig.screenHeight * 0.015),
+                                // SizedBox(
+                                //     height: SizeConfig.screenHeight * 0.010),
                                 Row(
                                   children: [
                                     Text(
@@ -828,28 +759,63 @@ class _BodyState extends State<Body> {
                                           fontWeight: FontWeight.w500,
                                           color: Color(0xFF474747)),
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFF1CA953),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4))),
-                                      width: 60,
-                                      height: 24,
-                                      child: FittedBox(
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            "yes",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20),
-                                          ),
-                                        ),
+                                    Transform.scale(
+                                      scale: 1,
+                                      child: Checkbox(
+                                        value: value1,
+                                        onChanged: (bool? value1) {
+                                          setState(() {
+                                            this.value1 = value1!;
+                                            if(value1 == true){
+                                              StaffSmartLightProgressRequestModel model = StaffSmartLightProgressRequestModel(
+                                                progress: false,
+                                                add:true );
+                                              APIService.StaffSmartLightProgress(model);
+
+                                            }
+                                            if(value1 == false){
+                                              StaffSmartLightProgressRequestModel model = StaffSmartLightProgressRequestModel(
+                                                  progress: false,
+                                                  add:false );
+                                              APIService.StaffSmartLightProgress(model);
+
+                                            }
+                                          });
+                                        },
+                                        activeColor: LightModeMainColor,
+                                        checkColor: Colors.white,
+                                        autofocus: true,
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
-
+                                // value: value,
+                                // onChanged: (bool? value) {
+                                //   setState(() {
+                                //     this.value = value!;
+                                //     if(value == true){
+                                //       StaffSmartLightProgressRequestModel model = StaffSmartLightProgressRequestModel(
+                                //         progress: true,
+                                //         add:false ,
+                                //
+                                //
+                                //       );
+                                //       APIService.StaffSmartLightProgress(model);
+                                //
+                                //       // dates["chosen year"]="2023";
+                                //       // Navigator.push(
+                                //       //     context,
+                                //       //     MaterialPageRoute(
+                                //       //         builder: (context) => StaffQuestionOne(
+                                //       //             answersData: dates
+                                //       //
+                                //       //         ))
+                                //       //
+                                //       //
+                                //       // );
+                                //     }
+                                //   });
+                                // },
                                 //  SizedBox(height: SizeConfig.screenHeight * 0.015),
                               ],
                             ),
@@ -862,45 +828,48 @@ class _BodyState extends State<Body> {
               ),
 
               SizedBox(height: SizeConfig.screenHeight * 0.04),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFCE5700),
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                // color: Color(0xFF07401D),
-                width: getProportionateScreenWidth(335),
-                height: getProportionateScreenHeight(69),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (flag2 == false) {
+                      flag2 = true;
+                    } else if (flag2 == true) {
+                      flag2 = false;
+                    }
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFCE5700),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  // color: Color(0xFF07401D),
+                  width: getProportionateScreenWidth(335),
+                  height: getProportionateScreenHeight(69),
 
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Plants Projects",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Poppins2",
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (flag2 == false) {
-                              flag2 = true;
-                            } else if (flag2 == true) {
-                              flag2 = false;
-                            }
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          "assets/new/up_arrow.svg",
-                          height: getProportionateScreenHeight(10),
-                          width: getProportionateScreenWidth(18),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Plants Projects",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Poppins2",
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
                         ),
-                      )
-                    ],
+                        GestureDetector(
+
+                          child: SvgPicture.asset(
+                            "assets/new/up_arrow.svg",
+                            height: getProportionateScreenHeight(10),
+                            width: getProportionateScreenWidth(18),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -939,14 +908,7 @@ class _BodyState extends State<Body> {
                                   fontWeight: FontWeight.w400,
                                   color: Colors.white),
                             ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: SvgPicture.asset(
-                                "assets/new/up_arrow.svg",
-                                height: getProportionateScreenHeight(10),
-                                width: getProportionateScreenWidth(18),
-                              ),
-                            )
+
                           ],
                         ),
                       ),
@@ -983,14 +945,7 @@ class _BodyState extends State<Body> {
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white),
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: SvgPicture.asset(
-                                    "assets/new/up_arrow.svg",
-                                    height: getProportionateScreenHeight(10),
-                                    width: getProportionateScreenWidth(18),
-                                  ),
-                                )
+
                               ],
                             ),
                           ),
@@ -1152,20 +1107,20 @@ class _BodyState extends State<Body> {
                                           fontWeight: FontWeight.w500,
                                           color: Color(0xFF474747)),
                                     ),
-                                    Checkbox(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0))),
-                                      value: value,
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          this.value = value!;
-                                        });
-                                      },
-                                      activeColor: Color(0xFFCE5700),
-                                      checkColor: Colors.white,
-                                      autofocus: true,
-                                    ),
+                                    // Checkbox(
+                                    //   shape: RoundedRectangleBorder(
+                                    //       borderRadius: BorderRadius.all(
+                                    //           Radius.circular(5.0))),
+                                    //   value: value,
+                                    //   onChanged: (bool? value) {
+                                    //     setState(() {
+                                    //       this.value = value!;
+                                    //     });
+                                    //   },
+                                    //   activeColor: Color(0xFFCE5700),
+                                    //   checkColor: Colors.white,
+                                    //   autofocus: true,
+                                    // ),
                                   ],
                                 ),
                                 //  SizedBox(height: SizeConfig.screenHeight * 0.015),

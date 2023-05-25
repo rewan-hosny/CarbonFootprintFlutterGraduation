@@ -72,7 +72,7 @@ class _BodyState extends State<Body> {
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: TopBar(
-                        text: "      Steps To Do!",
+                        text: "  Welcome To Carbonite",
                         press: () {
                           //Navigator.pushNamed(context, HomeScreen.routeName); //edit screeeennnnnnnnn
                         }

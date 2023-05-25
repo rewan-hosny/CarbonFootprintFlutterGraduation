@@ -4,14 +4,21 @@ TargetProgressResponeModel targetProgressResponeModel (String str)
 => TargetProgressResponeModel.fromJson(json.decode(str));
 
 class TargetProgressResponeModel {
-  int? targetPercent;
+  double? targetPercent;
   SolarPanel? solarPanel;
   SmartLighting? smartLighting;
 
   TargetProgressResponeModel({this.targetPercent, this.solarPanel, this.smartLighting});
 
   TargetProgressResponeModel.fromJson(Map<String, dynamic> json) {
-    targetPercent = json['Target Percent'];
+    if (json['Target Percent'] is int) {
+      targetPercent = (json['Target Percent'] as int).toDouble();
+    } else if (json['Target Percent'] is double) {
+      targetPercent = json['Target Percent'];
+    } else {
+      targetPercent = null;
+    }
+
     solarPanel = json['Solar Panel'] != null
         ? new SolarPanel.fromJson(json['Solar Panel'])
         : null;

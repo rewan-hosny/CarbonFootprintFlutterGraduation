@@ -434,7 +434,7 @@ Navigator.pushNamed(context, HomePageScreen.routeName)
               },
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'tohamiii@gmail.com',
+                  hintText: 'example@gmail.com',
                   hintStyle: InputTextStyle,
                   labelStyle: InputTextStyle,
                   suffixIcon:

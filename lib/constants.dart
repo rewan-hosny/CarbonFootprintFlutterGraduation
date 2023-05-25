@@ -10,17 +10,19 @@ const String getAdminEndPoint = '/admin';
 const String urlForGoogleLogin = '10.0.2.2:5000';
 const String carbonCalcEndPoint = '/calc';
 const String uploadTempEndPoint = '/uploadTemp';
+const String Location = '/location';
 const String TrainTempEndPoint = '/trainTemp';
 const String staffTargetProgress = '/getProgress';
+const String staffGetTarget = '/getTarget';
 const String staffSmartLightTargetProgress = '/addSmartProgress';
-
+const String  ProfileCarbon_user= '/userHome';
 const String staffSetTargt = '/setTarget';
 const String staffGetTargt = '/getTarget';
 const String staffSmartLight = '/smartCalc';
 const String solarPanel = '/solarCalc';
 const String downloadEndPoint = '/genTemp';
 const String checkAdmin="/check_admin";
-const String graphTemp="//graphTarget";
+const String graphTemp="/graphTarget";
 const String registerEndpoint = '/register';
 const String addSolarProgress = '/addSolarProgress';
 const String loginEndpoint = '/login';
@@ -40,6 +42,7 @@ const String uploadProfileImage = '/uploadImage';
 const String getCurrentUserDataEndPoint = '/user';
 const String logoutEndPoint = '/logout';
 const String predictionEndPoint = '/predictCarb';
+const String GetUniPrediction = '/getUniPrediction';
 
 
 // questions pages colores
@@ -156,7 +159,7 @@ final ContinueWithTextStyle = TextStyle(
     color: LightModeSmallTextColor);
 
 final textStyle = TextStyle(
-  fontSize: getProportionateScreenWidth(16),
+  fontSize: getProportionateScreenWidth(15),
   fontFamily: "Poppins3",
   color: Colors.black,
 );
