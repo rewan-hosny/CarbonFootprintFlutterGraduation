@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
 
 
       body: Padding(
-        padding: EdgeInsets.only(top: 20,left: 20,right: 20),
+        padding: EdgeInsets.only(top: 20,left: 10,right: 10),
         child: Column(
           children: [
             SizedBox(height: SizeConfig.screenHeight*0.03,),
@@ -64,61 +64,88 @@ class Body extends StatelessWidget {
 
             SizedBox(height: SizeConfig.screenHeight*0.03,),
 
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text("Hi Omar!",  style: TextStyle(
-                fontWeight: FontWeight.bold,fontSize: 30,fontFamily: "Poppins",color: LightModeMainColor
-              ),),
+            Padding(
+              padding: EdgeInsets.only(left: 10,right: 10),
+              child: Align(
+                alignment: Alignment.topLeft,
+
+                child: Text("Hi Omar!",  style: TextStyle(
+                  fontWeight: FontWeight.bold,fontSize: 30,fontFamily: "Poppins",color: LightModeMainColor
+                ),),
+              ),
             ),
-            
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text("Good Morning",style: TextStyle(
-                  fontWeight: FontWeight.bold,fontSize: 15,fontFamily: "Poppins",color: LightModeSmallTextColor
-              ),),
+
+            Padding(
+              padding: EdgeInsets.only(left: 10,right: 10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Good Morning",style: TextStyle(
+                    fontWeight: FontWeight.bold,fontSize: 15,fontFamily: "Poppins",color: LightModeSmallTextColor
+                ),),
+              ),
             ),
 
             SizedBox(height: SizeConfig.screenHeight*0.03,),
 
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text("Ongoing Projects",style: TextStyle(
-                  fontWeight: FontWeight.bold,fontSize: 16,fontFamily: "Poppins",color: LightModeMainColor),),
+            Padding(
+              padding: EdgeInsets.only(left: 10,right: 10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text("Ongoing Projects",style: TextStyle(
+                    fontWeight: FontWeight.bold,fontSize: 16,fontFamily: "Poppins",color: LightModeMainColor),),
+              ),
             ),
 
-            SizedBox(height: SizeConfig.screenHeight*0.02,),
+            SizedBox(height: SizeConfig.screenHeight * 0.02),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: (){
-                    {Navigator.pushNamed(context, StaffElectricityScreen.routeName);}
-
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, StaffElectricityScreen.routeName);
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      ),
+                    ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/ss.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/ss.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("Electricity consumption",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                              ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "Electricity consumption",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-
-
-
-                GestureDetector(
-                  onTap: (){Navigator.pushNamed(context, StaffBeforeQuestionsScreen.routeName);},
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, StaffBeforeQuestionsScreen.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
@@ -127,13 +154,18 @@ class Body extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/ssss.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/ssss.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("FootPrint Calculations",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                          ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "FootPrint Calculations",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -141,13 +173,21 @@ class Body extends StatelessWidget {
               ],
             ),
 
-
-            SizedBox(height: SizeConfig.screenHeight*0.01,),
+            SizedBox(height: SizeConfig.screenHeight * 0.01),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: (){Navigator.pushNamed(context, StaffChoosePage.routeName);},
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, StaffChoosePage.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
@@ -156,26 +196,33 @@ class Body extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/Rectangle 18827-1.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/Rectangle 18827-1.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("Prediction Calculations",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                          ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "Prediction Calculations",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-
-
-
-                GestureDetector(
-                  onTap: (){
-
-
+                ElevatedButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, AdviceWaterScreen.routeName);
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
@@ -184,13 +231,18 @@ class Body extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/aaaa.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/aaaa.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("Water Consumption",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                          ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "Water Consumption",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -198,16 +250,21 @@ class Body extends StatelessWidget {
               ],
             ),
 
-
-            SizedBox(height: SizeConfig.screenHeight*0.01,),
+            SizedBox(height: SizeConfig.screenHeight * 0.01),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: (){
+                ElevatedButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, AdviceWasteScreen.routeName);
-
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
@@ -216,26 +273,33 @@ class Body extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/Rectangle 18827.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/Rectangle 18827.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("Waste Improvement",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                          ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "Waste Improvement",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-
-
-
-                GestureDetector(
-                  onTap: (){
-
-
+                ElevatedButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, AdvicePlantsScreen.routeName);
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
                   child: Container(
                     width: 160,
                     height: 160,
@@ -244,19 +308,25 @@ class Body extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset("assets/images/aa.png",fit: BoxFit.fill,),
+                        Image.asset("assets/images/aa.png", fit: BoxFit.fill),
                         Padding(
-                          padding: const EdgeInsets.only(top: 65,left: 10),
-                          child: Text("Plant Improvement",style: TextStyle(
-                              fontFamily: "Poppins",fontSize: 16,color: Colors.white
-                          ),),
-                        )
+                          padding: const EdgeInsets.only(top: 65, left: 10),
+                          child: Text(
+                            "Plant Improvement",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
+
           ],
         ),
       ),
