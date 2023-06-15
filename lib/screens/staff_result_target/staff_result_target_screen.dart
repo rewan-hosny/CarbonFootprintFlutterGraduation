@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation/screens/staff_result_target/staff_result_target_2.dart';
 
 import '../../size_config.dart';
 import '../staff_result_target/components/body.dart';
@@ -12,7 +13,7 @@ class StaffResultTargetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Body(data:data ,),
+      body: StaffResultTarget2(data:data ,),
     );
   }
 }
