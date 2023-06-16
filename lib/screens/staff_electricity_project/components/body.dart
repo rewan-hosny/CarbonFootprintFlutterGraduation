@@ -99,8 +99,15 @@ class _BodyState extends State<Body> {
             ],
           ),
               SizedBox(height: SizeConfig.screenHeight * 0.04),
-              GestureDetector(
-                onTap: () async {
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                onPressed: () async {
 
          Navigator.pushNamed(context, StaffCalculateSolarPanelsScreen.routeName);
                 },
@@ -277,8 +284,15 @@ class _BodyState extends State<Body> {
                 ),
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.03),
-              GestureDetector(
-                onTap: () async {
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                onPressed: () async {
 
                   Navigator.pushNamed(context, StaffCalculateSmartLightingScreen.routeName);
                 },

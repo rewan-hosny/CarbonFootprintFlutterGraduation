@@ -339,60 +339,76 @@ class _QuestionFourState extends State<QuestionFour> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q4_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q4_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: (){
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
 
 
-                              if(answer == "1– 10 paper"){
-                                widget.answersData["paper"]="5.5";
-                              }
-                              else if(answer =="10 – 25 paper"){
-                                widget.answersData["paper"]="17.5";
-                              }
-                              else if(answer == "More than 25 paper"){
-                                widget.answersData["paper"]="30.0";
-                              }else if(answer == "I don’t waste paper"){
-                                widget.answersData["paper"]="0";
-                              }
+                                    if(answer == "1– 10 paper"){
+                                      widget.answersData["paper"]="5.5";
+                                    }
+                                    else if(answer =="10 – 25 paper"){
+                                      widget.answersData["paper"]="17.5";
+                                    }
+                                    else if(answer == "More than 25 paper"){
+                                      widget.answersData["paper"]="30.0";
+                                    }else if(answer == "I don’t waste paper"){
+                                      widget.answersData["paper"]="0";
+                                    }
 
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionFive(widget.answersData)));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => QuestionFive(widget.answersData)));
 
 
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: Q4_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q4_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],

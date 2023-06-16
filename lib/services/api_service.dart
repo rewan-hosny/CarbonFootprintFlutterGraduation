@@ -50,6 +50,8 @@ import '../models/location_request_model.dart';
 import '../models/logout_response_model.dart';
 import '../models/prediction_request_model.dart';
 import '../models/prediction_response_model.dart';
+import '../models/progress_smart_light_response_model.dart';
+import '../models/progress_solar_panel_respone_model.dart';
 import '../models/scan_plant_response_model.dart';
 import 'package:flutter/material.dart';
 
@@ -338,7 +340,7 @@ class APIService extends StatefulWidget {
     return uniCalcResponseModel(response.body);
   }
 //staff solar plan request progress
-  static Future<void> StaffProgress(StaffProgressResponseModel model) async {
+  static Future<SolarProgressResponseModel > StaffProgress(StaffProgressResponseModel model) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> requestHeaders = {
       'Content-Type' : 'application/json',
@@ -353,6 +355,7 @@ class APIService extends StatefulWidget {
     if(response.statusCode==200){
       print("zhgt");
     }
+    return solarProgressResponseModel(response.body);
 
   }
 
@@ -361,7 +364,7 @@ class APIService extends StatefulWidget {
 
 
   //staff progress smart light request
-  static Future<void> StaffSmartLightProgress(StaffSmartLightProgressRequestModel model) async {
+  static Future<SmartLightProgressResponseModel> StaffSmartLightProgress(StaffSmartLightProgressRequestModel model) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, String> requestHeaders = {
       'Content-Type' : 'application/json',
@@ -376,7 +379,7 @@ class APIService extends StatefulWidget {
     if(response.statusCode==200){
       print("zhgt");
     }
-
+    return smartLightProgressResponseModel(response.body);
   }
 
 

@@ -33,6 +33,10 @@ class _BodyState extends State<Body> {
   bool flag1 = false;
   bool flag2 = false;
   bool value2=false;
+  late String  num_panel ;
+  late String cost  ;
+  late String Reduced_Carbon ;
+  late String v4 ;
   final double progressValue = 0.4;
   final List<Color> color = <Color>[];
   late LinearGradient gradientColors;
@@ -57,21 +61,23 @@ class _BodyState extends State<Body> {
         if (response !=null) {
           targetPercent =response.targetPercent!;
           if(response.smartLighting?.status=="Completed"){
-            value2=true;
+            value1=true;
           }
           if(response.solarPanel?.status=="Completed"){
             value2=true;
           }
+          num_panel = response.solarPanel?.solarPanelsNum?.toString()??"0.0";
+          cost = response.solarPanel?.solarPanelsCost?.toString()??"0.0";
           SolarPanel ={
-            "num_panel":response.solarPanel?.solarPanelsNum?.toString(),
-            "cost":response.solarPanel?.solarPanelsCost?.toString(),
+            "num_panel":num_panel,
+            "cost":cost,
             "status":response.solarPanel?.status?.toString(),
 
 
           };
-
+          Reduced_Carbon = response.smartLighting?.reducedCarbon?.toString()??"0.0";
           SmartLight ={
-            "Reduced_Carbon":response.smartLighting?.reducedCarbon?.toString(),
+            "Reduced_Carbon":Reduced_Carbon,
             "status":response.smartLighting?.status?.toString(),};
 
 
@@ -525,7 +531,19 @@ class _BodyState extends State<Body> {
 
                                               );
 
-                                              APIService.StaffProgress(model);
+                                              APIService.StaffProgress(model).then((response) {
+                                                    if (response.targetPercent!= null) {
+                                                    targetPercent =response.targetPercent!;
+                                                    setState(() {
+                                                      SolarPanel={
+                                                        "num_panel":num_panel,
+                                                        "cost":cost,
+                                                        "status":response.progress?.toString(),
+
+                                                      };
+                                                    });
+
+                                                    }});
 
                                               // dates["chosen year"]="2023";
                                               // Navigator.push(
@@ -547,7 +565,18 @@ class _BodyState extends State<Body> {
 
                                               );
 
-                                              APIService.StaffProgress(model);
+                                              APIService.StaffProgress(model).then((response) {
+                                                if (response.targetPercent!= null) {
+                                                  targetPercent =response.targetPercent!;
+                                                  setState(() {
+                                                    SolarPanel={
+                                                      "num_panel":num_panel,
+                                                      "cost":cost,
+                                                      "status":response.progress?.toString(),
+
+                                                    };
+                                                  });
+                                                }});
 
                                               // dates["chosen year"]="2023";
                                               // Navigator.push(
@@ -770,14 +799,34 @@ class _BodyState extends State<Body> {
                                               StaffSmartLightProgressRequestModel model = StaffSmartLightProgressRequestModel(
                                                 progress: false,
                                                 add:true );
-                                              APIService.StaffSmartLightProgress(model);
+                                              APIService.StaffSmartLightProgress(model).then((response) {
+                                                if (response.targetPercent!= null) {
+                                                  targetPercent =response.targetPercent!;
+                                                  setState(() {
+                                                    SmartLight ={
+                                                      "Reduced_Carbon":Reduced_Carbon,
+                                                      "status":response.progress.toString(),};
+                                                  });
+                                                  print(SmartLight["status"]);
+
+                                                }});
 
                                             }
                                             if(value1 == false){
                                               StaffSmartLightProgressRequestModel model = StaffSmartLightProgressRequestModel(
                                                   progress: false,
                                                   add:false );
-                                              APIService.StaffSmartLightProgress(model);
+                                              APIService.StaffSmartLightProgress(model).then((response) {
+                                                if (response.targetPercent!= null) {
+                                                  targetPercent =response.targetPercent!;
+                                                  setState(() {
+                                                    SmartLight ={
+                                                      "Reduced_Carbon":Reduced_Carbon,
+                                                      "status":response.progress.toString(),};
+                                                  });
+
+                                                  print(SmartLight["status"]);
+                                                }});
 
                                             }
                                           });

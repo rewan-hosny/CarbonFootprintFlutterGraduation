@@ -161,7 +161,7 @@ child: ClipRRect(
                     SizedBox(width: SizeConfig.screenWidth*0.02,),
                     Row(
                       children: [
-                        Text("Damaged : ",
+                        Text("Status : ",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Poppins",
@@ -219,8 +219,8 @@ child: ClipRRect(
                                   ),
 
                                   child: Text(
-                                    "The Flower is damaged. If you want to be positive and take a positive step, \n"
-                                        "please provide the location where it is currently located, and  we will handle the situation",
+                                    "The Flower is damaged. If you want to be positive and take a step, \n"
+                                        "provide the location where it is currently located, and  we will handle the situation",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,

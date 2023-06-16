@@ -23,6 +23,7 @@ class _QuestionOneState extends State<QuestionOne> {
   bool isTouching2 = false;
   bool isTouching3 = false;
   bool isTouching4 = false;
+   Color currentColor = question_color;
   handleTouch(
     bool confirmTouch1,
     bool confirmTouch2,
@@ -208,7 +209,14 @@ class _QuestionOneState extends State<QuestionOne> {
                                 child: RadioListTile(
                                     activeColor: Colors.white,
                                     title: Text("Meat in every meal", //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                        style: answersStyle),
+                                        style: TextStyle(
+                                          fontSize: getProportionateScreenWidth(16),
+                                          fontFamily: "Poppins",
+                                          color: isTouching1 == true
+                                              ? Colors.white
+                                              :currentColor,
+
+                                        )),
                                     value: "Meat in every meal", //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                     groupValue: answer,
                                     onChanged: (value) {
@@ -244,7 +252,14 @@ class _QuestionOneState extends State<QuestionOne> {
                                     activeColor: Colors.white,
                                     title: Text(
                                       "Meat in some meals",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                      style: answersStyle,
+                                      style: TextStyle(
+                                        fontSize: getProportionateScreenWidth(16),
+                                        fontFamily: "Poppins",
+                                        color: isTouching2 == true
+                                            ? Colors.white
+                                            :currentColor,
+
+                                      ),
                                     ),
                                     value: "Meat in some meals",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                     groupValue: answer,
@@ -280,7 +295,14 @@ class _QuestionOneState extends State<QuestionOne> {
                                 child: RadioListTile(
                                     title: Text(
                                       "Meat very rarely",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                      style: answersStyle,
+                                      style: TextStyle(
+                                        fontSize: getProportionateScreenWidth(16),
+                                        fontFamily: "Poppins",
+                                        color: isTouching3 == true
+                                            ? Colors.white
+                                            :currentColor,
+
+                                      ),
                                     ),
                                     activeColor: Colors.white,
                                     value: "Meat very rarely",//hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
@@ -314,7 +336,14 @@ class _QuestionOneState extends State<QuestionOne> {
                                 child: RadioListTile(
                                     title: Text(
                                       "Vegetarian", //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                                      style: answersStyle,
+                                      style: TextStyle(
+                                        fontSize: getProportionateScreenWidth(16),
+                                        fontFamily: "Poppins",
+                                        color: isTouching4 == true
+                                            ? Colors.white
+                                            :currentColor,
+
+                                      ),
                                     ),
                                     activeColor: Colors.white,
                                     value: "Vegetarian", //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
@@ -349,76 +378,91 @@ class _QuestionOneState extends State<QuestionOne> {
                     //  color: Colors.lightBlue,
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
-                    ElevatedButton(
-                        onPressed: () => () {},
-                        child: Text(
-                          "Prev",
-                          style: TextStyle(fontSize: 23, color: Q1_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: getProportionateScreenWidth(128),
+                          height: getProportionateScreenHeight(60),
+                          child: ElevatedButton(
+                              onPressed: () => () {},
+                              child: Text(
+                                "Prev",
+                                style: TextStyle(fontSize: 23, color: Q1_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20))),
+                                primary: Colors.white,
+                                backgroundColor: prevButtonColor,
+                              )),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(20))),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                          primary: Colors.white,
-                          backgroundColor: prevButtonColor,
-                        )),
-                    ElevatedButton(
-                        onPressed: ()
-                        async {
-                          // SharedPreferences prefs = await SharedPreferences.getInstance();
-                          // prefs.setString('foodType', answer);
-                         // questionsAnswersData["test data"]="test test";
-                         //
-                         //  SharedPreferences prefs = await SharedPreferences.getInstance();
-                         //  prefs.setString('foodType',answer);
-                         //
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: getProportionateScreenWidth(128),
+                          height: getProportionateScreenHeight(60),
+                          child: ElevatedButton(
+                              onPressed: ()
+                              async {
+                                // SharedPreferences prefs = await SharedPreferences.getInstance();
+                                // prefs.setString('foodType', answer);
+                               // questionsAnswersData["test data"]="test test";
+                               //
+                               //  SharedPreferences prefs = await SharedPreferences.getInstance();
+                               //  prefs.setString('foodType',answer);
+                               //
 
 
-                          if(answer == "Meat in every meal"){
-                            answersData["foodType"]="a";
-                          }
-                          else if(answer == "Meat in some meals"){
-                            answersData["foodType"]="b";
-                          }
-                          else if(answer == "Meat very rarely"){
-                            answersData["foodType"]="c";
-                          }
-                          else if(answer == "Vegetarian"){
-                            answersData["foodType"]="d";
-                          }
+                                if(answer == "Meat in every meal"){
+                                  answersData["foodType"]="a";
+                                }
+                                else if(answer == "Meat in some meals"){
+                                  answersData["foodType"]="b";
+                                }
+                                else if(answer == "Meat very rarely"){
+                                  answersData["foodType"]="c";
+                                }
+                                else if(answer == "Vegetarian"){
+                                  answersData["foodType"]="d";
+                                }
 
 
-                          // print("after you click on button in page one and my current data is : ");
-                          // print(answersData.length);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => QuestionTwo(
-                              answersData
+                                // print("after you click on button in page one and my current data is : ");
+                                // print(answersData.length);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => QuestionTwo(
+                                    answersData
 
-                          ))
-
-
-                          );
+                                ))
 
 
-                        },
-                        child: Text(
-                          "Next",
-                          style: TextStyle(fontSize: 23, color: Colors.white),
+                                );
+
+
+                              },
+                              child: Text(
+                                "Next",
+                                style: TextStyle(fontSize: 23, color: Colors.white),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20))),
+                                primary: Colors.white,
+                                backgroundColor: Q1_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                              )),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20))),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                          primary: Colors.white,
-                          backgroundColor: Q1_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                        )),
+                      ],
+                    ),
                   ],
                 )))
           ],

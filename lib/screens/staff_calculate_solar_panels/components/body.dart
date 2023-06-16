@@ -64,12 +64,12 @@ class _BodyState extends State<Body> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                SizedBox(height: SizeConfig.screenHeight * 0.01),
                 TopBar(
-                  text: "Calculate solar panels",
+                  text: "   solar panels",
                   press: () {
                     Navigator.pushNamed(context, StaffElectricityScreen.routeName);
                   },
@@ -80,37 +80,41 @@ class _BodyState extends State<Body> {
                   style: TextStyle(fontSize: 18, fontFamily: "Poppins", color: LightModeSmallTextColor),
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.03),
-                Container(
-                  decoration: BoxDecoration(
-                    color: LightModeLightGreenColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Container(
-                    height: 60,
-                    width: 360,
-                    child: TextFormField(
-                      controller: totalEnergyConsumption,
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "   15000",
-                        suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg"),
-                        hintStyle: TextStyle(
-                          color: Colors.grey.shade300,
-                          fontSize: 14,
-                        ),
-                        labelStyle: InputTextStyle,
-                        filled: true,
-                        fillColor: LightModeLightGreenColor,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: LightModeLightGreenColor),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: SizeConfig.screenHeight * 0.07),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     color: LightModeLightGreenColor,
+                //     borderRadius: BorderRadius.circular(12),
+                //   ),
+                //   child: Container(
+                //     height: 60,
+                //     width: 360,
+                //     child: TextFormField(
+                //       controller: totalEnergyConsumption,
+                //       keyboardType: TextInputType.number,
+                //       textAlign: TextAlign.center,
+                //       decoration: InputDecoration(
+                //         hintText: "   15000",
+                //         suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg"),
+                //         hintStyle: TextStyle(
+                //           color: Colors.grey.shade300,
+                //           fontSize: 14,
+                //         ),
+                //         labelStyle: InputTextStyle,
+                //         filled: true,
+                //         fillColor: LightModeLightGreenColor,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: LightModeLightGreenColor),
+                //           borderRadius: BorderRadius.circular(12),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                buildEnergyConsumptionFormField(),
+
+
+
+                SizedBox(height: SizeConfig.screenHeight * 0.06),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -118,77 +122,84 @@ class _BodyState extends State<Body> {
                     style: TextStyle(fontSize: 20, color: LightModeMainColor),
                   ),
                 ),
-                SizedBox(height: SizeConfig.screenHeight * 0.05),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Text(
                   "Panel Efficiency",
                   style: TextStyle(fontSize: 18, color: LightModeSmallTextColor),
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
-                Container(
-                  decoration: BoxDecoration(
-                    color: LightModeLightGreenColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Container(
-                    height: 60,
-                    width: 360,
-                    child: TextFormField(
-                      controller: panelEfficiency,
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "   0.2 wt",
-                        suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg"),
-                        hintStyle: TextStyle(
-                          color: Colors.grey.shade300,
-                          fontSize: 14,
-                        ),
-                        labelStyle: InputTextStyle,
-                        filled: true,
-                        fillColor: LightModeLightGreenColor,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: LightModeLightGreenColor),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     color: LightModeLightGreenColor,
+                //     borderRadius: BorderRadius.circular(12),
+                //   ),
+                //   child: Container(
+                //     height: 60,
+                //     width: 360,
+                //     child: TextFormField(
+                //       controller: panelEfficiency,
+                //       keyboardType: TextInputType.numberWithOptions(decimal: true),
+                //       textAlign: TextAlign.center,
+                //       decoration: InputDecoration(
+                //         hintText: "   0.2 wt",
+                //         suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg"),
+                //         hintStyle: TextStyle(
+                //           color: Colors.grey.shade300,
+                //           fontSize: 14,
+                //         ),
+                //         labelStyle: InputTextStyle,
+                //         filled: true,
+                //         fillColor: LightModeLightGreenColor,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: LightModeLightGreenColor),
+                //           borderRadius: BorderRadius.circular(12),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
+                buildPanelEffiencyFormField(),
+
+
+
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Text(
                   "Watts/ Single panel",
                   style: TextStyle(fontSize: 18, color: LightModeSmallTextColor),
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
-                Container(
-                  decoration: BoxDecoration(
-                    color: LightModeLightGreenColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Container(
-                    height: 60,
-                    width: 360,
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: wattsInSinglePanel,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: "   50 Wt",
-                        hintStyle: TextStyle(
-                          color: Colors.grey.shade300,
-                          fontSize: 14,
-                        ),
-                        labelStyle: InputTextStyle,
-                        filled: true,
-                        fillColor: LightModeLightGreenColor,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: LightModeLightGreenColor),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     color: LightModeLightGreenColor,
+                //     borderRadius: BorderRadius.circular(12),
+                //   ),
+                //   child: Container(
+                //     height: 60,
+                //     width: 360,
+                //     child: TextFormField(
+                //       keyboardType: TextInputType.number,
+                //       controller: wattsInSinglePanel,
+                //       textAlign: TextAlign.center,
+                //       decoration: InputDecoration(
+                //         hintText: "   50 Wt",
+                //         hintStyle: TextStyle(
+                //           color: Colors.grey.shade300,
+                //           fontSize: 14,
+                //         ),
+                //         labelStyle: InputTextStyle,
+                //         filled: true,
+                //         fillColor: LightModeLightGreenColor,
+                //         enabledBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: LightModeLightGreenColor),
+                //           borderRadius: BorderRadius.circular(12),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                buildSignalPanelFormField(),
+
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 Container(
                   height: 70,
@@ -219,4 +230,125 @@ class _BodyState extends State<Body> {
       ),
     );
   }
+
+  Padding buildEnergyConsumptionFormField(){
+
+    return Padding(
+        padding:
+        EdgeInsets.all(0),
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            color: LightModeLightGreenColor,
+            borderRadius: new BorderRadius.circular(12.0),
+          ),
+
+
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: TextFormField(
+              controller: totalEnergyConsumption,
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: '15000',
+                  hintStyle: InputTextStyle,
+                  labelStyle: InputTextStyle,
+                  suffixIcon:
+
+                  CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",)
+
+
+                //SvgPicture.asset("")
+
+              ),
+
+            ),
+          ),
+        ));
+  }
+
+  Padding buildPanelEffiencyFormField(){
+
+    return Padding(
+        padding:
+        EdgeInsets.all(0),
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            color: LightModeLightGreenColor,
+            borderRadius: new BorderRadius.circular(12.0),
+          ),
+
+
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: TextFormField(
+              controller: panelEfficiency,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textAlign: TextAlign.center,
+
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: '0.2 wt',
+                  hintStyle: InputTextStyle,
+                  labelStyle: InputTextStyle,
+                  suffixIcon:
+
+                  CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg",)
+
+
+                //SvgPicture.asset("")
+
+              ),
+
+            ),
+          ),
+        ));
+  }
+
+  Padding buildSignalPanelFormField(){
+
+    return Padding(
+        padding:
+        EdgeInsets.all(0),
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            color: LightModeLightGreenColor,
+            borderRadius: new BorderRadius.circular(12.0),
+          ),
+
+
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: TextFormField(
+              controller: wattsInSinglePanel,
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: '50 wt',
+                  hintStyle: InputTextStyle,
+                  labelStyle: InputTextStyle,
+                  suffixIcon:
+
+                  CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",)
+
+                // suffixIcon:
+                  //
+                  // CustomSuffixIcon(svgIcon: "assets/images/computersvg.svg",)
+
+
+                //SvgPicture.asset("")
+
+              ),
+
+            ),
+          ),
+        ));
+  }
+
 }

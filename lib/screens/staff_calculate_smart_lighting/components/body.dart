@@ -28,35 +28,44 @@ class _BodyState extends State<Body> {
         backgroundColor: LightModeLightGreenColor,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight*0.06,),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(40),
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          shape:
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          primary: Colors.white,
-                          backgroundColor: LightModeMainColor,),
-                        onPressed: (){
-
-
-                          Navigator.pushNamed(context, StaffElectricityScreen.routeName);
-                        },
-                        child: Image.asset("assets/icons/mdi_arrow-back.png"
-                            ,height: SizeConfig.screenHeight*0.09),
-                      ),
-                    ),
-                    SizedBox(width: SizeConfig.screenWidth*0.04,),
-
-                    Text("Calculate Smart Lighting", style: LightModeHeadersStyle,),
-                  ],
+                SizedBox(height: SizeConfig.screenHeight*0.01,),
+                // Row(
+                //   children: [
+                //     SizedBox(
+                //       width: getProportionateScreenWidth(40),
+                //       height: getProportionateScreenHeight(40),
+                //       child: TextButton(
+                //         style: TextButton.styleFrom(
+                //           shape:
+                //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                //           primary: Colors.white,
+                //           backgroundColor: LightModeMainColor,),
+                //         onPressed: (){
+                //
+                //
+                //           Navigator.pushNamed(context, StaffElectricityScreen.routeName);
+                //         },
+                //         child: Image.asset("assets/icons/mdi_arrow-back.png"
+                //             ,height: SizeConfig.screenHeight*0.09),
+                //       ),
+                //     ),
+                //     SizedBox(width: SizeConfig.screenWidth*0.04,),
+                //
+                //     Text("Calculate Smart Lighting", style: LightModeHeadersStyle,),
+                //   ],
+                // ),
+                TopBar(
+                    text: "    Smart Lighting",
+                    press: () {
+                      Navigator.pushNamed(context, StaffElectricityScreen.routeName);
+                    }
                 ),
+
+
+
                 SizedBox(height: SizeConfig.screenHeight * 0.04,),
                 Align(
                   child: Image.asset(
@@ -65,40 +74,40 @@ class _BodyState extends State<Body> {
                   ),
                   alignment: Alignment.topCenter,
                 ),
-                SizedBox(height: SizeConfig.screenHeight * 0.08,),
+                SizedBox(height: SizeConfig.screenHeight * 0.15,),
 
                 Text("Total Energy Consumption",style: TextStyle(
-                    fontSize: 18, fontFamily: "Poppins", color: LightModeSmallTextColor),),
+                    fontSize: 22, fontFamily: "Poppins", color: LightModeSmallTextColor),),
 
                 SizedBox(height: SizeConfig.screenHeight*0.03,),
 
-                Container(
-                  decoration:BoxDecoration(
-                    color: LightModeLightGreenColor,
-                    borderRadius: BorderRadius.circular(12),),
-                  child:
-                  Container(
-                    height: 60,
-                    width: 360,
-                    child: TextFormField(
-                      controller: total_consumption,
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                          hintText: "   15000" ,
-                          suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
-                          hintStyle: InputTextStyle,
-                          labelStyle: InputTextStyle,
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(borderSide:
-                          BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12))
-                      ),
-                    ),
-                  ),
-                ),
-
+                // Container(
+                //   decoration:BoxDecoration(
+                //     color: LightModeLightGreenColor,
+                //     borderRadius: BorderRadius.circular(12),),
+                //   child:
+                //   Container(
+                //     height: 60,
+                //     width: 360,
+                //     child: TextFormField(
+                //       controller: total_consumption,
+                //       keyboardType: TextInputType.number,
+                //       textAlign: TextAlign.center,
+                //       decoration: InputDecoration(
+                //           hintText: "   15000" ,
+                //           suffixIcon: CustomSuffixIcon(svgIcon: "assets/images/vector3.svg",),
+                //           hintStyle: InputTextStyle,
+                //           labelStyle: InputTextStyle,
+                //           filled: true,
+                //           fillColor: Colors.white,
+                //           enabledBorder: OutlineInputBorder(borderSide:
+                //           BorderSide(color: Colors.white),
+                //               borderRadius: BorderRadius.circular(12))
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                buildEnergyConsumptionFormField(),
                 SizedBox(height: SizeConfig.screenHeight*0.06,),
 
 
@@ -155,5 +164,42 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
+  }
+  Padding buildEnergyConsumptionFormField(){
+
+    return Padding(
+        padding:
+        EdgeInsets.all(0),
+        child: Container(
+          height: 58,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.circular(12.0),
+          ),
+
+
+          child: Padding(
+            padding: EdgeInsets.only(left: 12),
+            child: TextFormField(
+              controller: total_consumption,
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: '15000',
+                  hintStyle: InputTextStyle,
+                  labelStyle: InputTextStyle,
+                  suffixIcon:
+
+                  CustomSuffixIcon(svgIcon:"assets/images/vector3.svg",)
+
+
+                //SvgPicture.asset("")
+
+              ),
+
+            ),
+          ),
+        ));
   }
 }

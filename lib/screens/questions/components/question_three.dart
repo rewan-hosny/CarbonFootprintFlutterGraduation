@@ -343,60 +343,76 @@ class _QuestionThreeState extends State<QuestionThree> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: () {
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: () {
 
 
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q3_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q3_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: (){
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
 
 
 
-                              if(answer == "I don't smoke"){
-                                widget.answersData["cigarettes"]="0";
-                              }else if(answer == "Less than 5 cigarettes"){
-                                widget.answersData["cigarettes"]="2.5";
-                              }else if (answer == "5 - 10 cigarettes"){
-                                widget.answersData["cigarettes"]="7.5";
-                              }else if (answer == "Up to 10 cigarettes"){
-                                widget.answersData["cigarettes"]="10.0";
-                              }
+                                    if(answer == "I don't smoke"){
+                                      widget.answersData["cigarettes"]="0";
+                                    }else if(answer == "Less than 5 cigarettes"){
+                                      widget.answersData["cigarettes"]="2.5";
+                                    }else if (answer == "5 - 10 cigarettes"){
+                                      widget.answersData["cigarettes"]="7.5";
+                                    }else if (answer == "Up to 10 cigarettes"){
+                                      widget.answersData["cigarettes"]="10.0";
+                                    }
 
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionFour(widget.answersData)));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => QuestionFour(widget.answersData)));
 
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: Q3_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q3_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],

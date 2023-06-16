@@ -68,12 +68,15 @@ class _BodyState extends State<Body> {
               onTap: (){
 
                 setState(() {
-                  // isClicked1=true;
 
 
                   APIService.UserRegressionReport().then((response) {
 
                     if (response.result != null) {
+                     setState(() {
+                       isClicked1=true;
+                     });
+
                       print(response.result);
 
                       Navigator.push(
@@ -86,6 +89,13 @@ class _BodyState extends State<Body> {
 
                       resultData = json.decode(json.encode(response.result?.toJson()));
                       print("${resultData} liuhguytr");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserRegressionScreen(
+                              dates: resultData,
+
+                            )),);
                     }
                     else{
                       setState(() {
@@ -104,13 +114,7 @@ class _BodyState extends State<Body> {
                     print("${resultData} liuhguytr");});
 
                 });
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UserRegressionScreen(
-                          dates: resultData,
 
-                        )),);
 
                 },
               child: Container(
@@ -118,7 +122,7 @@ class _BodyState extends State<Body> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(9),
                   border: Border.all(color: LightModeMainColor, width: 2),
-                  color: isClicked1?LightModeMainColor:Color(0x00000000),
+                  color:  isClicked1?LightModeMainColor:Color(0xFFFFFFFF),
 
                 ),
                 child: Padding(
@@ -136,14 +140,14 @@ class _BodyState extends State<Body> {
                         child: Text("Report Of Carbon Emissions",
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
-                              color: LightModeSmallTextColor,
+                              color: isClicked1?Color(0xFFFFFFFF):Colors.black,
                             ) ),
                       ),
                       Image.asset(
                         "assets/images/simple-icons_soundcharts.png",
                         width: 50,
                         height: 50,
-                        color: isClicked2?Color(0xFFFFFFFF):currenIconColor ,
+                        color: isClicked1?Color(0xFFFFFFFF):currenIconColor ,
                       ),
                     ],
                   ),

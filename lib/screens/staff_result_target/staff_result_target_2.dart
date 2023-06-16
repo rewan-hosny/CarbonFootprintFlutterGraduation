@@ -6,6 +6,8 @@ import '../../components/top_bar.dart';
 import '../../size_config.dart';
 import '../stuff_home_page/stuff_home_page_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../target_progress/target_progress_screen.dart';
 class StaffResultTarget2 extends StatefulWidget {
   const StaffResultTarget2({Key? key, required this.data}) : super(key: key);
   final Map<String, dynamic> data;
@@ -69,8 +71,8 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
               SizedBox(height: SizeConfig.screenHeight * 0.02),
               Align(
                 child: Container(
-
-                height : 180,
+width: 220,
+                height : 200,
                   child: Image.asset(
                     "assets/images/s7.png",
 
@@ -92,7 +94,7 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
                         color: Color(0xFF474747),
 
                       ),),
-                    Text("2030 "
+                    Text("${widget.data["year"]} "
                       ,style: TextStyle(
                         fontSize: getProportionateScreenWidth(22),
                         fontFamily: "Poppins",
@@ -139,7 +141,7 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
                               child: Text(
                                 "Predicted",
                                 style: TextStyle(
-                                  fontSize: getProportionateScreenWidth(22),
+                                  fontSize: getProportionateScreenWidth(20),
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xFF1CA953),
@@ -157,7 +159,7 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
                        Column(
                          mainAxisAlignment: MainAxisAlignment.center,
                          children: [
-                           Text("10000",
+                           Text("${widget.data['Prediction Emission']}",
                            style: TextStyle(
 
                                  fontSize: getProportionateScreenWidth(20),
@@ -240,7 +242,7 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("5000",
+            Text("${widget.data["target"]}",
               style: TextStyle(
 
                 fontSize: getProportionateScreenWidth(20),
@@ -286,9 +288,30 @@ class _StaffResultTarget2State extends State<StaffResultTarget2> {
 
 
                   ),
+
                 ],
               )
-
+,
+              SizedBox(height: SizeConfig.screenHeight * 0.04),
+              SizedBox(
+                width: getProportionateScreenWidth(329),
+                height: getProportionateScreenHeight(68),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    primary: Colors.white,
+                    backgroundColor: LightModeMainColor,
+                  ),
+                  onPressed: (){
+                    Navigator.pushNamed(context, TargetProgressScreen.routeName);
+                  },
+                  child: Text(
+                    "Take Action !",
+                    style: ButtonFontStyle,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

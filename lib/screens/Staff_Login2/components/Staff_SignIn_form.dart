@@ -180,7 +180,7 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
               }),
 
               if (response.firstTime=="yes"){
-                Navigator.pushNamed(context,  StaffStepAfterLogin.routeName)
+                Navigator.pushNamed(context,  StuffHomePageScreen.routeName)
               }
               else if (response.firstTime=="no"){
                 //Navigator.pushNamed(context, StaffStepToDo.routeName)
@@ -262,7 +262,7 @@ class _StaffSignInFormState extends State<StaffSignInForm> {
            }),
 
 if (response.firstTime=="yes"){
-  Navigator.pushNamed(context,  StaffStepAfterLogin.routeName)
+  Navigator.pushNamed(context,  StuffHomePageScreen.routeName)
 }
 else if (response.firstTime=="no"){
   //Navigator.pushNamed(context, StaffStepToDo.routeName)

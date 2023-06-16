@@ -325,56 +325,72 @@ class _QuestionEightState extends State<QuestionEight> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q8_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q8_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: (){
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
 
-                              if(answer == "Up to 50km"){
-                                widget.answersData["distKm"]="50.0";
-                              }else if(answer == "100-500 km"){
-                                widget.answersData["distKm"]="300.0";
-                              }else if(answer == "More than 500km"){
-                                widget.answersData["distKm"]="700.0";
-                              }
-
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionNine(widget.answersData)));
+                                    if(answer == "Up to 50km"){
+                                      widget.answersData["distKm"]="50.0";
+                                    }else if(answer == "100-500 km"){
+                                      widget.answersData["distKm"]="300.0";
+                                    }else if(answer == "More than 500km"){
+                                      widget.answersData["distKm"]="700.0";
+                                    }
 
 
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => QuestionNine(widget.answersData)));
 
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+
+
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: Q8_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q8_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],

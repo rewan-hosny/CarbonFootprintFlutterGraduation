@@ -341,55 +341,71 @@ class _QuestionFiveState extends State<QuestionFive> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q5_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q5_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: () {
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: () {
 
-                              if(answer == "0 to 10%"){
-                                widget.answersData["food"]="0.05";
-                              }else if(answer == "10% to 25%"){
-                                widget.answersData["food"]="0.175";
-                              }else if(answer == "More than 50%"){
-                                widget.answersData["food"]="0.7";
-                              }else if(answer == "I don’t waste food"){
-                                widget.answersData["food"]="0";
-                              }
+                                    if(answer == "0 to 10%"){
+                                      widget.answersData["food"]="0.05";
+                                    }else if(answer == "10% to 25%"){
+                                      widget.answersData["food"]="0.175";
+                                    }else if(answer == "More than 50%"){
+                                      widget.answersData["food"]="0.7";
+                                    }else if(answer == "I don’t waste food"){
+                                      widget.answersData["food"]="0";
+                                    }
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionSix(widget.answersData)));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => QuestionSix(widget.answersData)));
 
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: Q5_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q5_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],

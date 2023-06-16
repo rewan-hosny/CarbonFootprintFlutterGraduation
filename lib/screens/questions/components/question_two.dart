@@ -344,73 +344,88 @@ class _QuestionTwoState extends State<QuestionTwo> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: ()  {
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: ()  {
 
-                              widget.answersData["water"]="2.5";
-                              print("after click on button in page two");
-Navigator.pop(context);
-                            // Navigator.push(
-                            // context,
-                            // MaterialPageRoute(
-                            // builder: (context) => QuestionOne()));
+                                    widget.answersData["water"]="2.5";
+                                    print("after click on button in page two");
+                                    Navigator.pop(context);
+                                  // Navigator.push(
+                                  // context,
+                                  // MaterialPageRoute(
+                                  // builder: (context) => QuestionOne()));
 
 
 
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q2_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q2_mainColor),    // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: () {
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: () {
 
 
-                            if(answer == "1 - 2 liters"){
-                              widget.answersData["water"]="1.5";
-                            }
-                            else if(answer == "2 – 3 liters"){
-                              widget.answersData["water"]="2.5";
-                            }
-                            else if(answer == "3 – 5 liters"){
-                              widget.answersData["water"]="4.0";
+                                  if(answer == "1 - 2 liters"){
+                                    widget.answersData["water"]="1.5";
+                                  }
+                                  else if(answer == "2 – 3 liters"){
+                                    widget.answersData["water"]="2.5";
+                                  }
+                                  else if(answer == "3 – 5 liters"){
+                                    widget.answersData["water"]="4.0";
 
-                            }
-                            else if(answer == "up to 5 liters"){
-                              widget.answersData["water"]="5";
-                            }
-
-
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => QuestionThree(widget.answersData)));
+                                  }
+                                  else if(answer == "up to 5 liters"){
+                                    widget.answersData["water"]="5";
+                                  }
 
 
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => QuestionThree(widget.answersData)));
+
+
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: Q2_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q2_mainColor,          // hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],

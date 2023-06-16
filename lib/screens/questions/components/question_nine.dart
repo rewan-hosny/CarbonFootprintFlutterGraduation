@@ -329,148 +329,132 @@ class _QuestionNineState extends State<QuestionNine> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "Prev",
-                              style: TextStyle(fontSize: 23, color: Q9_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    style: TextStyle(fontSize: 23, color: Q9_mainColor), //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20))),
+
+                                    primary: Colors.white,
+                                    backgroundColor: prevButtonColor,
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: prevButtonColor,
-                            )),
-                        ElevatedButton(
-                            onPressed: ()  {
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: getProportionateScreenWidth(128),
+                              height: getProportionateScreenHeight(60),
+                              child: ElevatedButton(
+                                  onPressed: ()  {
 
-                              widget.answersData["carType"]=answer;
+                                    widget.answersData["carType"]=answer;
 
-
-
-                              CalculateCarbonRequestModel model = CalculateCarbonRequestModel(
-                                  distKm:widget.answersData["distKm"],
-                                  carType:widget.answersData["carType"],
-                                  foodType:widget.answersData["foodType"],
-                                  paper:widget.answersData["paper"],
-                                  package:widget.answersData["package"],
-                                  wfood:widget.answersData["food"],
-                                  water:widget.answersData["water"],
-                                  cigarettes:widget.answersData["cigarettes"]
+                                    CalculateCarbonRequestModel model = CalculateCarbonRequestModel(
+                                        distKm:widget.answersData["distKm"],
+                                        carType:widget.answersData["carType"],
+                                        foodType:widget.answersData["foodType"],
+                                        paper:widget.answersData["paper"],
+                                        package:widget.answersData["package"],
+                                        wfood:widget.answersData["food"],
+                                        water:widget.answersData["water"],
+                                        cigarettes:widget.answersData["cigarettes"]
 
 
-
-
-                              );
-                              APIService.calculateCarbon(model).then((response) =>{
-                                if(response.status=="Success"){
-                                  print("Success"),
-                                  print("carbon emissions : "),
-                                  print(response.carbonEmission),
-                                  print("rewan"),
+                                    );
+                                    APIService.calculateCarbon(model).then((response) =>{
+                                      if(response.status=="Success"){
+                                        print("Success"),
+                                        print("carbon emissions : "),
+                                        print(response.carbonEmission),
+                                        print("rewan"),
 
 
 
-                                  print(response.carbonEmission.toString()?.substring(0,4)),
+                                        print(response.carbonEmission.toString()?.substring(0,4)),
 
 
-                              widget.answersData["carbon emissions"] = response.carbonEmission?.toStringAsFixed(2),
+                                    widget.answersData["carbon emissions"] = response.carbonEmission?.toStringAsFixed(2),
 
 
-                              // widget.answersData["carbon emissions"]=response.carbonEmission.toString(),
-                                  //  Navigator.pushNamed(context, QuestionScreen.routeName)
+                                    // widget.answersData["carbon emissions"]=response.carbonEmission.toString(),
+                                        //  Navigator.pushNamed(context, QuestionScreen.routeName)
 
-                              APIService.carbonAdvice().then((response) => {
-                              if(response != null){
-                              print("It's not equal null"),
-                              print(response.largestEmissionType),
-                              print(response.advices![0]),
-                             // largestValue=response.largestEmissionType!,
-                              widget.answersData["largestEmissionType"]=response.largestEmissionType!,
-                              widget.answersData["advice1"]=response.advices![0]!,
-                              widget.answersData["advice2"]=response.advices![1]!,
-                              widget.answersData["advice3"]=response.advices![2]!,
+                                    APIService.carbonAdvice().then((response) => {
+                                    if(response != null){
+                                    print("It's not equal null"),
+                                    print(response.largestEmissionType),
+                                    print(response.advices![0]),
+                                   // largestValue=response.largestEmissionType!,
+                                    widget.answersData["largestEmissionType"]=response.largestEmissionType!,
+                                    widget.answersData["advice1"]=response.advices![0]!,
+                                    widget.answersData["advice2"]=response.advices![1]!,
+                                    widget.answersData["advice3"]=response.advices![2]!,
 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ResultScreen(widget.answersData)
-                                    ))
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => ResultScreen(widget.answersData)
+                                          ))
 
+                                    }
+                                    else{
+                                    print("It returned null")
+                                    }
 
-                              }
-                              else{
-                              print("It returned null")
-                              }
+                                    }
+                                    ),
 
+                                    }
+                                      else{
+                                        print("fail fail fail")
+                                      }
+                                    });
 
-                              }
-                              ),
+                                    //
+                                    // foodType:widget.answersData["foodType"],
+                                    // water:widget.answersData["water"],
+                                    // cigarettes:widget.answersData["cigarettes"],
+                                    // paper:widget.answersData["paper"],
+                                    // food:widget.answersData["food"],
+                                    // package:widget.answersData["package"],
+                                    //
+                                    // distKm:widget.answersData["distKm"],
+                                    // carType:widget.answersData["carType"],
+                                    //
+                                    //
 
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    style: TextStyle(fontSize: 23, color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20))),
 
-
-
-
-                              }
-                                else{
-                                  print("fail fail fail")
-                                }
-                              });
-
-
-
-
-
-
-                              //
-                              // foodType:widget.answersData["foodType"],
-                              // water:widget.answersData["water"],
-                              // cigarettes:widget.answersData["cigarettes"],
-                              // paper:widget.answersData["paper"],
-                              // food:widget.answersData["food"],
-                              // package:widget.answersData["package"],
-                              //
-                              // distKm:widget.answersData["distKm"],
-                              // carType:widget.answersData["carType"],
-                              //
-                              //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            },
-                            child: Text(
-                              "Next",
-                              style: TextStyle(fontSize: 23, color: Colors.white),
+                                    primary: Colors.white,
+                                    backgroundColor: Q9_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                                  )),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20))),
-                              padding:
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 44),
-                              primary: Colors.white,
-                              backgroundColor: Q9_mainColor, //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                            )),
+                          ],
+                        ),
                       ],
                     )))
           ],
